@@ -134,7 +134,7 @@
             <p class="text-sm text-center text-gray-900 mt-4">
               Already have an account?
               <a
-                href="login.html"
+                href="{{ route('login') }}"
                 class="text-[#3A5F8F] underline font-medium hover:text-[#F4A261] transition-all duration-300 ease-in-out"
                 >Login</a
               >
