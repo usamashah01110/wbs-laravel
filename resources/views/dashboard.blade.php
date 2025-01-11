@@ -12,9 +12,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <!-- favicon -->
-    <link href="{{ asset('image/WBS-Logo.png') }}" rel="shortcut icon" />
+{{--      <link rel="icon" href="{{ asset('images/WBS-Logo.png') }}" type="image/png">--}}
     <!-- Main Css -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/style.css')}}" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
@@ -24,7 +24,7 @@
       class="bg-[#F4A261] shadow-lg px-6 py-4 flex justify-between items-center"
     >
       <div class="flex items-center">
-        <img 
+        <img
         src="{{ asset('images/WBS-Logo.png') }}" alt="Profile" class="h-14" />
       </div>
       <div class="relative">
@@ -34,7 +34,7 @@
             alt="Profile"
             class="w-8 h-8 rounded-full"
           />
-          <span class="font-medium text-gray-100">Josh</span>
+          <span class="font-medium text-gray-100">{{ Auth::user()->firstname }} {{ Auth::user()->lastname  }}</span>
         </button>
         <!-- Dropdown -->
         <div
@@ -47,12 +47,15 @@
             class="block px-4 py-2 hover:bg-gray-200"
             >My Account</a
           > -->
-          <a
-            href="#"
-            class="block px-4 py-2 hover:bg-gray-200 text-red-500 transition-all duration-300"
-          >
-            <i class="fas fa-sign-out-alt text-red-500"></i> Logout</a
-          >
+            <form method="POST" action="{{ route('logout') }}" class="block px-4 py-2 hover:bg-gray-200 text-red-500 transition-all duration-300">
+                @csrf
+
+                <x-responsive-nav-link :href="route('logout')"
+                                       onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-responsive-nav-link>
+            </form>
         </div>
       </div>
     </header>
@@ -61,7 +64,7 @@
     <section class="bg-[#E2E8F0] p-6">
       <!-- Welcome Section -->
       <div class="text-center bg-[#3A5F8F] text-white py-4 rounded mb-6">
-        <h1 class="text-xl font-semibold">Welcome back, Josh</h1>
+        <h1 class="text-xl font-semibold">Welcome back, {{ Auth::user()->firstname }} {{ Auth::user()->lastname  }}</h1>
       </div>
 
       <!-- Main Grid Section -->

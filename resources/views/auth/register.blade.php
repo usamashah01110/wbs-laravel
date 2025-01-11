@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup - WBS</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}" />
     <!-- favicon -->
-    <link href="{{ asset('image/WBS-Logo.png') }}" rel="shortcut icon" />
+    <link href="{{ asset('images/WBS-Logo.png')}}" rel="shortcut icon" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
@@ -74,6 +74,15 @@
                 required
               />
             </div>
+                <div>
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="password"
+                        class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black"
+                        required
+                    />
+                </div>
             <div>
               <input
                 type="text"
@@ -135,7 +144,7 @@
         <!-- Right Side: Picture -->
         <div
           class="hidden md:block w-full md:w-1/2 bg-cover bg-center"
-          style="background-image: url('{{ asset('assets/images/signup.png') }}')"
+          style="background-image: url('{{ asset('images/signup.png') }}')"
         ></div>
       </div>
     </main>

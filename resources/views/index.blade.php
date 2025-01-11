@@ -12,9 +12,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <!-- favicon -->
-    <link href="{{ asset('image/WBS-Logo.png') }}" rel="shortcut icon" />
+    <link href="{{ asset('image/WBS-Logo.png')}}" rel="shortcut icon" />
     <!-- Main Css -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/style.css')}}" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
@@ -24,7 +24,7 @@
       <div class="container">
         <div class="flex lg:flex-nowrap flex-wrap items-center">
           <a href="index.html" class="flex items-center">
-            <img src="{{ asset('image/WBS-Logo.png') }}" class="h-9 flex" />
+            <img src="{{ asset('images/WBS-Logo.png')}}" class="h-9 flex" />
           </a>
 
           <div class="lg:hidden flex items-center ms-auto px-2.5">
@@ -101,7 +101,7 @@
           <div>
             <a
               class="px-4 py-2 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#F4A261] transition-all duration-300 ease-in-out"
-              href="screens/login.html"
+              href="{{ route('login') }}"
               >Login</a
             >
             <!-- <a class="nav-link inline-flex items-center text-sm lg:text-base font-medium py-0.5 px-2 capitalize" href="#contact">Create A Free Account</a> -->

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - WBS</title>
     <!-- favicon -->
-    <link href="{{ asset('image/WBS-Logo.png') }}" rel="shortcut icon" />
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link href="{{ asset('image/WBS-Logo.png')}}" rel="shortcut icon" />
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
@@ -61,7 +61,7 @@
             <p class="text-sm text-center text-gray-900 mt-4">
               Don't have an account?
               <a
-                href="signup.html"
+                href="{{ route('register') }}"
                 class="text-[#3A5F8F] underline font-medium hover:text-[#F4A261] transition-all duration-300 ease-in-out"
                 >Create a new account</a
               >
