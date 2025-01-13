@@ -28,6 +28,7 @@ class User extends Authenticatable
         'street',
         'city',
         'frequency',
+        'password',
     ];
 
     /**
@@ -48,4 +49,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function recipients()
+    {
+        return $this->hasMany(Recipient::class);
+    }
 }

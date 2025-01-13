@@ -139,7 +139,7 @@
               >
               <a
                 class="py-2 px-6 bg-[#F4A261] text-white font-medium rounded-lg hover:bg-[#3A5F8F] transition-all duration-300 ease-in-out"
-                href="screens/signup.html"
+                href="{{ route('register') }}"
                 >Sing Up For Free</a
               >
             </div>

@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin - Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <!-- favicon -->
-    <link href="{{ asset('image/WBS-Logo.png') }}" rel="shortcut icon" />
+    <link href="{{ asset('image/WBS-Logo.png')}}" rel="shortcut icon" />
   </head>
   <body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
     <!-- Navbar -->
@@ -19,7 +19,7 @@
       class="bg-[#F4A261] shadow-lg px-6 py-4 flex justify-between items-center"
     >
       <div class="flex items-center">
-        <img 
+        <img
         src="{{ asset('images/WBS-Logo.png') }}" alt="Profile" class="h-14" />
       </div>
       <div class="flex items-center gap-4">
