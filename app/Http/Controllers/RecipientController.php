@@ -21,7 +21,7 @@ class RecipientController extends Controller
             'name' => $request->name,
             'mobile' => $request->mobile,
             'email' => $request->email,
-            'type' => $request->recipientType,
+            'type' => $request->type,
         ]);
 
         return response()->json(['success' => true, 'recipient' => $recipient]);
@@ -53,10 +53,23 @@ class RecipientController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function list()
+
+    public function willlist()
     {
         $user = auth()->user();
-        $recipients = Recipient::where('user_id', $user->id)->get();
+        $recipients = Recipient::where('user_id', $user->id)
+            ->where('type', 'will')
+            ->get();
+        return response()->json(['success' => true, 'recipients' => $recipients]);
+    }
+
+
+    public function list()
+    {
+        $user = Auth::user();
+        $recipients = Recipient::where('user_id', $user->id)
+            ->where('type', 'attorny')
+            ->get();
         return response()->json(['success' => true, 'recipients' => $recipients]);
     }
 }

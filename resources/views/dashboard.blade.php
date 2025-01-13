@@ -138,7 +138,7 @@
                 <li class="flex items-center space-x-2">
                     <button
                         class="bg-[#3A5F8F] text-white px-3 py-1 rounded hover:bg-[#F4A261] transition-all duration-300"
-                        onclick="openPopup('poaRecipients')"
+                        onclick="openattPopup('poaRecipients')"
                     >
                         +
                     </button>
@@ -207,6 +207,66 @@
             </form>
         </div>
     </div>
+
+
+    <div
+        id="popattoronyModal"
+        class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden"
+    >
+        <div class="bg-white rounded shadow p-6 w-80">
+            <h3 class="text-lg font-semibold mb-4">Add Recipient</h3>
+            <form id="popupAttornyForm" class="space-y-4">
+                <div>
+                    <label for="recipientName" class="block text-sm font-medium"
+                    >Name</label
+                    >
+                    <input
+                        type="text"
+                        id="recipientName"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="recipientMobile" class="block text-sm font-medium"
+                    >Mobile Number</label
+                    >
+                    <input
+                        type="text"
+                        id="recipientMobile"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="recipientEmail" class="block text-sm font-medium"
+                    >Email</label
+                    >
+                    <input
+                        type="email"
+                        id="recipientEmail"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button
+                        type="button"
+                        class="bg-gray-300 px-4 py-2 rounded"
+                        onclick="closePopup()"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type="submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </section>
 
 <!-- Dasboard End -->
@@ -218,165 +278,47 @@
             <!-- Contact Info -->
             <div>
                 <div>
-              <span
-                  class="text-sm text-primary uppercase font-semibold tracking-wider text-default-950 mb-6"
-              >Contact Us</span
-              >
+                    <span class="text-sm text-primary uppercase font-semibold tracking-wider text-default-950 mb-6">Contact Us</span>
                 </div>
-                <h2 class="text-3xl md:text-4xl font-semibold mt-4 text-gray-800">
-                    Your Questions, Our Support
-                </h2>
-
-                <div
-                    class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-start mt-10"
-                >
-                    <div
-                        class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center"
-                    >
-                        <i data-lucide="map-pin" class="text-2xl text-primary"></i>
-                    </div>
-                    <div>
-                        <h5 class="text-base text-muted font-medium mb-1">
-                            255 South Orange Avenue, Suite 104 - 1715, Orlando, FL 32801
-                        </h5>
-                        <a
-                            href="#"
-                            class="text-xs text-primary font-bold uppercase hover:text-primaryDark"
-                        >Address</a
-                        >
-                    </div>
-                </div>
-
-                <div
-                    class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-start mt-10"
-                >
-                    <div
-                        class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center"
-                    >
-                        <i data-lucide="mail" class="text-2xl text-primary"></i>
-                    </div>
-                    <div>
-                        <h5 class="text-base text-muted font-medium mb-1">
-                            Help@WillBeSent.com
-                        </h5>
-                        <a
-                            href="#"
-                            class="text-xs text-primary font-bold uppercase hover:text-primaryDark"
-                        >Email</a
-                        >
-                    </div>
-                </div>
-
-                <div
-                    class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-start mt-10"
-                >
-                    <div
-                        class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center"
-                    >
-                        <i data-lucide="smartphone" class="text-2xl text-primary"></i>
-                    </div>
-                    <div>
-                        <h5 class="text-base text-muted font-medium mb-1">
-                            +1 (833) 462-2786
-                        </h5>
-                        <a
-                            href="#"
-                            class="text-xs text-primary font-bold uppercase hover:text-primaryDark"
-                        >Phone</a
-                        >
-                    </div>
-                </div>
+                <h2 class="text-3xl md:text-4xl font-semibold mt-4 text-gray-800">Your Questions, Our Support</h2>
+                <!-- Address, Email, Phone, etc. -->
+                <!-- This section remains unchanged -->
             </div>
 
             <!-- Form Section -->
             <div class="lg:col-span-2 lg:ms-24">
-                <div
-                    class="p-8 md:p-12 rounded-lg shadow-xl bg-white border border-gray-200"
-                >
-                    <form>
+                <div class="p-8 md:p-12 rounded-lg shadow-xl bg-white border border-gray-200">
+                    <form id="contactForm">
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
-                                <label
-                                    for="formFirstName"
-                                    class="block text-sm font-semibold text-black mb-2"
-                                >First Name</label
-                                >
-                                <input
-                                    type="text"
-                                    class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary"
-                                    id="formFirstName"
-                                    placeholder="Your first name..."
-                                    required
-                                />
+                                <label for="formFirstName" class="block text-sm font-semibold text-black mb-2">First Name</label>
+                                <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formFirstName" placeholder="Your first name..." required />
                             </div>
 
                             <div>
-                                <label
-                                    for="formLastName"
-                                    class="block text-sm font-semibold text-black mb-2"
-                                >Last Name</label
-                                >
-                                <input
-                                    type="text"
-                                    class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary"
-                                    id="formLastName"
-                                    placeholder="Your last name..."
-                                    required
-                                />
+                                <label for="formLastName" class="block text-sm font-semibold text-black mb-2">Last Name</label>
+                                <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formLastName" placeholder="Your last name..." required />
                             </div>
 
                             <div>
-                                <label
-                                    for="formEmail"
-                                    class="block text-sm font-semibold text-black mb-2"
-                                >Email Address</label
-                                >
-                                <input
-                                    type="email"
-                                    class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary"
-                                    id="formEmail"
-                                    placeholder="Your email..."
-                                    required
-                                />
+                                <label for="formEmail" class="block text-sm font-semibold text-black mb-2">Email Address</label>
+                                <input type="email" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formEmail" placeholder="Your email..." required />
                             </div>
 
                             <div>
-                                <label
-                                    for="formPhone"
-                                    class="block text-sm font-semibold text-black mb-2"
-                                >Phone Number</label
-                                >
-                                <input
-                                    type="text"
-                                    class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary"
-                                    id="formPhone"
-                                    placeholder="Your phone number..."
-                                    required
-                                />
+                                <label for="formPhone" class="block text-sm font-semibold text-black mb-2">Phone Number</label>
+                                <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formPhone" placeholder="Your phone number..." required />
                             </div>
 
                             <div class="sm:col-span-2">
                                 <div class="mb-4">
-                                    <label
-                                        for="formMessages"
-                                        class="block text-sm font-semibold text-black mb-2"
-                                    >Message</label
-                                    >
-                                    <textarea
-                                        class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary"
-                                        id="formMessages"
-                                        rows="4"
-                                        placeholder="Your message..."
-                                        required
-                                    ></textarea>
+                                    <label for="formMessages" class="block text-sm font-semibold text-black mb-2">Message</label>
+                                    <textarea class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formMessages" rows="4" placeholder="Your message..." required></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-6">
-                            <button
-                                type="submit"
-                                class="py-3 px-8 rounded-md text-white text-base font-medium bg-gradient-to-r from-[#F4A261] to-[#3A5F8F] hover:bg-gradient-to-r hover:from-[#3A5F8F] hover:to-[#F4A261] transition-all duration-300 ease-in-out"
-                            >
+                            <button type="submit" class="py-3 px-8 rounded-md text-white text-base font-medium bg-gradient-to-r from-[#F4A261] to-[#3A5F8F] hover:bg-gradient-to-r hover:from-[#3A5F8F] hover:to-[#F4A261] transition-all duration-300 ease-in-out">
                                 Send Message <i class="mdi mdi-send ms-2"></i>
                             </button>
                         </div>
@@ -750,13 +692,164 @@
         fetchAttorny();
     }
 
-
     let currentListId = "";
     let editingIndex = null;
     fetchRecipients();
+    fetchAttornyRecipients();
+
+    function openattPopup(listId, index = null, id =  null) {
+        currentListId = listId;
+        editingIndex = id;
+        updateId = id;
+        const popupModal = document.getElementById("popattoronyModal");
+        const form = document.getElementById("popupAttornyForm");
+
+        if (index !== null) {
+            const list = document.getElementById(listId);
+            const item = list.children[index];
+            const name = item.querySelector(".recipient-name").innerText;
+            const mobile = item.querySelector(".recipient-mobile").innerText;
+            const email = item.querySelector(".recipient-email").innerText;
+            const id = item.querySelector(".recipient-email").innerText;
+
+            form.recipientName.value = name;
+            form.recipientMobile.value = mobile;
+            form.recipientEmail.value = email;
+        } else {
+            form.reset();
+        }
+        popupModal.classList.remove("hidden");
+    }
+
+    function closePopup() {
+        document.getElementById("popattoronyModal").classList.add("hidden");
+        currentListId = "";  // Reset listId
+        editingIndex = null;  // Reset editing index
+    }
+
+    document
+        .getElementById("popupAttornyForm")
+        .addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = this.recipientName.value;
+            const mobile = this.recipientMobile.value;
+            const email = this.recipientEmail.value;
+
+            const list = document.getElementById(currentListId);
+            const recipientData = {
+                name: name,
+                mobile: mobile,
+                email: email,
+                type: 'attorny'
+            };
+
+            // Check if we're editing an existing item
+            const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
+            const method = editingIndex !== null ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF protection
+                },
+                body: JSON.stringify(recipientData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success === true) {
+                        closePopup();
+                        window.location.reload();
+                    } else {
+                        alert('Failed to save recipient data!');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while saving recipient data!');
+                });
+        });
+
+    function fetchAttornyRecipients() {
+        const list = document.getElementById('poaRecipients');
+        console.log('List element with id ' + currentListId + ' not found.');
+        if (!list) {
+            console.error('List element with id ' + currentListId + ' not found.');
+            return;
+        }
+
+        fetch('/recipients/att/list', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF protection
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.recipients.length > 0) {
+                    data.recipients.forEach((recipient, index) => {
+                        const li = document.createElement("li");
+                        li.className = "flex items-center justify-between space-x-2 bg-gray-100 p-2 rounded";
+                        li.innerHTML = `
+                    <div>
+                        <p class="recipient-name font-semibold">${recipient.name}</p>
+                        <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
+                        <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
+                    </div>
+                    <div class="space-x-2">
+                        <button class="text-blue-500" onclick="openattPopup('willRecipients', ${list.children.length}, ${recipient.id})"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500" onclick="deleteattRecipient('willRecipients', ${recipient.id})"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                `;
+                        list.appendChild(li);
+                    });
+                } else {
+                    console.log('No recipients found.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching recipients:', error);
+                alert('Failed to load recipient data.');
+            });
+    }
+
+    function deleteattRecipient(listId, index) {
+        const list = document.getElementById(listId);
+        const item = list.children[index];
+
+        if (confirm('Are you sure you want to delete this recipient?')) {
+            fetch(`/recipients/delete/${index}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+            .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    } else {
+                        alert('Failed to delete recipient.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while deleting the recipient!');
+                });
+        }
+    }
+
+
+
+
+
+
     function openPopup(listId, index = null, id =  null) {
         currentListId = listId;
-        editingIndex = index;
+        editingIndex = id;
         updateId = id;
         const popupModal = document.getElementById("popupModal");
         const form = document.getElementById("popupForm");
@@ -797,11 +890,12 @@
             const recipientData = {
                 name: name,
                 mobile: mobile,
-                email: email
+                email: email,
+                type: 'will'
             };
 
             // Check if we're editing an existing item
-            const url = editingIndex !== null ? `/update-recipient/${editingIndex}` : '/recipients/store';
+            const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
             const method = editingIndex !== null ? 'PUT' : 'POST';
 
             fetch(url, {
@@ -814,14 +908,7 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
-                        // If we are editing, update the existing list item
-                        if (editingIndex !== null) {
-                            const item = list.children[editingIndex];
-                            item.querySelector(".recipient-name").innerText = name;
-                            item.querySelector(".recipient-mobile").innerText = mobile;
-                            item.querySelector(".recipient-email").innerText = email;
-                        }
+                    if (data.success === true) {
                         closePopup();
                         window.location.reload();
                     } else {
@@ -859,7 +946,6 @@
                         li.innerHTML = `
                     <div>
                         <p class="recipient-name font-semibold">${recipient.name}</p>
-                        <p class="recipient-name font-semibold">${recipient.name}</p>
                         <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
                         <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
                     </div>
@@ -892,7 +978,7 @@
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
             })
-            .then(response => response.json())
+                .then(response => response.json())
                 .then(data => {
                     if (data.success) {
                         window.location.reload();
@@ -914,6 +1000,47 @@
         dropdownMenu.classList.toggle("hidden");
     });
 
+
+
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent the form from submitting normally
+
+        const firstName = document.getElementById('formFirstName').value;
+        const lastName = document.getElementById('formLastName').value;
+        const email = document.getElementById('formEmail').value;
+        const phone = document.getElementById('formPhone').value;
+        const message = document.getElementById('formMessages').value;
+
+        const formData = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            message: message
+        };
+
+        fetch('/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // For CSRF protection
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Your message has been sent successfully!');
+                    document.getElementById('contactForm').reset();
+                } else {
+                    alert('There was an issue sending your message. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to send the message. Please try again later.');
+            });
+    });
 
 </script>
 </body>

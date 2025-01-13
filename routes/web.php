@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipientController;
@@ -34,10 +35,15 @@ Route::get('/all/attorny/documents', [DocumentController::class, 'attornyDocumen
 Route::post('/documents', [DocumentController::class, 'store']);
 Route::delete('/documents/{id}', [DocumentController::class, 'destroy']);
 
-Route::get('/recipients/list', [RecipientController::class, 'list'])->name('recipients.list');
+Route::get('/recipients/list', [RecipientController::class, 'willlist'])->name('recipients.list');
+Route::get('/recipients/att/list', [RecipientController::class, 'list'])->name('recipients.list');
 Route::post('/recipients/store', [RecipientController::class, 'store'])->name('recipients.store');
 Route::put('/recipients/update/{id}', [RecipientController::class, 'update'])->name('recipients.update');
 Route::delete('/recipients/delete/{id}', [RecipientController::class, 'delete'])->name('recipients.delete');
+
+
+Route::post('/send-email', [ContactController::class, 'sendEmail']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
