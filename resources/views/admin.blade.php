@@ -69,7 +69,17 @@
               class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer"
             >
               <i class="fas fa-sign-out-alt h-6 w-6"></i>
-              <span class="sidebar-text">Logout</span>
+              <span class="sidebar-text">
+               <form method="POST" action="{{ route('logout') }}" >
+                @csrf
+
+                <x-responsive-nav-link :href="route('logout')"
+                                       onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-responsive-nav-link>
+            </form>
+              </span>
             </li>
           </ul>
         </div>
@@ -107,7 +117,7 @@
           <section class="mt-6 bg-white p-6 rounded-lg shadow">
             <h2 class="text-gray-700 font-bold mb-4">Clients</h2>
             <div class="overflow-auto h-72">
-              <table class="w-full border-collapse border border-gray-200">
+              <table class="w-full border-collapse border border-gray-200" id="clientTable">
                 <thead
                   class="sticky top-0 bg-gray-200 z-10 border border-gray-300"
                 >
@@ -121,7 +131,7 @@
                     <th class="border border-gray-300 p-2">Actions</th>
                   </tr>
                 </thead>
-                <tbody id="clientTable">
+                <tbody >
                   <!-- Rows will be dynamically generated here -->
                 </tbody>
               </table>
@@ -436,93 +446,168 @@ editProfileButton.addEventListener("click", () => {
     }, 3000); // Toast duration: 3 seconds
   }
 });
+//
+// const clients = [
+//   {
+//     id: 1,
+//     firstName: "Alice",
+//     lastName: "Johnson",
+//     email: "alice.johnson@example.com",
+//     mobile: "123-456-7890",
+//     joiningDate: "2023-01-15",
+//   },
+//   {
+//     id: 2,
+//     firstName: "Bob",
+//     lastName: "Smith",
+//     email: "bob.smith@example.com",
+//     mobile: "234-567-8901",
+//     joiningDate: "2023-02-20",
+//   },
+//   {
+//     id: 3,
+//     firstName: "Charlie",
+//     lastName: "Brown",
+//     email: "charlie.brown@example.com",
+//     mobile: "345-678-9012",
+//     joiningDate: "2023-03-10",
+//   },
+//   {
+//     id: 4,
+//     firstName: "Diana",
+//     lastName: "Williams",
+//     email: "diana.williams@example.com",
+//     mobile: "456-789-0123",
+//     joiningDate: "2023-04-25",
+//   },
+//   {
+//     id: 5,
+//     firstName: "Evan",
+//     lastName: "Davis",
+//     email: "evan.davis@example.com",
+//     mobile: "567-890-1234",
+//     joiningDate: "2023-05-30",
+//   },
+//   {
+//     id: 5,
+//     firstName: "Evan",
+//     lastName: "Davis",
+//     email: "evan.davis@example.com",
+//     mobile: "567-890-1234",
+//     joiningDate: "2023-05-30",
+//   },
+//   {
+//     id: 5,
+//     firstName: "Evan",
+//     lastName: "Davis",
+//     email: "evan.davis@example.com",
+//     mobile: "567-890-1234",
+//     joiningDate: "2023-05-30",
+//   },
+//   {
+//     id: 5,
+//     firstName: "Evan",
+//     lastName: "Davis",
+//     email: "evan.davis@example.com",
+//     mobile: "567-890-1234",
+//     joiningDate: "2023-05-30",
+//   },
+// ];
+//
+// const clientTable = document.getElementById("clientTable");
+//
+// clients.forEach((client) => {
+//   const row = document.createElement("tr");
+//   row.innerHTML = `<td class="border border-gray-300 p-2">${client.id}</td>
+//     <td class="border border-gray-300 p-2">${client.firstName}</td>
+//     <td class="border border-gray-300 p-2">${client.lastName}</td>
+//     <td class="border border-gray-300 p-2">${client.email}</td>
+//     <td class="border border-gray-300 p-2">${client.mobile}</td>
+//     <td class="border border-gray-300 p-2">${client.joiningDate}</td>
+//     <td class="border border-gray-300 p-2 items-center flex justify-center gap-4">
+//       <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+// <i class="fas fa-eye"></i>
+// </button>
+// <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
+// <i class="fas fa-trash-alt"></i></button>
+//     </td>`;
+//   clientTable.appendChild(row);
+// });
 
-const clients = [
-  {
-    id: 1,
-    firstName: "Alice",
-    lastName: "Johnson",
-    email: "alice.johnson@example.com",
-    mobile: "123-456-7890",
-    joiningDate: "2023-01-15",
-  },
-  {
-    id: 2,
-    firstName: "Bob",
-    lastName: "Smith",
-    email: "bob.smith@example.com",
-    mobile: "234-567-8901",
-    joiningDate: "2023-02-20",
-  },
-  {
-    id: 3,
-    firstName: "Charlie",
-    lastName: "Brown",
-    email: "charlie.brown@example.com",
-    mobile: "345-678-9012",
-    joiningDate: "2023-03-10",
-  },
-  {
-    id: 4,
-    firstName: "Diana",
-    lastName: "Williams",
-    email: "diana.williams@example.com",
-    mobile: "456-789-0123",
-    joiningDate: "2023-04-25",
-  },
-  {
-    id: 5,
-    firstName: "Evan",
-    lastName: "Davis",
-    email: "evan.davis@example.com",
-    mobile: "567-890-1234",
-    joiningDate: "2023-05-30",
-  },
-  {
-    id: 5,
-    firstName: "Evan",
-    lastName: "Davis",
-    email: "evan.davis@example.com",
-    mobile: "567-890-1234",
-    joiningDate: "2023-05-30",
-  },
-  {
-    id: 5,
-    firstName: "Evan",
-    lastName: "Davis",
-    email: "evan.davis@example.com",
-    mobile: "567-890-1234",
-    joiningDate: "2023-05-30",
-  },
-  {
-    id: 5,
-    firstName: "Evan",
-    lastName: "Davis",
-    email: "evan.davis@example.com",
-    mobile: "567-890-1234",
-    joiningDate: "2023-05-30",
-  },
-];
 
-const clientTable = document.getElementById("clientTable");
 
-clients.forEach((client) => {
-  const row = document.createElement("tr");
-  row.innerHTML = `<td class="border border-gray-300 p-2">${client.id}</td>
-    <td class="border border-gray-300 p-2">${client.firstName}</td>
-    <td class="border border-gray-300 p-2">${client.lastName}</td>
-    <td class="border border-gray-300 p-2">${client.email}</td>
-    <td class="border border-gray-300 p-2">${client.mobile}</td>
-    <td class="border border-gray-300 p-2">${client.joiningDate}</td>
-    <td class="border border-gray-300 p-2 items-center flex justify-center gap-4">
-      <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
-<i class="fas fa-eye"></i>
-</button>
-<button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
-<i class="fas fa-trash-alt"></i></button>
-    </td>`;
-  clientTable.appendChild(row);
-});
     </script>
+
+
+
+    <script>
+        // Function to fetch users and render the table
+        function fetchUsers() {
+            fetch('/api/users')
+                .then((response) => response.json())
+                .then((data) => {
+                    const clientTable = document.querySelector('#clientTable tbody');
+                    clientTable.innerHTML = ''; // Clear existing rows
+
+                    data.forEach((client) => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+            <td class="border border-gray-300 p-2">${client.id}</td>
+            <td class="border border-gray-300 p-2">${client.firstname}</td>
+            <td class="border border-gray-300 p-2">${client.lastname}</td>
+            <td class="border border-gray-300 p-2">${client.email}</td>
+            <td class="border border-gray-300 p-2">${client.phone}</td>
+            <td class="border border-gray-300 p-2">${client.created_at}</td>
+            <td class="border border-gray-300 p-2 items-center flex justify-center gap-4">
+              <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 delete-button" data-id="${client.id}">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>`;
+                        clientTable.appendChild(row);
+                    });
+
+                    // Add event listeners for delete buttons
+                    document.querySelectorAll('.delete-button').forEach((button) => {
+                        button.addEventListener('click', function () {
+                            const clientId = this.getAttribute('data-id');
+                            deleteUser(clientId);
+                        });
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error fetching users:', error);
+                });
+        }
+
+        // Function to delete a user
+        function deleteUser(clientId) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                fetch(`/api/users/${clientId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            alert('User deleted successfully.');
+                            fetchUsers(); // Refresh the table
+                        } else {
+                            alert('Failed to delete the user.');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error deleting user:', error);
+                    });
+            }
+        }
+
+        // Call fetchUsers on page load
+        document.addEventListener('DOMContentLoaded', fetchUsers);
+    </script>
+
   </body>
 </html>
