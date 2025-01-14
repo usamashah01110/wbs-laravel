@@ -29,11 +29,11 @@
         >
         <div class="flex items-center gap-2">
           <img
-            src="{{ asset('images/usere.png') }}"
+              src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/usere.png') }}"
             alt="Profile"
             class="w-8 h-8 rounded-full"
           />
-          <span class="font-bold text-white">Josh Mikula</span>
+          <span class="font-bold text-white">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span>
         </div>
       </div>
     </header>
