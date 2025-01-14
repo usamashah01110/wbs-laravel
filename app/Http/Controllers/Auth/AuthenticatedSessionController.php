@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        if($user->email == 'usamashah0110@gmail.com'){
+        if($user->email == 'bilalsheikhofficial187@gmail.com'){
             return redirect()->route('admin.dashboard');
         }
 
