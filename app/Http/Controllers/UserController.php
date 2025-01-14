@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Models\Recipient;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -24,6 +25,37 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to fetch users'], 500);
         }
+    }
+
+    public function updateProfileImage(Request $request)
+    {
+        $request->validate([
+            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Handle file upload
+        if ($request->hasFile('profile_image')) {
+            $imagePath = $request->file('profile_image')->store('profile_images', 'public');
+            auth()->user()->update(['profile_image' => $imagePath]);
+
+            return response()->json([
+                'profile_image' => asset('storage/' . $imagePath),
+                'message' => 'Profile image updated successfully.',
+            ]);
+        }
+
+        return response()->json(['message' => 'No image uploaded.'], 400);
+    }
+
+    public function updateUserDetails(Request $request)
+    {
+        $user = auth()->user();
+        $user->update($request->all());
+
+        return response()->json([
+            'message' => 'Profile updated successfully!',
+            'user' => $user
+        ]);
     }
 
     public function getLoggedInUser()

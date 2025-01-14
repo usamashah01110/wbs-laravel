@@ -6,6 +6,7 @@
     <title>Admin - Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+      <meta name="csrf-token" content="{{ csrf_token() }}">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -146,7 +147,7 @@
               <div class="relative">
                 <img
                   id="profileImage"
-                    src="{{ asset('images/usere.png') }}"
+                  src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/usere.png') }}"
                   alt="Profile"
                   class="w-24 h-24 rounded-full object-cover"
                 />
@@ -159,7 +160,7 @@
                 <input id="fileInput" type="file" class="hidden" />
               </div>
             </div>
-
+            <form id="editUserProfile">
             <div
               id="profileFields"
               class="grid grid-cols-1 md:grid-cols-2 gap-4"
@@ -169,8 +170,8 @@
                 <input
                   type="text"
                   id="firstName"
+                  name="firstname"
                   class="w-full p-2 border border-gray-300 rounded-lg"
-                  disabled
                 />
               </div>
               <div>
@@ -178,8 +179,8 @@
                 <input
                   type="text"
                   id="lastName"
+                  name="lastname"
                   class="w-full p-2 border border-gray-300 rounded-lg"
-                  disabled
                 />
               </div>
               <div>
@@ -187,8 +188,9 @@
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   class="w-full p-2 border border-gray-300 rounded-lg"
-                  disabled
+
                 />
               </div>
               <div>
@@ -196,8 +198,9 @@
                 <input
                   type="text"
                   id="phoneNumber"
+                  name="phone"
                   class="w-full p-2 border border-gray-300 rounded-lg"
-                  disabled
+
                 />
               </div>
 {{--              <div>--}}
@@ -232,12 +235,13 @@
             </div>
             <div class="text-right mt-6">
               <button
-                id="editProfileButton"
+                type="submit"
                 class="bg-blue-500 text-white px-4 py-2 rounded-lg"
               >
-                Edit
+                Save
               </button>
             </div>
+              </form>
           </section>
         </main>
 
@@ -247,20 +251,20 @@
             <!-- User Profile Section -->
             <div class="flex flex-col items-center mb-6">
               <div class="relative">
-                <img
-                  id="profileImage"
-            src="{{ asset('images/usere.png') }}"
-                  alt="Profile"
-                  class="w-24 h-24 rounded-full object-cover"
-                />
-                <button
-                  id="editProfileImage"
-                  class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full"
-                >
-                  Edit
-                </button>
-                <input id="fileInput" type="file" class="hidden" />
-              </div>
+{{--                  <img--}}
+{{--                      id="profileImage"--}}
+{{--                      src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/usere.png') }}"--}}
+{{--                      alt="Profile"--}}
+{{--                      class="w-24 h-24 rounded-full object-cover"--}}
+{{--                  />--}}
+{{--                <button--}}
+{{--                  id="editProfileImage"--}}
+{{--                  class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full"--}}
+{{--                >--}}
+{{--                  Edit--}}
+{{--                </button>--}}
+{{--                <input id="fileInput" type="file" class="hidden" />--}}
+{{--              </div>--}}
             </div>
 
             <!-- Three Column Grid -->
@@ -374,7 +378,7 @@ sidebarToggle.addEventListener("click", () => {
 });
 
 const dashboardContent = document.getElementById("dashboardContent");
-const myAccountSection = document.getElementById("myAccountSection");
+// const myAccountSection = document.getElementById("myAccountSection");
 const dashboardLink = document.getElementById("dashboardLink");
 const myAccountLink = document.getElementById("myAccountLink");
 
@@ -395,57 +399,9 @@ myAccountLink.addEventListener("click", () => {
   switchTab(myAccountSection, dashboardContent);
 });
 
-// Edit profile functionality
-const editProfileImage = document.getElementById("editProfileImage");
 const fileInput = document.getElementById("fileInput");
 const profileImage = document.getElementById("profileImage");
-const editProfileButton = document.getElementById("editProfileButton");
-const profileFields = document.querySelectorAll(
-  "#profileFields input, #profileFields select"
-);
 
-editProfileImage.addEventListener("click", () => fileInput.click());
-
-fileInput.addEventListener("change", (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      profileImage.src = reader.result;
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
-editProfileButton.addEventListener("click", () => {
-  const isEditing = editProfileButton.textContent === "Edit";
-  profileFields.forEach((field) => (field.disabled = !isEditing));
-  editProfileButton.textContent = isEditing ? "Save" : "Edit";
-
-  if (!isEditing) {
-    // Save functionality - logic to save changes
-    showToast("Profile updated successfully!");
-  }
-
-  // Show Toast
-
-  function showToast(message, type = "success") {
-    const toastContainer = document.getElementById("toastContainer");
-
-    // Create the toast element
-    const toast = document.createElement("div");
-    toast.classList.add("toast", type);
-    toast.textContent = message;
-
-    // Append the toast to the container
-    toastContainer.appendChild(toast);
-
-    // Automatically remove the toast after the animation is complete
-    setTimeout(() => {
-      toastContainer.removeChild(toast);
-    }, 3000); // Toast duration: 3 seconds
-  }
-});
 
 fetchLoggedInUser();
 function fetchLoggedInUser() {
@@ -453,16 +409,11 @@ function fetchLoggedInUser() {
         .then((response) => response.json())
         .then((data) => {
             // Populate the form fields with the user's data
-            document.getElementById('firstName').value = data.first_name;
-            document.getElementById('lastName').value = data.last_name;
+            document.getElementById('firstName').value = data.firstname;
+            document.getElementById('lastName').value = data.lastname;
             document.getElementById('email').value = data.email;
             document.getElementById('phoneNumber').value = data.phone;
 
-
-            // Optionally, set the profile image if available
-            if (data.profile_image) {
-                document.getElementById('profileImage').src = data.profile_image;
-            }
         })
         .catch((error) => {
             console.error('Error fetching user data:', error);
@@ -480,20 +431,20 @@ function fetchLoggedInUser() {
                     data.users.forEach((client) => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
-            <td class="border border-gray-300 p-2">${client.id}</td>
-            <td class="border border-gray-300 p-2">${client.firstname}</td>
-            <td class="border border-gray-300 p-2">${client.lastname}</td>
-            <td class="border border-gray-300 p-2">${client.email}</td>
-            <td class="border border-gray-300 p-2">${client.phone}</td>
-            <td class="border border-gray-300 p-2">${client.created_at}</td>
-            <td class="border border-gray-300 p-2 items-center flex justify-center gap-4">
-              <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
-                <i class="fas fa-eye"></i>
-              </button>
-              <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 delete-button" data-id="${client.id}">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </td>`;
+                        <td class="border border-gray-300 p-2">${client.id}</td>
+                        <td class="border border-gray-300 p-2">${client.firstname}</td>
+                        <td class="border border-gray-300 p-2">${client.lastname}</td>
+                        <td class="border border-gray-300 p-2">${client.email}</td>
+                        <td class="border border-gray-300 p-2">${client.phone}</td>
+                        <td class="border border-gray-300 p-2">${client.created_at}</td>
+                        <td class="border border-gray-300 p-2 items-center flex justify-center gap-4">
+                          <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                            <i class="fas fa-eye"></i>
+                          </button>
+                          <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 delete-button" data-id="${client.id}">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </td>`;
                         clientTable.appendChild(row);
                     });
                     document.getElementById('totalclient').textContent = data.users.length;
@@ -534,6 +485,128 @@ function fetchLoggedInUser() {
                     });
             }
         }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const fileInput = document.getElementById("fileInput");
+        const profileImage = document.getElementById("profileImage");
+        const editProfileImage = document.getElementById("editProfileImage");
+
+        // Trigger file input when clicking on the Edit button
+        editProfileImage.addEventListener("click", () => fileInput.click());
+
+        // Handle file input change (image selection)
+        fileInput.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                // Create a FormData object
+                const formData = new FormData();
+                formData.append("profile_image", file);
+
+                // Send an AJAX request to upload the image
+                fetch('/update-profile-image', {
+                    method: 'POST',
+                    headers: {
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    },
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.profile_image) {
+                            // Update the profile image on the page
+                            profileImage.src = data.profile_image;
+                            showToast(data.message, "success");
+                        } else {
+                            showToast("Failed to update profile image.", "error");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error uploading image:', error);
+                        showToast("Error uploading image.", "error");
+                    });
+            }
+        });
+
+        // Show Toast
+        function showToast(message, type = "success") {
+            const toastContainer = document.getElementById("toastContainer");
+            const toast = document.createElement("div");
+            toast.classList.add("toast", type);
+            toast.textContent = message;
+
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => {
+                toastContainer.removeChild(toast);
+            }, 3000);
+        }
+    });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const profileForm = document.getElementById("editUserProfile");
+
+    profileForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get form field values
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const phoneNumber = document.getElementById('phoneNumber').value;
+
+
+        // Collect form data, including additional fields
+        const formData = new FormData(profileForm);
+        formData.append("firstname", firstName);
+        formData.append("lastname", lastName);
+        formData.append("email", email);
+        formData.append("phone", phoneNumber);
+
+        fetch('/update-user-details', {
+            method: 'POST',
+            headers: {
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+            },
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.user) {
+                    // Update the profile image if available
+                    const profileImage = document.getElementById("profileImage");
+                    const profileImageUrl = data.user.profile_image
+                        ? `/storage/${data.user.profile_image}`
+                        : "{{ asset('images/usere.png') }}";
+                    profileImage.src = profileImageUrl;
+
+                    // Show success message
+                    showToast(data.message, "success");
+                } else {
+                    showToast("Failed to update profile.", "error");
+                }
+            })
+            .catch(error => {
+                console.error('Error updating user details:', error);
+                showToast("Error updating profile.", "error");
+            });
+    });
+
+    // Show Toast function
+    function showToast(message, type = "success") {
+        const toastContainer = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        toast.classList.add("toast", type);
+        toast.textContent = message;
+
+        toastContainer.appendChild(toast);
+
+        setTimeout(() => {
+            toastContainer.removeChild(toast);
+        }, 3000);
+    }
+});
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch logged-in user details and populate the form

@@ -29,6 +29,7 @@ class User extends Authenticatable
         'city',
         'frequency',
         'password',
+        'profile_image',
     ];
 
     /**

@@ -34,6 +34,8 @@ Route::get('/api/users', [UserController::class, 'getAllUsers']);
 
 Route::get('/api/users/{id}', [UserController::class, 'deleteUser']);
 Route::get('/api/logged-in-user', [UserController::class, 'getLoggedInUser']);
+Route::post('/update-profile-image', [UserController::class, 'updateProfileImage']);
+Route::post('/update-user-details', [UserController::class, 'updateUserDetails']);
 
 
 Route::get('/all/documents', [DocumentController::class, 'index']);
