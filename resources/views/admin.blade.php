@@ -97,19 +97,19 @@
               class="bg-[#E2E8F0] p-6 rounded-lg shadow hover:shadow-lg transition"
             >
               <h2 class="text-gray-600 font-bold">Total Clients</h2>
-              <p class="text-gray-800 text-2xl mt-2">1,245</p>
+              <p class="text-gray-800 text-2xl mt-2" id="totalclient"></p>
             </div>
             <div
               class="bg-[#E2E8F0] p-6 rounded-lg shadow hover:shadow-lg transition"
             >
               <h2 class="text-gray-600 font-bold">Total Documents</h2>
-              <p class="text-gray-800 text-2xl mt-2">3,678</p>
+              <p class="text-gray-800 text-2xl mt-2" id="totaldocument"></p>
             </div>
             <div
               class="bg-[#E2E8F0] p-6 rounded-lg shadow hover:shadow-lg transition"
             >
               <h2 class="text-gray-600 font-bold">Total Recipients</h2>
-              <p class="text-gray-800 text-2xl mt-2">567</p>
+              <p class="text-gray-800 text-2xl mt-2" id="totalrecipent"></p>
             </div>
           </section>
 
@@ -146,7 +146,7 @@
               <div class="relative">
                 <img
                   id="profileImage"
-            src="{{ asset('images/usere.png') }}"
+                    src="{{ asset('images/usere.png') }}"
                   alt="Profile"
                   class="w-24 h-24 rounded-full object-cover"
                 />
@@ -200,35 +200,35 @@
                   disabled
                 />
               </div>
-              <div>
-                <label class="block text-gray-600">Gender</label>
-                <select
-                  id="gender"
-                  class="w-full p-2 border border-gray-300 rounded-lg"
-                  disabled
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-gray-600">Country</label>
-                <input
-                  type="text"
-                  id="country"
-                  class="w-full p-2 border border-gray-300 rounded-lg"
-                  disabled
-                />
-              </div>
-              <div>
-                <label class="block text-gray-600">Date of Birth</label>
-                <input
-                  type="date"
-                  id="dob"
-                  class="w-full p-2 border border-gray-300 rounded-lg"
-                  disabled
-                />
-              </div>
+{{--              <div>--}}
+{{--                <label class="block text-gray-600">Gender</label>--}}
+{{--                <select--}}
+{{--                  id="gender"--}}
+{{--                  class="w-full p-2 border border-gray-300 rounded-lg"--}}
+{{--                  disabled--}}
+{{--                >--}}
+{{--                  <option value="male">Male</option>--}}
+{{--                  <option value="female">Female</option>--}}
+{{--                </select>--}}
+{{--              </div>--}}
+{{--              <div>--}}
+{{--                <label class="block text-gray-600">Country</label>--}}
+{{--                <input--}}
+{{--                  type="text"--}}
+{{--                  id="country"--}}
+{{--                  class="w-full p-2 border border-gray-300 rounded-lg"--}}
+{{--                  disabled--}}
+{{--                />--}}
+{{--              </div>--}}
+{{--              <div>--}}
+{{--                <label class="block text-gray-600">Date of Birth</label>--}}
+{{--                <input--}}
+{{--                  type="date"--}}
+{{--                  id="dob"--}}
+{{--                  class="w-full p-2 border border-gray-300 rounded-lg"--}}
+{{--                  disabled--}}
+{{--                />--}}
+{{--              </div>--}}
             </div>
             <div class="text-right mt-6">
               <button
@@ -356,7 +356,7 @@
     </div>
 
     <script>
-        // Dashboard
+
 const sidebar = document.getElementById("sidebar");
 const sidebarToggle = document.getElementById("sidebarToggle");
 const toggleArrow = document.getElementById("toggleArrow");
@@ -446,110 +446,38 @@ editProfileButton.addEventListener("click", () => {
     }, 3000); // Toast duration: 3 seconds
   }
 });
-//
-// const clients = [
-//   {
-//     id: 1,
-//     firstName: "Alice",
-//     lastName: "Johnson",
-//     email: "alice.johnson@example.com",
-//     mobile: "123-456-7890",
-//     joiningDate: "2023-01-15",
-//   },
-//   {
-//     id: 2,
-//     firstName: "Bob",
-//     lastName: "Smith",
-//     email: "bob.smith@example.com",
-//     mobile: "234-567-8901",
-//     joiningDate: "2023-02-20",
-//   },
-//   {
-//     id: 3,
-//     firstName: "Charlie",
-//     lastName: "Brown",
-//     email: "charlie.brown@example.com",
-//     mobile: "345-678-9012",
-//     joiningDate: "2023-03-10",
-//   },
-//   {
-//     id: 4,
-//     firstName: "Diana",
-//     lastName: "Williams",
-//     email: "diana.williams@example.com",
-//     mobile: "456-789-0123",
-//     joiningDate: "2023-04-25",
-//   },
-//   {
-//     id: 5,
-//     firstName: "Evan",
-//     lastName: "Davis",
-//     email: "evan.davis@example.com",
-//     mobile: "567-890-1234",
-//     joiningDate: "2023-05-30",
-//   },
-//   {
-//     id: 5,
-//     firstName: "Evan",
-//     lastName: "Davis",
-//     email: "evan.davis@example.com",
-//     mobile: "567-890-1234",
-//     joiningDate: "2023-05-30",
-//   },
-//   {
-//     id: 5,
-//     firstName: "Evan",
-//     lastName: "Davis",
-//     email: "evan.davis@example.com",
-//     mobile: "567-890-1234",
-//     joiningDate: "2023-05-30",
-//   },
-//   {
-//     id: 5,
-//     firstName: "Evan",
-//     lastName: "Davis",
-//     email: "evan.davis@example.com",
-//     mobile: "567-890-1234",
-//     joiningDate: "2023-05-30",
-//   },
-// ];
-//
-// const clientTable = document.getElementById("clientTable");
-//
-// clients.forEach((client) => {
-//   const row = document.createElement("tr");
-//   row.innerHTML = `<td class="border border-gray-300 p-2">${client.id}</td>
-//     <td class="border border-gray-300 p-2">${client.firstName}</td>
-//     <td class="border border-gray-300 p-2">${client.lastName}</td>
-//     <td class="border border-gray-300 p-2">${client.email}</td>
-//     <td class="border border-gray-300 p-2">${client.mobile}</td>
-//     <td class="border border-gray-300 p-2">${client.joiningDate}</td>
-//     <td class="border border-gray-300 p-2 items-center flex justify-center gap-4">
-//       <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
-// <i class="fas fa-eye"></i>
-// </button>
-// <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
-// <i class="fas fa-trash-alt"></i></button>
-//     </td>`;
-//   clientTable.appendChild(row);
-// });
+
+fetchLoggedInUser();
+function fetchLoggedInUser() {
+    fetch('/api/logged-in-user')  // Replace with your API endpoint
+        .then((response) => response.json())
+        .then((data) => {
+            // Populate the form fields with the user's data
+            document.getElementById('firstName').value = data.first_name;
+            document.getElementById('lastName').value = data.last_name;
+            document.getElementById('email').value = data.email;
+            document.getElementById('phoneNumber').value = data.phone;
 
 
+            // Optionally, set the profile image if available
+            if (data.profile_image) {
+                document.getElementById('profileImage').src = data.profile_image;
+            }
+        })
+        .catch((error) => {
+            console.error('Error fetching user data:', error);
+        });
+}
 
-    </script>
-
-
-
-    <script>
-        // Function to fetch users and render the table
         function fetchUsers() {
             fetch('/api/users')
                 .then((response) => response.json())
                 .then((data) => {
+                    console.log(data);
                     const clientTable = document.querySelector('#clientTable tbody');
                     clientTable.innerHTML = ''; // Clear existing rows
 
-                    data.forEach((client) => {
+                    data.users.forEach((client) => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
             <td class="border border-gray-300 p-2">${client.id}</td>
@@ -568,7 +496,9 @@ editProfileButton.addEventListener("click", () => {
             </td>`;
                         clientTable.appendChild(row);
                     });
-
+                    document.getElementById('totalclient').textContent = data.users.length;
+                    document.getElementById('totaldocument').textContent = data.totalDocuments;
+                    document.getElementById('totalrecipent').textContent = data.totalRecipients;
                     // Add event listeners for delete buttons
                     document.querySelectorAll('.delete-button').forEach((button) => {
                         button.addEventListener('click', function () {
@@ -605,8 +535,11 @@ editProfileButton.addEventListener("click", () => {
             }
         }
 
-        // Call fetchUsers on page load
-        document.addEventListener('DOMContentLoaded', fetchUsers);
+document.addEventListener("DOMContentLoaded", function () {
+    // Fetch logged-in user details and populate the form
+    fetchLoggedInUser();
+    fetchUsers();
+});
     </script>
 
   </body>

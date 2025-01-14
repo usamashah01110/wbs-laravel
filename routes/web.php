@@ -33,6 +33,9 @@ Route::get('/admin/dashboard', function () {
 Route::get('/api/users', [UserController::class, 'getAllUsers']);
 
 Route::get('/api/users/{id}', [UserController::class, 'deleteUser']);
+Route::get('/api/logged-in-user', [UserController::class, 'getLoggedInUser']);
+
+
 Route::get('/all/documents', [DocumentController::class, 'index']);
 Route::get('/all/attorny/documents', [DocumentController::class, 'attornyDocuments']);
 Route::post('/documents', [DocumentController::class, 'store']);
