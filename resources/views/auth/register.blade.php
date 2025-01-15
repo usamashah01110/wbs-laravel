@@ -74,7 +74,6 @@
                 required
               />
             </div>
-                <div>
                     <input
                         type="password"
                         name="password"
@@ -82,7 +81,6 @@
                         class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black"
                         required
                     />
-                </div>
             <div>
               <input
                 type="text"

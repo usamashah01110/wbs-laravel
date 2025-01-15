@@ -43,12 +43,12 @@
             id="dropdownMenu"
             class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden"
         >
-            <!-- <a
-              href="#"
+            <a
+              href="{{ route('user.profile') }}"
               id="myAccountLink"
               class="block px-4 py-2 hover:bg-gray-200"
               >My Account</a
-            > -->
+            >
             <form method="POST" action="{{ route('logout') }}" class="block px-4 py-2 hover:bg-gray-200 text-red-500 transition-all duration-300">
                 @csrf
 
