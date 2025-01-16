@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function userProfile(){
-        return view('user.profile');	
+        return view('user-profile');
     }
     public function getAllUsers()
     {
@@ -59,6 +59,15 @@ class UserController extends Controller
             'message' => 'Profile updated successfully!',
             'user' => $user
         ]);
+    }
+
+
+    public function updateUser(Request $request)
+    {
+        $user = auth()->user();
+        $user->update($request->all());
+
+        return redirect()->back()->with('success', 'Your profile image has been uploaded!');
     }
 
     public function getLoggedInUser()
