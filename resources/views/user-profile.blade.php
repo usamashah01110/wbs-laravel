@@ -13,6 +13,8 @@
     />
     <!-- favicon -->
     <link href="assets/images/WBS-Logo.png" rel="shortcut icon" />
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Main Css -->
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,16 +26,18 @@
       class="bg-[#F4A261] shadow-lg px-6 py-4 flex justify-between items-center"
     >
       <div class="flex items-center">
+          <a href="{{ url('/') }}">
         <img src="../assets/images/WBS-Logo.png" alt="Profile" class="h-14" />
+          </a>
       </div>
       <div class="relative">
         <button id="dropdownButton" class="flex items-center gap-2 transition">
           <img
-            src="../assets/images/usere.png"
+            src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/usere.png') }}"
             alt="Profile"
             class="w-8 h-8 rounded-full"
           />
-          <span class="font-medium text-gray-100">Josh</span>
+          <span class="font-medium text-gray-100">{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</span>
         </button>
         <!-- Dropdown -->
         <div
@@ -63,7 +67,7 @@
           <div class="relative">
             <img
               id="profileImage"
-              src="../assets/images/usere.png"
+              src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/usere.png') }}"
               alt="Profile"
               class="w-24 h-24 rounded-full object-cover"
             />
@@ -79,15 +83,17 @@
             ><i class="fas fa-times"></i
           ></a>
         </div>
-
+          <form action="{{ route('user.update') }}" method="POST">
+              @csrf
         <div id="profileFields" class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-gray-600">First Name</label>
             <input
               type="text"
               id="firstName"
+              name="firstname"
               class="w-full p-2 border border-gray-300 rounded-lg"
-              disabled
+              value="{{ Auth::user()->firstname }}"
             />
           </div>
           <div>
@@ -95,8 +101,9 @@
             <input
               type="text"
               id="lastName"
+              name="lastname"
               class="w-full p-2 border border-gray-300 rounded-lg"
-              disabled
+              value="{{ Auth::user()->lastname }}"
             />
           </div>
           <div>
@@ -104,8 +111,9 @@
             <input
               type="email"
               id="email"
+              name="phone"
               class="w-full p-2 border border-gray-300 rounded-lg"
-              disabled
+              value="{{ Auth::user()->email }}"
             />
           </div>
           <div>
@@ -113,48 +121,53 @@
             <input
               type="text"
               id="phoneNumber"
+              name="phone"
               class="w-full p-2 border border-gray-300 rounded-lg"
-              disabled
+              value="{{ Auth::user()->phone }}"
             />
           </div>
+{{--          <div>--}}
+{{--            <label class="block text-gray-600">State</label>--}}
+{{--            <select--}}
+{{--              id="gender"--}}
+{{--              class="w-full p-2 border border-gray-300 rounded-lg"--}}
+{{--              disabled--}}
+{{--            >--}}
+{{--              <option value="male">Male</option>--}}
+{{--              <option value="female">Female</option>--}}
+{{--            </select>--}}
+{{--          </div>--}}
           <div>
-            <label class="block text-gray-600">Gender</label>
-            <select
-              id="gender"
-              class="w-full p-2 border border-gray-300 rounded-lg"
-              disabled
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-gray-600">Country</label>
+            <label class="block text-gray-600">State</label>
             <input
               type="text"
               id="country"
+              name="country"
               class="w-full p-2 border border-gray-300 rounded-lg"
-              disabled
+              value="{{ Auth::user()->state }}"
             />
           </div>
           <div>
-            <label class="block text-gray-600">Date of Birth</label>
+            <label class="block text-gray-600">City</label>
             <input
-              type="date"
+              type="text"
               id="dob"
+              name="city"
               class="w-full p-2 border border-gray-300 rounded-lg"
-              disabled
+              value="{{ Auth::user()->city }}"
             />
           </div>
         </div>
         <div class="text-right mt-6">
           <button
+              type="submit"
             id="editProfileButton"
             class="bg-blue-500 text-white px-4 py-2 rounded-lg"
           >
-            Edit
+            Update
           </button>
         </div>
+          </form>
       </section>
     </main>
     <!-- Footer Start -->
@@ -290,4 +303,51 @@
     </footer>
     <!-- Footer End -->
   </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+      $(document).ready(function () {
+          // Show file input when 'Edit' button is clicked
+          $("#editProfileImage").on("click", function () {
+              $("#fileInput").click();
+          });
+
+          // Handle file selection and upload
+          $("#fileInput").on("change", function () {
+              const file = this.files[0];
+
+              if (file) {
+                  // Display selected image preview
+                  const reader = new FileReader();
+                  reader.onload = function (e) {
+                      $("#profileImage").attr("src", e.target.result);
+                  };
+                  reader.readAsDataURL(file);
+
+                  // Upload file using AJAX
+                  const formData = new FormData();
+                  formData.append("profile_image", file);
+
+                  $.ajax({
+                      url: "/update-profile-image", // Update this URL to your endpoint
+                      type: "POST",
+                      data: formData,
+                      contentType: false,
+                      processData: false,
+                      headers: {
+                          "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Add CSRF token if using Laravel
+                      },
+                      success: function (response) {
+                          alert("Profile image uploaded successfully!");
+                          // Optionally update the image preview with the server URL
+                          $("#profileImage").attr("src", response.imageUrl);
+                      },
+                      error: function (error) {
+                          alert("Error uploading profile image. Please try again.");
+                      },
+                  });
+              }
+          });
+      });
+
+  </script>
 </html>
