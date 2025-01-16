@@ -23,7 +23,7 @@
     <nav id="navbar">
       <div class="container">
         <div class="flex lg:flex-nowrap flex-wrap items-center">
-          <a href="index.html" class="flex items-center">
+          <a href="{{ route('/') }}" class="flex items-center">
             <img src="{{ asset('images/WBS-Logo.png')}}" class="h-9 flex" />
           </a>
 

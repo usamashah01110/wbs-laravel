@@ -277,20 +277,6 @@
                 <div id="willDocuments" class="space-y-2">
                   <!-- Documents will be appended here -->
                 </div>
-                <div
-                  class="border-2 border-dashed border-gray-300 rounded h-40 flex flex-col items-center justify-center text-gray-500 cursor-pointer p-5"
-                  onclick="document.getElementById('willUpload').click()"
-                >
-                  <i class="fas fa-plus"></i>
-                  <p>Click to upload Will Document</p>
-                  <input
-                    type="file"
-                    id="willUpload"
-                    accept=".pdf,.doc,.docx"
-                    class="hidden"
-                    onchange="handleDocumentUpload('willDocuments')"
-                  />
-                </div>
               </div>
 
               <!-- User Power of Attorney Documents -->
@@ -300,20 +286,6 @@
                 </h2>
                 <div id="powerDocuments" class="space-y-2">
                   <!-- Documents will be appended here -->
-                </div>
-                <div
-                  class="border-2 border-dashed border-gray-300 rounded h-40 flex flex-col items-center justify-center text-gray-500 cursor-pointer p-5"
-                  onclick="document.getElementById('powerUpload').click()"
-                >
-                  <i class="fas fa-plus"></i>
-                  <p>Click to upload Power of Attorney Document</p>
-                  <input
-                    type="file"
-                    id="powerUpload"
-                    accept=".pdf,.doc,.docx"
-                    class="hidden"
-                    onchange="handleDocumentUpload('powerDocuments')"
-                  />
                 </div>
               </div>
 
@@ -340,14 +312,6 @@
                     <!-- Recipient rows will be added dynamically -->
                   </tbody>
                 </table>
-                <div class="mt-4">
-                  <button
-                    class="bg-blue-500 text-white px-4 py-2 rounded-lg"
-                    onclick="addRecipientRow()"
-                  >
-                    Add Recipient
-                  </button>
-                </div>
               </div>
             </div>
           </section>
@@ -378,26 +342,28 @@ sidebarToggle.addEventListener("click", () => {
 });
 
 const dashboardContent = document.getElementById("dashboardContent");
-// const myAccountSection = document.getElementById("myAccountSection");
+const myAccountSection = document.getElementById("myAccountSection");
+const userDetailsSection = document.getElementById("userDetailsSection");
 const dashboardLink = document.getElementById("dashboardLink");
 const myAccountLink = document.getElementById("myAccountLink");
 
-function switchTab(show, hide) {
-  hide.classList.remove("active");
-  setTimeout(() => {
-    hide.classList.add("hidden");
-    show.classList.remove("hidden");
-    setTimeout(() => show.classList.add("active"), 10);
-  }, 300);
-}
+function switchTab(show) {
+        const tabs = [dashboardContent, myAccountSection, userDetailsSection];
+        tabs.forEach((tab) => {
+          tab.classList.add("hidden");
+          tab.classList.remove("active");
+        });
+        show.classList.remove("hidden");
+        show.classList.add("active");
+      }
 
-dashboardLink.addEventListener("click", () => {
-  switchTab(dashboardContent, myAccountSection);
-});
+      dashboardLink.addEventListener("click", () => {
+        switchTab(dashboardContent);
+      });
 
-myAccountLink.addEventListener("click", () => {
-  switchTab(myAccountSection, dashboardContent);
-});
+      myAccountLink.addEventListener("click", () => {
+        switchTab(myAccountSection);
+      });
 
 const fileInput = document.getElementById("fileInput");
 const profileImage = document.getElementById("profileImage");
@@ -438,7 +404,7 @@ function fetchLoggedInUser() {
                         <td class="border border-gray-300 p-2">${client.phone}</td>
                         <td class="border border-gray-300 p-2">${client.created_at}</td>
                         <td class="border border-gray-300 p-2 items-center flex justify-center gap-4">
-                          <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">
+                          <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 viewUserBtn"  data-id="${client.id}>
                             <i class="fas fa-eye"></i>
                           </button>
                           <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 delete-button" data-id="${client.id}">
@@ -613,6 +579,48 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchLoggedInUser();
     fetchUsers();
 });
+
+
+
+      // View User Details
+      document.addEventListener("click", (event) => {
+        if (event.target.closest(".viewUserBtn")) {
+          const userId = event.target
+            .closest(".viewUserBtn")
+            .getAttribute("data-id");
+          const user = clients.find((client) => client.id == userId);
+
+          if (user) {
+            // Populate user details
+            userDetailsSection.querySelector("#profileImage").src =
+              "./assets/images/usere.png"; // Update image if needed
+            userDetailsSection.querySelector("#profileFields").innerHTML = `
+        <div>
+          <label class="block text-gray-600">First Name</label>
+          <input type="text" value="${user.firstName}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
+        </div>
+        <div>
+          <label class="block text-gray-600">Last Name</label>
+          <input type="text" value="${user.lastName}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
+        </div>
+        <div>
+          <label class="block text-gray-600">Email</label>
+          <input type="email" value="${user.email}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
+        </div>
+        <div>
+          <label class="block text-gray-600">Mobile Number</label>
+          <input type="text" value="${user.mobile}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
+        </div>
+        <div>
+          <label class="block text-gray-600">Joining Date</label>
+          <input type="text" value="${user.joiningDate}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
+        </div>`;
+
+            // Switch to user details section
+            switchTab(userDetailsSection);
+          }
+        }
+      });
     </script>
 
   </body>
