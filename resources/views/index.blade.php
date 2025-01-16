@@ -127,7 +127,7 @@
             <h1
               class="text-3xl md:text-5xl/tight lg:text-6xl/tight text-black tracking-normal capitalize leading-normal font-bold max-w-2xl"
             >
-              A Better Way To Create, Store, And Send Your Will Is Here
+              A Better Way To Create, And Send Your Will Is Here
             </h1>
             <p class="text-base font-medium text-muted mt-3 capitalize">
               Using state of the art technologies in compliance with all laws,
