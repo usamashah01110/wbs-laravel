@@ -20,99 +20,143 @@
 
   <body>
     <!-- Navbar Start -->
-    <nav id="navbar">
-      <div class="container">
-        <div class="flex lg:flex-nowrap flex-wrap items-center">
-          <a href="{{ url('/') }}" class="flex items-center">
-            <img src="{{ asset('images/WBS-Logo.png')}}" class="h-9 flex" />
-          </a>
+    <nav id="navbar" class="bg-white shadow-md sticky top-0 z-50">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center py-4">
+      <!-- Logo -->
+      <a href="{{ url('/') }}" class="flex items-center">
+        <img src="{{ asset('images/WBS-Logo.png') }}" class="h-9" alt="WBS Logo" />
+      </a>
 
-          <div class="lg:hidden flex items-center ms-auto px-2.5">
-            <button
-              class="hs-collapse-toggle"
-              type="button"
-              id="hs-unstyled-collapse"
-              data-hs-collapse="#navbarCollapse"
-            >
-              <i class="fas fa-bars"></i>
-            </button>
-          </div>
+      <!-- Mobile Menu Button -->
+      <button
+        class="lg:hidden text-gray-800 focus:outline-none"
+        type="button"
+        id="mobile-menu-button"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
 
-          <div
-            class="navigation hs-collapse transition-all duration-300 lg:basis-auto basis-full grow hidden items-center justify-center lg:flex mx-auto overflow-hidden mt-6 lg:mt-0 nav-light"
-            id="navbarCollapse"
-          >
-            <ul
-              class="navbar-nav flex-col lg:flex-row gap-y-2 flex lg:items-center justify-center"
-              id="navbar-navlist"
-            >
-              <li
-                class="nav-item mx-1.5 transition-all text-dark lg:text-black group-[&.is-sticky]:text-dark duration-300 hover:text-primary [&.active]:!text-primary group-[&.is-sticky]:[&.active]:text-primary"
-              >
-                <a
-                  class="nav-link inline-flex items-center text-sm lg:text-base font-medium py-0.5 px-2 capitalize hover:text-[#F4A261] transition-all duration-300"
-                  href="#services"
-                  >Services</a
-                >
-              </li>
-
-              <li
-                class="nav-item mx-1.5 transition-all text-dark lg:text-black group-[&.is-sticky]:text-dark duration-300 hover:text-primary [&.active]:!text-primary group-[&.is-sticky]:[&.active]:text-primary"
-              >
-                <a
-                  class="nav-link inline-flex items-center text-sm lg:text-base font-medium py-0.5 px-2 capitalize hover:text-[#F4A261] transition-all duration-300"
-                  href="#pricing"
-                  >Pricing</a
-                >
-              </li>
-
-              <li
-                class="nav-item mx-1.5 transition-all text-dark lg:text-black group-[&.is-sticky]:text-dark duration-300 hover:text-primary [&.active]:!text-primary group-[&.is-sticky]:[&.active]:text-primary"
-              >
-                <a
-                  class="nav-link inline-flex items-center text-sm lg:text-base font-medium py-0.5 px-2 capitalize hover:text-[#F4A261] transition-all duration-300"
-                  href="#testimonial"
-                  >Reviews</a
-                >
-              </li>
-
-              <li
-                class="nav-item mx-1.5 transition-all text-dark lg:text-black group-[&.is-sticky]:text-dark duration-300 hover:text-primary [&.active]:!text-primary group-[&.is-sticky]:[&.active]:text-primary"
-              >
-                <a
-                  class="nav-link inline-flex items-center text-sm lg:text-base font-medium py-0.5 px-2 capitalize hover:text-[#F4A261] transition-all duration-300"
-                  href="#blog"
-                  >Blog</a
-                >
-              </li>
-
-              <li
-                class="nav-item mx-1.5 transition-all text-dark lg:text-black group-[&.is-sticky]:text-dark duration-300 hover:text-primary [&.active]:!text-primary group-[&.is-sticky]:[&.active]:text-primary"
-              >
-                <a
-                  class="nav-link inline-flex items-center text-sm lg:text-base font-medium py-0.5 px-2 capitalize hover:text-[#F4A261] transition-all duration-300"
-                  href="#contact"
-                  onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })"
-                  >Contact</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
+      <!-- Navigation Links -->
+      <div
+        class="hidden lg:flex flex-grow justify-center items-center space-x-6"
+        id="navbarCollapse"
+      >
+        <ul class="flex flex-col lg:flex-row items-center gap-4 lg:gap-6">
+          <li>
             <a
-              class="px-4 py-2 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#F4A261] transition-all duration-300 ease-in-out"
-              href="{{ route('login') }}"
-              >Login</a
+              href="#services"
+              class="text-gray-700 hover:text-primary font-medium transition"
+              >Services</a
             >
+          </li>
+          <li>
             <a
-              class="px-4 py-2 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#F4A261] transition-all duration-300 ease-in-out"
-              href="{{ route('register') }}"
-              >Signup</a
+              href="#pricing"
+              class="text-gray-700 hover:text-primary font-medium transition"
+              >Pricing</a
             >
-          </div>
-        </div>
+          </li>
+          <li>
+            <a
+              href="#testimonial"
+              class="text-gray-700 hover:text-primary font-medium transition"
+              >Reviews</a
+            >
+          </li>
+          <li>
+            <a
+              href="#blog"
+              class="text-gray-700 hover:text-primary font-medium transition"
+              >Blog</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="text-gray-700 hover:text-primary font-medium transition"
+              onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })"
+              >Contact</a
+            >
+          </li>
+        </ul>
       </div>
-    </nav>
+
+      <!-- Login/Signup -->
+      <div class="hidden lg:flex space-x-4">
+        <a
+          href="{{ route('login') }}"
+          class="px-4 py-2 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+          >Login</a
+        >
+        <a
+          href="{{ route('register') }}"
+          class="px-4 py-2 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+          >Signup</a
+        >
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      class="lg:hidden hidden flex-col mt-4 space-y-4"
+      id="mobile-menu"
+    >
+      <ul class="flex flex-col items-center gap-4">
+        <li>
+          <a
+            href="#services"
+            class="text-gray-700 hover:text-primary font-medium transition"
+            >Services</a
+          >
+        </li>
+        <li>
+          <a
+            href="#pricing"
+            class="text-gray-700 hover:text-primary font-medium transition"
+            >Pricing</a
+          >
+        </li>
+        <li>
+          <a
+            href="#testimonial"
+            class="text-gray-700 hover:text-primary font-medium transition"
+            >Reviews</a
+          >
+        </li>
+        <li>
+          <a
+            href="#blog"
+            class="text-gray-700 hover:text-primary font-medium transition"
+            >Blog</a
+          >
+        </li>
+        <li>
+          <a
+            href="#contact"
+            class="text-gray-700 hover:text-primary font-medium transition"
+            onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })"
+            >Contact</a
+          >
+        </li>
+      </ul>
+      <div class="flex space-x-4 mt-4 justify-center">
+        <a
+          href="{{ route('login') }}"
+          class="px-4 py-2 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+          >Login</a
+        >
+        <a
+          href="{{ route('register') }}"
+          class="px-4 py-2 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+          >Signup</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
 
     <!-- =========== Hero Section Start =========== -->
     <section
@@ -127,7 +171,7 @@
             <h1
               class="text-3xl md:text-5xl/tight lg:text-6xl/tight text-black tracking-normal capitalize leading-normal font-bold max-w-2xl"
             >
-              A Better Way To Create, Store, And Send Your Will Is Here
+              A Better Way To Create, Store And Send Your Will Is Here
             </h1>
             <p class="text-base font-medium text-muted mt-3 capitalize">
               Using state of the art technologies in compliance with all laws,
@@ -532,8 +576,8 @@
 
         <div class="grid grid-cols-1 gap-6 mt-14 items-center">
           <div class="relative">
-            <div class="swiper testi-swiper rounded-md relative px-1">
-              <div class="swiper-wrapper flex justify-between gap-3">
+            <div class="rounded-md relative px-1">
+              <div class="flex justify-between gap-3 flex-col md:flex-row">
                 <!-- Testimonial 1 -->
                 <div
                   class="p-6 rounded-xl border border-default-200 flex flex-col justify-between bg-white transition-all duration-300 hover:bg-[#E2E8F0]"
@@ -1206,5 +1250,12 @@
       </div>
     </footer>
     <!-- Footer End -->
+    <script>
+  // Toggle Mobile Menu
+  document.getElementById('mobile-menu-button').addEventListener('click', () => {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
+</script>
   </body>
 </html>
