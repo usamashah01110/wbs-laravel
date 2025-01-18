@@ -26,17 +26,17 @@
       class="bg-[#F4A261] shadow-lg px-6 py-4 flex justify-between items-center"
     >
       <div class="flex items-center">
-          <a href="{{ url('/') }}">
         <img src="{{ asset('images/WBS-Logo.png') }}" alt="Profile" class="h-14" />
           </a>
       </div>
       <div class="relative">
         <button id="dropdownButton" class="flex items-center gap-2 transition">
-          <img
-            src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
-            alt="Profile"
-            class="w-8 h-8 rounded-full"
-          />
+        <img
+    src="{{ optional(auth()->user())->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
+    alt="Profile"
+    class="w-8 h-8 rounded-full"
+/>
+
           <span class="font-medium text-gray-100">{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</span>
         </button>
         <!-- Dropdown -->
