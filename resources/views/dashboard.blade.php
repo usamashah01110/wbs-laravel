@@ -31,11 +31,7 @@
     </div>
     <div class="relative">
         <button id="dropdownButton" class="flex items-center gap-2 transition">
-            <!-- <img
-              src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
-                alt="Profile"
-                class="w-8 h-8 rounded-full"
-            /> -->
+            
             <img
     src="
     {{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
@@ -547,6 +543,11 @@
                 </div>
             </div>
         </div>
+        
+      <div
+        id="toastContainer"
+        class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"
+      ></div>
     </div>
 </footer>
 <!-- Footer End -->
@@ -579,6 +580,7 @@
                 if (data.success) {
                     displayUploadedDocument(data.fileName, data.fileUrl);
                 } else {
+                    showToast("Document upload failed.", "error");
                     // alert(data.message || "Document upload failed.");
                     fetchDocuments();
                 }

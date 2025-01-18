@@ -299,6 +299,11 @@
             </div>
           </div>
         </div>
+        
+      <div
+        id="toastContainer"
+        class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"
+      ></div>
       </div>
     </footer>
     <!-- Footer End -->
@@ -346,12 +351,12 @@
                           "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Add CSRF token if using Laravel
                       },
                       success: function (response) {
-                          alert("Profile image uploaded successfully!");
+                          showToast("Profile image uploaded successfully!");
                           // Optionally update the image preview with the server URL
                           $("#profileImage").attr("src", response.imageUrl);
                       },
                       error: function (error) {
-                          alert("Error uploading profile image. Please try again.");
+                        showToast("Failed to update profile image.", "error");
                       },
                   });
               }
