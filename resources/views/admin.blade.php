@@ -41,7 +41,7 @@
     @include('header') 
 
     <div class="flex h-screen">
-
+    <x-sidebar />
 
       <div class="w-full">
         <!-- Main Content -->
