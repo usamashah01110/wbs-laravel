@@ -15,34 +15,9 @@
     <link href="{{ asset('image/WBS-Logo.png')}}" rel="shortcut icon" />
   </head>
   <body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
-    <!-- Navbar -->
-    <!-- <header
-      class="bg-[#F4A261] shadow-lg px-6 py-4 flex justify-between items-center"
-    >
-      <div class="flex items-center">
-        <img
-        src="{{ asset('images/WBS-Logo.png') }}" alt="Profile" class="h-14" />
-      </div>
-      <div class="flex items-center gap-4">
-        <span class="text-gray-100 font-medium hidden md:block"
-          >Welcome Back!</span
-        >
-        <div class="flex items-center gap-2">
-          <img
-              src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
-            alt="Profile"
-            class="w-8 h-8 rounded-full"
-          />
-          <span class="font-bold text-white">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span>
-        </div>
-      </div>
-    </header> -->
-
     @include('header') 
-
     <div class="flex h-screen">
-    <x-sidebar />
-
+    @include('side-bar') 
       <div class="w-full">
         <!-- Main Content -->
         <main
