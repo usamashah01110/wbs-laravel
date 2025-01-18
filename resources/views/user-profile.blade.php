@@ -65,12 +65,12 @@
       <section class="bg-white p-6 rounded-lg shadow">
         <div class="flex items-center mb-6 justify-between">
           <div class="relative">
-            <img
-              id="profileImage"
-              src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
-              alt="Profile"
-              class="w-24 h-24 rounded-full object-cover"
-            />
+          <img
+    src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
+    alt="Profile"
+    class="w-8 h-8 rounded-full"
+/>
+
             <button
               id="editProfileImage"
               class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full"

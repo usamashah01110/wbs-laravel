@@ -31,11 +31,17 @@
     </div>
     <div class="relative">
         <button id="dropdownButton" class="flex items-center gap-2 transition">
-            <img
+            <!-- <img
               src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
                 alt="Profile"
                 class="w-8 h-8 rounded-full"
-            />
+            /> -->
+            <img
+    src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
+    alt="Profile"
+    class="w-8 h-8 rounded-full"
+/>
+
             <span class="font-medium text-gray-100">{{ Auth::user()->firstname }} {{ Auth::user()->lastname  }}</span>
         </button>
         <!-- Dropdown -->
