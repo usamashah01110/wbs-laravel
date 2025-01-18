@@ -16,7 +16,7 @@
   </head>
   <body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
     <!-- Navbar -->
-    <!-- <header
+    <header
       class="bg-[#F4A261] shadow-lg px-6 py-4 flex justify-between items-center"
     >
       <div class="flex items-center">
@@ -36,9 +36,7 @@
           <span class="font-bold text-white">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span>
         </div>
       </div>
-    </header> -->
-
-    @include('header') 
+    </header>
 
     <div class="flex h-screen">
       <!-- Sidebar -->
