@@ -27,7 +27,7 @@
     >
       <div class="flex items-center">
           <a href="{{ url('/') }}">
-        <img src="../assets/images/WBS-Logo.png" alt="Profile" class="h-14" />
+        <img src="{{ asset('images/WBS-Logo.png') }}" alt="Profile" class="h-14" />
           </a>
       </div>
       <div class="relative">
@@ -79,7 +79,7 @@
             </button>
             <input id="fileInput" type="file" class="hidden" />
           </div>
-          <a class="text-2xl cursor-pointer" href="{{url('/dasboard')}}"
+          <a class="text-2xl cursor-pointer" href="{{url('/dashboard')}}"
             ><i class="fas fa-times"></i
           ></a>
         </div>
@@ -162,7 +162,7 @@
           <button
               type="submit"
             id="editProfileButton"
-            class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            class="bg-[#F4A261] text-white px-6 py-2 rounded-lg hover:bg-[#3A5F8F] transition-all duration-300 ease-in-out"
           >
             Update
           </button>
@@ -313,7 +313,7 @@
         dropdownMenu.classList.toggle("hidden");
     });
 
-    
+
       $(document).ready(function () {
           // Show file input when 'Edit' button is clicked
           $("#editProfileImage").on("click", function () {
