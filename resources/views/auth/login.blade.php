@@ -31,6 +31,15 @@
             </p>
           </div>
           <!-- Form -->
+          @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-red-500">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
           <form method="POST" action="{{ route('login') }}" class="space-y-4">
           @csrf
             <div>
