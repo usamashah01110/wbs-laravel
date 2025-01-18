@@ -267,9 +267,8 @@
               </div>
             </div>
 
-<<<<<<< HEAD
             <!-- Three Column Grid -->
-            <div id="profileFields" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <!-- User Will Documents -->
               <div>
                 <h2 class="text-lg font-bold text-gray-700 mb-4">
@@ -291,9 +290,6 @@
               </div>
 
               <!-- User Recipient Table -->
-=======
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
->>>>>>> 1503a5ceb465b02b48bf5b5e725bff06ec0af5ca
               <div>
                 <h2 class="text-lg font-bold text-gray-700 mb-4">
                   Recipient Details
