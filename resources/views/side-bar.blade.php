@@ -13,14 +13,14 @@
                 id="dashboardLink"
                 class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer"
             >
-               <a href="{{ route('/admin') }}"> <i class="fas fa-tachometer-alt h-6 w-6"></i>
+               <a href="{{ route('admin.dashboard') }}"> <i class="fas fa-tachometer-alt h-6 w-6"></i>
                <span class="sidebar-text">Dashboard</span></a>
             </li>
             <li
                 id="myAccountLink"
                 class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer"
             >
-              <a href="{{ route('/user-details') }}">  <i class="fas fa-user-circle h-6 w-6"></i>
+              <a href="">  <i class="fas fa-user-circle h-6 w-6"></i>
               <span class="sidebar-text">My Account</span></a>
             </li>
             <li
