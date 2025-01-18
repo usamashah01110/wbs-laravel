@@ -15,132 +15,11 @@
     <link href="{{ asset('image/WBS-Logo.png')}}" rel="shortcut icon" />
   </head>
   <body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
-    <!-- Navbar -->
-    <header
-      class="bg-[#F4A261] shadow-lg px-6 py-4 flex justify-between items-center"
-    >
-      <div class="flex items-center">
-        <img
-        src="{{ asset('images/WBS-Logo.png') }}" alt="Profile" class="h-14" />
-      </div>
-      <div class="flex items-center gap-4">
-        <span class="text-gray-100 font-medium hidden md:block"
-          >Welcome Back!</span
-        >
-        <div class="flex items-center gap-2">
-          <img
-              src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
-            alt="Profile"
-            class="w-8 h-8 rounded-full"
-          />
-          <span class="font-bold text-white">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</span>
-        </div>
-      </div>
-    </header>
-
+    @include('header') 
     <div class="flex h-screen">
-      <!-- Sidebar -->
-      <nav
-        id="sidebar"
-        class="bg-[#3A5F8F] text-gray-100 w-64 h-full flex-shrink-0 transition-all duration-300 flex flex-col justify-between"
-      >
-        <div>
-          <div class="p-4">
-            <button id="sidebarToggle" class="text-gray-400 hover:text-white">
-              <i id="toggleArrow" class="fas fa-arrow-left"></i>
-            </button>
-          </div>
-          <ul>
-            <li
-              id="dashboardLink"
-              class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer"
-            >
-              <i class="fas fa-tachometer-alt h-6 w-6"></i>
-              <span class="sidebar-text">Dashboard</span>
-            </li>
-            <li
-              id="myAccountLink"
-              class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer"
-            >
-              <i class="fas fa-user-circle h-6 w-6"></i>
-              <span class="sidebar-text">My Account</span>
-            </li>
-            <li
-              id="logoutLink"
-              class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer"
-            >
-              <i class="fas fa-sign-out-alt h-6 w-6"></i>
-              <span class="sidebar-text">
-               <form method="POST" action="{{ route('logout') }}" >
-                @csrf
-
-                <x-responsive-nav-link :href="route('logout')"
-                                       onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                    {{ __('Log Out') }}
-                </x-responsive-nav-link>
-            </form>
-              </span>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
+    @include('side-bar') 
       <div class="w-full">
-        <!-- Main Content -->
-        <main
-          id="dashboardContent"
-          class="flex-1 p-6 overflow-hidden tab-content active"
-        >
-          <!-- Cards -->
-          <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div
-              class="bg-[#E2E8F0] p-6 rounded-lg shadow hover:shadow-lg transition"
-            >
-              <h2 class="text-gray-600 font-bold">Total Clients</h2>
-              <p class="text-gray-800 text-2xl mt-2" id="totalclient"></p>
-            </div>
-            <div
-              class="bg-[#E2E8F0] p-6 rounded-lg shadow hover:shadow-lg transition"
-            >
-              <h2 class="text-gray-600 font-bold">Total Documents</h2>
-              <p class="text-gray-800 text-2xl mt-2" id="totaldocument"></p>
-            </div>
-            <div
-              class="bg-[#E2E8F0] p-6 rounded-lg shadow hover:shadow-lg transition"
-            >
-              <h2 class="text-gray-600 font-bold">Total Recipients</h2>
-              <p class="text-gray-800 text-2xl mt-2" id="totalrecipent"></p>
-            </div>
-          </section>
-
-          <!-- Table -->
-          <section class="mt-6 bg-white p-6 rounded-lg shadow">
-            <h2 class="text-gray-700 font-bold mb-4">Clients</h2>
-            <div class="overflow-auto h-72">
-              <table class="w-full border-collapse border border-gray-200" id="clientTable">
-                <thead
-                  class="sticky top-0 bg-gray-200 z-10 border border-gray-300"
-                >
-                  <tr class="bg-gray-100">
-                    <th class="border border-gray-300 p-2">ID</th>
-                    <th class="border border-gray-300 p-2">First Name</th>
-                    <th class="border border-gray-300 p-2">Last Name</th>
-                    <th class="border border-gray-300 p-2">Email</th>
-                    <th class="border border-gray-300 p-2">Mobile Number</th>
-                    <th class="border border-gray-300 p-2">Date of Joining</th>
-                    <th class="border border-gray-300 p-2">Actions</th>
-                  </tr>
-                </thead>
-                <tbody >
-                  <!-- Rows will be dynamically generated here -->
-                </tbody>
-              </table>
-            </div>
-          </section>
-        </main>
-
-        <!-- My Account Section -->
+<!-- My Account Section -->
         <main id="myAccountSection" class="flex-1 p-6 tab-content">
           <section class="bg-white p-6 rounded-lg shadow">
             <div class="flex flex-col items-center mb-6">
@@ -245,89 +124,10 @@
           </section>
         </main>
 
-        <!-- My User Details Section -->
-        <main id="userDetailsSection" class="flex-1 p-6 tab-content">
-          <section class="bg-white p-6 rounded-lg shadow">
-            <!-- User Profile Section -->
-            <div class="flex flex-col items-center mb-6">
-              <div class="relative">
-                  <img
-                      id="profileImage"
-                      src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/usere.png') }}"
-                      alt="Profile"
-                      class="w-24 h-24 rounded-full object-cover"
-                  />
-                <button
-                  id="editProfileImage"
-                  class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full"
-                >
-                  Edit
-                </button>
-                <input id="fileInput" type="file" class="hidden" />
-              </div>
-            </div>
-
-            <!-- Three Column Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <!-- User Will Documents -->
-              <div>
-                <h2 class="text-lg font-bold text-gray-700 mb-4">
-                  User Will Documents
-                </h2>
-                <div id="willDocuments" class="space-y-2">
-                  <!-- Documents will be appended here -->
-                </div>
-              </div>
-
-              <!-- User Power of Attorney Documents -->
-              <div>
-                <h2 class="text-lg font-bold text-gray-700 mb-4">
-                  Power of Attorney Documents
-                </h2>
-                <div id="powerDocuments" class="space-y-2">
-                  <!-- Documents will be appended here -->
-                </div>
-              </div>
-
-              <!-- User Recipient Table -->
-              <div>
-                <h2 class="text-lg font-bold text-gray-700 mb-4">
-                  Recipient Details
-                </h2>
-                <table class="w-full border-collapse border border-gray-300" id="recipientTable">
-                  <thead>
-                    <tr class="bg-gray-100">
-                      <th class="border border-gray-300 px-4 py-2 text-left">
-                        Name
-                      </th>
-                      <th class="border border-gray-300 px-4 py-2 text-left">
-                        Number
-                      </th>
-                      <th class="border border-gray-300 px-4 py-2 text-left">
-                        Email
-                      </th>
-                        <th class="border border-gray-300 px-4 py-2 text-left">
-                            Phone
-                        </th>
-                        <th class="border border-gray-300 px-4 py-2 text-left">
-                            Created at
-                        </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- Recipient rows will be added dynamically -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-        </main>
-      </div>
       <div
         id="toastContainer"
         class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"
       ></div>
-    </div>
 
     <script>
 
@@ -377,7 +177,7 @@ const profileImage = document.getElementById("profileImage");
 
 fetchLoggedInUser();
 function fetchLoggedInUser() {
-    fetch('/api/logged-in-user')  // Replace with your API endpoint
+    fetch('/api/logged-in-user')  
         .then((response) => response.json())
         .then((data) => {
             // Populate the form fields with the user's data
