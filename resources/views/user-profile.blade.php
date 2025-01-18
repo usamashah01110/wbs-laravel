@@ -33,7 +33,7 @@
       <div class="relative">
         <button id="dropdownButton" class="flex items-center gap-2 transition">
           <img
-            src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/usere.png') }}"
+            src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
             alt="Profile"
             class="w-8 h-8 rounded-full"
           />
@@ -66,7 +66,7 @@
         <div class="flex items-center mb-6 justify-between">
           <div class="relative">
           <img
-    src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
+   src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/usere.png') }}"
     alt="Profile"
     class="w-8 h-8 rounded-full"
 />
