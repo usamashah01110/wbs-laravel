@@ -10,4 +10,10 @@ class Document extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'path', 'type','user_id','documnet_type'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

@@ -251,22 +251,23 @@
             <!-- User Profile Section -->
             <div class="flex flex-col items-center mb-6">
               <div class="relative">
-{{--                  <img--}}
-{{--                      id="profileImage"--}}
-{{--                      src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/usere.png') }}"--}}
-{{--                      alt="Profile"--}}
-{{--                      class="w-24 h-24 rounded-full object-cover"--}}
-{{--                  />--}}
-{{--                <button--}}
-{{--                  id="editProfileImage"--}}
-{{--                  class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full"--}}
-{{--                >--}}
-{{--                  Edit--}}
-{{--                </button>--}}
-{{--                <input id="fileInput" type="file" class="hidden" />--}}
-{{--              </div>--}}
+                  <img
+                      id="profileImage"
+                      src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/usere.png') }}"
+                      alt="Profile"
+                      class="w-24 h-24 rounded-full object-cover"
+                  />
+                <button
+                  id="editProfileImage"
+                  class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full"
+                >
+                  Edit
+                </button>
+                <input id="fileInput" type="file" class="hidden" />
+              </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Three Column Grid -->
             <div id="profileFields" class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <!-- User Will Documents -->
@@ -290,11 +291,14 @@
               </div>
 
               <!-- User Recipient Table -->
+=======
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+>>>>>>> 1503a5ceb465b02b48bf5b5e725bff06ec0af5ca
               <div>
                 <h2 class="text-lg font-bold text-gray-700 mb-4">
                   Recipient Details
                 </h2>
-                <table class="w-full border-collapse border border-gray-300">
+                <table class="w-full border-collapse border border-gray-300" id="recipientTable">
                   <thead>
                     <tr class="bg-gray-100">
                       <th class="border border-gray-300 px-4 py-2 text-left">
@@ -306,9 +310,15 @@
                       <th class="border border-gray-300 px-4 py-2 text-left">
                         Email
                       </th>
+                        <th class="border border-gray-300 px-4 py-2 text-left">
+                            Phone
+                        </th>
+                        <th class="border border-gray-300 px-4 py-2 text-left">
+                            Created at
+                        </th>
                     </tr>
                   </thead>
-                  <tbody id="recipientTable">
+                  <tbody>
                     <!-- Recipient rows will be added dynamically -->
                   </tbody>
                 </table>
@@ -392,7 +402,7 @@ function fetchLoggedInUser() {
                 .then((data) => {
                     console.log(data);
                     const clientTable = document.querySelector('#clientTable tbody');
-                    clientTable.innerHTML = ''; // Clear existing rows
+                    clientTable.innerHTML = '';
 
                     data.users.forEach((client) => {
                         const row = document.createElement('tr');
@@ -404,9 +414,9 @@ function fetchLoggedInUser() {
                         <td class="border border-gray-300 p-2">${client.phone}</td>
                         <td class="border border-gray-300 p-2">${client.created_at}</td>
                         <td class="border border-gray-300 p-2 items-center flex justify-center gap-4">
-                          <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 viewUserBtn"  data-id="${client.id}>
-                            <i class="fas fa-eye"></i>
-                          </button>
+                          <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 edit-button" data-id="${client.id}">
+                              <i class="fas fa-edit"></i>
+                            </button>
                           <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 delete-button" data-id="${client.id}">
                             <i class="fas fa-trash-alt"></i>
                           </button>
@@ -508,72 +518,157 @@ function fetchLoggedInUser() {
         }
     });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const profileForm = document.getElementById("editUserProfile");
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileForm = document.getElementById("editUserProfile");
 
-    profileForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent default form submission
+        profileForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
 
-        // Get form field values
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const email = document.getElementById('email').value;
-        const phoneNumber = document.getElementById('phoneNumber').value;
+            // Get form field values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
 
 
-        // Collect form data, including additional fields
-        const formData = new FormData(profileForm);
-        formData.append("firstname", firstName);
-        formData.append("lastname", lastName);
-        formData.append("email", email);
-        formData.append("phone", phoneNumber);
+            // Collect form data, including additional fields
+            const formData = new FormData(profileForm);
+            formData.append("firstname", firstName);
+            formData.append("lastname", lastName);
+            formData.append("email", email);
+            formData.append("phone", phoneNumber);
 
-        fetch('/update-user-details', {
-            method: 'POST',
-            headers: {
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-            },
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.user) {
-                    // Update the profile image if available
-                    const profileImage = document.getElementById("profileImage");
-                    const profileImageUrl = data.user.profile_image
-                        ? `/storage/${data.user.profile_image}`
-                        : "{{ asset('images/usere.png') }}";
-                    profileImage.src = profileImageUrl;
-
-                    // Show success message
-                    showToast(data.message, "success");
-                } else {
-                    showToast("Failed to update profile.", "error");
-                }
+            fetch('/update-user-details', {
+                method: 'POST',
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                },
+                body: formData
             })
-            .catch(error => {
-                console.error('Error updating user details:', error);
-                showToast("Error updating profile.", "error");
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.user) {
+                        // Update the profile image if available
+                        const profileImage = document.getElementById("profileImage");
+                        const profileImageUrl = data.user.profile_image
+                            ? `/storage/${data.user.profile_image}`
+                            : "{{ asset('images/usere.png') }}";
+                        profileImage.src = profileImageUrl;
+
+                        // Show success message
+                        showToast(data.message, "success");
+                    } else {
+                        showToast("Failed to update profile.", "error");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating user details:', error);
+                    showToast("Error updating profile.", "error");
+                });
+        });
+
+        // Show Toast function
+        function showToast(message, type = "success") {
+            const toastContainer = document.getElementById("toastContainer");
+            const toast = document.createElement("div");
+            toast.classList.add("toast", type);
+            toast.textContent = message;
+
+            toastContainer.appendChild(toast);
+
+            setTimeout(() => {
+                toastContainer.removeChild(toast);
+            }, 3000);
+        }
     });
 
-    // Show Toast function
-    function showToast(message, type = "success") {
-        const toastContainer = document.getElementById("toastContainer");
-        const toast = document.createElement("div");
-        toast.classList.add("toast", type);
-        toast.textContent = message;
 
-        toastContainer.appendChild(toast);
 
-        setTimeout(() => {
-            toastContainer.removeChild(toast);
-        }, 3000);
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch logged-in user details and populate the form
+            fetchLoggedInUser();
+            fetchUsers();
+        });
+
+
+
+      // View User Details
+      // document.addEventListener("click", (event) => {
+      //   if (event.target.closest(".viewUserBtn")) {
+      //     const userId = event.target
+      //       .closest(".viewUserBtn")
+      //       .getAttribute("data-id");
+      //     const user = clients.find((client) => client.id == userId);
+      //
+      //     if (user) {
+      //       // Populate user details
+      //       userDetailsSection.querySelector("#profileImage").src =
+      //         "./assets/images/usere.png"; // Update image if needed
+      //       userDetailsSection.querySelector("#profileFields").innerHTML = `
+      //           <div>
+      //             <label class="block text-gray-600">First Name</label>
+      //             <input type="text" value="${user.firstName}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
+      //           </div>
+      //           <div>
+      //             <label class="block text-gray-600">Last Name</label>
+      //             <input type="text" value="${user.lastName}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
+      //           </div>
+      //           <div>
+      //             <label class="block text-gray-600">Email</label>
+      //             <input type="email" value="${user.email}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
+      //           </div>
+      //           <div>
+      //             <label class="block text-gray-600">Mobile Number</label>
+      //             <input type="text" value="${user.mobile}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
+      //           </div>
+      //           <div>
+      //             <label class="block text-gray-600">Joining Date</label>
+      //             <input type="text" value="${user.joiningDate}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
+      //           </div>`;
+      //
+      //       // Switch to user details section
+      //       switchTab(userDetailsSection);
+      //     }
+      //   }
+      // });
+
+function switchTab(section) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+    section.classList.remove('hidden');
+}
+
+document.addEventListener("click", (event) => {
+    if (event.target.closest(".edit-button")) {
+        const userId = event.target.closest(".edit-button").getAttribute("data-id");
+
+        // Fetch user details by ID
+        fetch(`/user/details/${userId}`)
+            .then((response) => response.json())
+            .then((data) => {
+                const user = data.user;
+
+                const recipientTable = document.querySelector('#recipientTable tbody');
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                        <td class="border border-gray-300 p-2">${user.id}</td>
+                        <td class="border border-gray-300 p-2">${user.firstname}</td>
+                        <td class="border border-gray-300 p-2">${user.lastname}</td>
+                        <td class="border border-gray-300 p-2">${user.email}</td>
+                        <td class="border border-gray-300 p-2">${user.phone}</td>
+                        <td class="border border-gray-300 p-2">${user.created_at}</td>
+                     `;
+                recipientTable.appendChild(row);
+                switchTab('userDetailsSection');
+            })
+            .catch((error) => {
+                console.error("Error fetching user details:", error);
+            });
     }
 });
 
 
 
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch logged-in user details and populate the form
     fetchLoggedInUser();
@@ -621,6 +716,8 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       });
+=======
+>>>>>>> 1503a5ceb465b02b48bf5b5e725bff06ec0af5ca
     </script>
 
   </body>
