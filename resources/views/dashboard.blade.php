@@ -47,17 +47,20 @@
               href="{{ route('user.profile') }}"
               id="myAccountLink"
               class="block px-4 py-2 hover:bg-gray-200"
-              >My Account</a
+              >
+              <i class="fas fa-user text-blue-500 mr-4"></i>My Account</a
             >
-            <form method="POST" action="{{ route('logout') }}" class="block px-4 py-2 hover:bg-gray-200 text-red-500 transition-all duration-300">
-                @csrf
-
-                <x-responsive-nav-link :href="route('logout')"
-                                       onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                    {{ __('Log Out') }}
-                </x-responsive-nav-link>
-            </form>
+            <form method="POST" action="{{ route('logout') }}" class="block">
+        @csrf
+        <x-responsive-nav-link 
+            :href="route('logout')"
+            class="block px-4 py-2 hover:bg-gray-200 text-red-500 transition-all duration-300"
+            onclick="event.preventDefault();
+                this.closest('form').submit();"
+        >
+        <i class="fas fa-sign-out-alt text-red-500 mr-4"></i>{{ __('Log Out') }}
+        </x-responsive-nav-link>
+    </form>
         </div>
     </div>
 </header>
