@@ -29,7 +29,7 @@
         >
         <div class="flex items-center gap-2">
           <img
-              src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/usere.png') }}"
+              src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
             alt="Profile"
             class="w-8 h-8 rounded-full"
           />

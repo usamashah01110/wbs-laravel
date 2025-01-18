@@ -44,12 +44,12 @@
           id="dropdownMenu"
           class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden"
         >
-          <!-- <a
+          <a
             href="#"
             id="myAccountLink"
             class="block px-4 py-2 hover:bg-gray-200"
             >My Account</a
-          > -->
+          >
           <a
             href="#"
             class="block px-4 py-2 hover:bg-gray-200 text-red-500 transition-all duration-300"
@@ -67,7 +67,7 @@
           <div class="relative">
             <img
               id="profileImage"
-              src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/usere.png') }}"
+              src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
               alt="Profile"
               class="w-24 h-24 rounded-full object-cover"
             />
