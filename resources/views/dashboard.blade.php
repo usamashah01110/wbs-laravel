@@ -37,7 +37,7 @@
                 class="w-8 h-8 rounded-full"
             /> -->
             <img
-    src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
+    src="{{ asset('images/user.png') }}"
     alt="Profile"
     class="w-8 h-8 rounded-full"
 />

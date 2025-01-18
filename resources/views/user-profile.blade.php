@@ -162,7 +162,7 @@
           <button
               type="submit"
             id="editProfileButton"
-            class="bg-[#F4A261] text-white px-6 py-2 rounded-lg hover:bg-[#3A5F8F] transition-all duration-300 ease-in-out"
+            class="bg-[#3A5F8F] text-white px-6 py-2 rounded-lg hover:bg-[#F4A261] transition-all duration-300 ease-in-out"
           >
             Update
           </button>
