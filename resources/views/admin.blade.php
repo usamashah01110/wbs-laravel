@@ -268,7 +268,7 @@
             </div>
 
             <!-- Three Column Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div id="profileFields" class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <!-- User Will Documents -->
               <div>
                 <h2 class="text-lg font-bold text-gray-700 mb-4">
@@ -593,7 +593,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (user) {
             // Populate user details
             userDetailsSection.querySelector("#profileImage").src =
-              "./assets/images/usere.png"; // Update image if needed
+              "./assets/images/usere.png"; 
             userDetailsSection.querySelector("#profileFields").innerHTML = `
         <div>
           <label class="block text-gray-600">First Name</label>

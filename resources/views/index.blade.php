@@ -22,10 +22,10 @@
     <!-- Navbar Start -->
     <nav id="navbar" class="bg-white shadow-md sticky top-0 z-50">
   <div class="container mx-auto px-4">
-    <div class="flex justify-between items-center py-4">
+    <div class="flex justify-between items-center">
       <!-- Logo -->
       <a href="{{ url('/') }}" class="flex items-center">
-        <img src="{{ asset('images/WBS-Logo.png') }}" class="h-9" alt="WBS Logo" />
+        <img src="{{ asset('images/WBS-Logo.png') }}" class="h-14" alt="WBS Logo" />
       </a>
 
       <!-- Mobile Menu Button -->
