@@ -139,7 +139,14 @@ function fetchUsers() {
           const clientId = button.getAttribute("data-id");
           deleteUser(clientId);
         })
+
       );
+      document.querySelectorAll(".edit-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const userId = button.getAttribute("data-id");
+      window.location.href = `/user-details/${userId}`;
+    });
+  });
     })
     .catch((error) => console.error("Error fetching users:", error));
 }

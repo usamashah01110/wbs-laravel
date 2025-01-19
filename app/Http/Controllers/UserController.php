@@ -97,15 +97,26 @@ class UserController extends Controller
         }
     }
 
-    public function userDetails($id){
-        $user = User::with(['documents', 'recipients'])->find($id);
+    // public function userDetails($id){
+    //     $user = User::with(['documents', 'recipients'])->find($id);
 
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
+    //     if (!$user) {
+    //         return response()->json(['error' => 'User not found'], 404);
+    //     }
 
-        return response()->json(['user' => $user]);
+    //     return response()->json(['user' => $user]);
+    // }
+    public function userDetails($id)
+{
+    $user = User::find($id);
+
+    if (!$user) {
+        return redirect()->route('admin.dashboard')->with('error', 'User not found.');
     }
+
+    return view('user-details', ['user' => $user]);
+}
+
     
         public function adminProfile()
     {
