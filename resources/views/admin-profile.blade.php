@@ -19,7 +19,6 @@
     <div class="flex h-screen">
     @include('side-bar') 
       <div class="w-full">
-<!-- My Account Section -->
         <main id="myAccountSection" class="flex-1 p-6 tab-content">
           <section class="bg-white p-6 rounded-lg shadow">
             <div class="flex flex-col items-center mb-6">
@@ -147,30 +146,6 @@ sidebarToggle.addEventListener("click", () => {
   });
 });
 
-const dashboardContent = document.getElementById("dashboardContent");
-const myAccountSection = document.getElementById("myAccountSection");
-const userDetailsSection = document.getElementById("userDetailsSection");
-const dashboardLink = document.getElementById("dashboardLink");
-const myAccountLink = document.getElementById("myAccountLink");
-
-function switchTab(show) {
-        const tabs = [dashboardContent, myAccountSection, userDetailsSection];
-        tabs.forEach((tab) => {
-          tab.classList.add("hidden");
-          tab.classList.remove("active");
-        });
-        show.classList.remove("hidden");
-        show.classList.add("active");
-      }
-
-      dashboardLink.addEventListener("click", () => {
-        switchTab(dashboardContent);
-      });
-
-      myAccountLink.addEventListener("click", () => {
-        switchTab(myAccountSection);
-      });
-
 const fileInput = document.getElementById("fileInput");
 const profileImage = document.getElementById("profileImage");
 
@@ -235,29 +210,6 @@ function fetchLoggedInUser() {
                 });
         }
 
-        // Function to delete a user
-        function deleteUser(clientId) {
-            if (confirm('Are you sure you want to delete this user?')) {
-                fetch(`/api/users/${clientId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                    .then((response) => {
-                        if (response.ok) {
-                            alert('User deleted successfully.');
-                            fetchUsers(); // Refresh the table
-                        } else {
-                            alert('Failed to delete the user.');
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error deleting user:', error);
-                    });
-            }
-        }
-
     document.addEventListener("DOMContentLoaded", function () {
         const fileInput = document.getElementById("fileInput");
         const profileImage = document.getElementById("profileImage");
@@ -314,71 +266,6 @@ function fetchLoggedInUser() {
         }
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const profileForm = document.getElementById("editUserProfile");
-
-        profileForm.addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent default form submission
-
-            // Get form field values
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const email = document.getElementById('email').value;
-            const phoneNumber = document.getElementById('phoneNumber').value;
-
-
-            // Collect form data, including additional fields
-            const formData = new FormData(profileForm);
-            formData.append("firstname", firstName);
-            formData.append("lastname", lastName);
-            formData.append("email", email);
-            formData.append("phone", phoneNumber);
-
-            fetch('/update-user-details', {
-                method: 'POST',
-                headers: {
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                },
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.user) {
-                        // Update the profile image if available
-                        const profileImage = document.getElementById("profileImage");
-                        const profileImageUrl = data.user.profile_image
-                            ? `/storage/${data.user.profile_image}`
-                            : "{{ asset('images/usere.png') }}";
-                        profileImage.src = profileImageUrl;
-
-                        // Show success message
-                        showToast(data.message, "success");
-                    } else {
-                        showToast("Failed to update profile.", "error");
-                    }
-                })
-                .catch(error => {
-                    console.error('Error updating user details:', error);
-                    showToast("Error updating profile.", "error");
-                });
-        });
-
-        // Show Toast function
-        function showToast(message, type = "success") {
-            const toastContainer = document.getElementById("toastContainer");
-            const toast = document.createElement("div");
-            toast.classList.add("toast", type);
-            toast.textContent = message;
-
-            toastContainer.appendChild(toast);
-
-            setTimeout(() => {
-                toastContainer.removeChild(toast);
-            }, 3000);
-        }
-    });
-
-
 
         document.addEventListener("DOMContentLoaded", function () {
             // Fetch logged-in user details and populate the form
@@ -420,55 +307,11 @@ document.addEventListener("click", (event) => {
     }
 });
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch logged-in user details and populate the form
     fetchLoggedInUser();
     fetchUsers();
 });
-
-
-
-      // View User Details
-      document.addEventListener("click", (event) => {
-        if (event.target.closest(".viewUserBtn")) {
-          const userId = event.target
-            .closest(".viewUserBtn")
-            .getAttribute("data-id");
-          const user = clients.find((client) => client.id == userId);
-
-          if (user) {
-            // Populate user details
-            userDetailsSection.querySelector("#profileImage").src =
-              "./assets/images/usere.png"; 
-            userDetailsSection.querySelector("#profileFields").innerHTML = `
-        <div>
-          <label class="block text-gray-600">First Name</label>
-          <input type="text" value="${user.firstName}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
-        </div>
-        <div>
-          <label class="block text-gray-600">Last Name</label>
-          <input type="text" value="${user.lastName}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
-        </div>
-        <div>
-          <label class="block text-gray-600">Email</label>
-          <input type="email" value="${user.email}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
-        </div>
-        <div>
-          <label class="block text-gray-600">Mobile Number</label>
-          <input type="text" value="${user.mobile}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
-        </div>
-        <div>
-          <label class="block text-gray-600">Joining Date</label>
-          <input type="text" value="${user.joiningDate}" class="w-full p-2 border border-gray-300 rounded-lg" disabled />
-        </div>`;
-
-            // Switch to user details section
-            switchTab(userDetailsSection);
-          }
-        }
-      });
     </script>
 
   </body>
