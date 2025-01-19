@@ -31,8 +31,9 @@ Route::get('/admin/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('admin.dashboard');
 
 Route::get('/api/users', [UserController::class, 'getAllUsers']);
-Route::get('/user/profile', [UserController::class, 'userProfile'])->name('user.profile');
-Route::get('/admin/profile', [UserController::class, 'adminProfile'])->name('admin.profile');
+Route::get('/user/profile', [UserController::class, 'userProfile'])->name('user.profile')
+;Route::get('/admin/profile', [UserController::class, 'adminProfile'])->name('admin.profile');
+
 
 Route::get('/api/users/{id}', [UserController::class, 'deleteUser']);
 Route::get('/api/logged-in-user', [UserController::class, 'getLoggedInUser']);

@@ -106,4 +106,10 @@ class UserController extends Controller
 
         return response()->json(['user' => $user]);
     }
+    
+        public function adminProfile()
+    {
+        return view('admin-profile'); 
+    }
 }
+
