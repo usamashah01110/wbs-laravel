@@ -142,11 +142,13 @@ function fetchUsers() {
 
       );
       document.querySelectorAll(".edit-button").forEach((button) => {
-    button.addEventListener("click", () => {
-      const userId = button.getAttribute("data-id");
-      window.location.href = `/user-details/${userId}`;
-    });
+  button.addEventListener("click", () => {
+    const userId = button.getAttribute("data-id");
+    const routeUrl = `{{ route('user.details', ':id') }}`.replace(':id', userId);
+    window.location.href = routeUrl;
   });
+});
+
     })
     .catch((error) => console.error("Error fetching users:", error));
 }

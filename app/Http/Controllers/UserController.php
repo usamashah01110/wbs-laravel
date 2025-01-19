@@ -107,15 +107,15 @@ class UserController extends Controller
     //     return response()->json(['user' => $user]);
     // }
     public function userDetails($id)
-{
-    $user = User::find($id);
-
-    if (!$user) {
-        return redirect()->route('admin.dashboard')->with('error', 'User not found.');
+    {
+        $user = User::find($id);
+    
+        if (!$user) {
+            return redirect()->route('admin.dashboard')->with('error', 'User not found.');
+        }
+    
+        return view('user-details', ['user' => $user]);
     }
-
-    return view('user-details', ['user' => $user]);
-}
 
     
         public function adminProfile()
