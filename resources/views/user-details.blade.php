@@ -50,50 +50,58 @@
         <div class="bg-white p-6 rounded shadow">
             <h2 class="text-lg font-semibold">Will</h2>
             <div class="flex gap-4 pt-4">
-                <div
-                    class="border-2 border-dashed border-gray-300 rounded h-40 flex flex-col items-center justify-center text-gray-500 cursor-pointer w-1/4 p-4"
-                    onclick="document.getElementById('willUpload').click()"
-                >
-                    <i class="fas fa-plus"></i>
-                    <p>Click to upload.</p>
-                    <p class="text-sm">Must be a Word or PDF document.</p>
-                    <input
-                        type="file"
-                        id="willUpload"
-                        accept=".pdf,.doc,.docx"
-                        class="hidden"
-                        onchange="uploadDocumentAjax(this)"
-                    />
+                <div id="willDocuments" class="space-y-2 w-3/4">
+                <p class="truncate w-3/4">${doc.name}</p>
+                <button class="text-blue-500" onclick="viewDocument('${doc.path}')">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button class="text-red-500" onclick="downlaodDocument(${doc.id})">
+                    <i class="fas fa-download"></i>
+                </button>
                 </div>
-                <div id="willDocuments" class="space-y-2 w-3/4"></div>
             </div>
         </div>
 
         <div class="bg-white p-6 rounded shadow space-y-4">
             <h2 class="text-lg font-semibold">Will Recipients</h2>
-            <ul id="willRecipients" class="space-y-2">
-                <li class="flex items-center space-x-2">
-                    <button
-                        class="bg-[#3A5F8F] text-white px-3 py-1 rounded hover:bg-[#F4A261] transition-all duration-300"
-                        onclick="openPopup('willRecipients')"
-                    >
-                        +
-                    </button>
-                    <p>Click here to add recipient</p>
-                </li>
-            </ul>
+            <div>
+                        <p class="recipient-name font-semibold">${recipient.name}</p>
+                        <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
+                        <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
+                    </div>
+                    <div class="space-x-2">
+                        <button class="text-blue-500" onclick="openattPopup('willRecipients', ${list.children.length}, ${recipient.id})"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500" onclick="deleteattRecipient('willRecipients', ${recipient.id})"><i class="fas fa-trash-alt"></i></button>
+                    </div>
         </div>
 
         <!-- Second Row -->
         <div class="bg-white p-6 rounded shadow space-y-4">
             <h2 class="text-lg font-semibold">Power of Attorney</h2>
             <div id="poaContainer" class="flex gap-4">
-                <div id="poaDocuments" class="space-y-2 w-3/4"></div>
+                <div id="poaDocuments" class="space-y-2 w-3/4">
+                <p class="truncate w-3/4">${doc.name}</p>
+                <button class="text-blue-500" onclick="viewDocument('${doc.path}')">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button class="text-red-500" onclick="downlaodDocument(${doc.id})">
+                    <i class="fas fa-download"></i>
+                </button>
+                </div>
             </div>
         </div>
 
         <div class="bg-white p-6 rounded shadow space-y-4">
             <h2 class="text-lg font-semibold">Power of Attorney Recipients</h2>
+            <div>
+                        <p class="recipient-name font-semibold">${recipient.name}</p>
+                        <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
+                        <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
+                    </div>
+                    <div class="space-x-2">
+                        <button class="text-blue-500" onclick="openattPopup('willRecipients', ${list.children.length}, ${recipient.id})"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500" onclick="deleteattRecipient('willRecipients', ${recipient.id})"><i class="fas fa-trash-alt"></i></button>
+                    </div>
         </div>
     </div>
           </section>
