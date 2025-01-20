@@ -68,7 +68,7 @@
           <img
    src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/usere.png') }}"
     alt="Profile"
-    class="w-14 h-14 rounded-full"
+    class="w-24 h-24 rounded-full"
 />
 
             <button

@@ -48,28 +48,28 @@
           <li>
             <a
               href="#services"
-              class="text-gray-700 hover:text-primary font-medium transition"
+              class="text-gray-700 hover:text-[#3A5F8F] font-medium transition"
               >Services</a
             >
           </li>
           <li>
             <a
               href="#pricing"
-              class="text-gray-700 hover:text-primary font-medium transition"
+              class="text-gray-700 hover:text-[#3A5F8F] font-medium transition"
               >Pricing</a
             >
           </li>
           <li>
             <a
               href="#testimonial"
-              class="text-gray-700 hover:text-primary font-medium transition"
+              class="text-gray-700 hover:text-[#3A5F8F] font-medium transition"
               >Reviews</a
             >
           </li>
           <li>
             <a
               href="#blog"
-              class="text-gray-700 hover:text-primary font-medium transition"
+              class="text-gray-700 hover:text-[#3A5F8F] font-medium transition"
               >Blog</a
             >
           </li>
