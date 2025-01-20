@@ -68,7 +68,7 @@
           <img
    src="{{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/usere.png') }}"
     alt="Profile"
-    class="w-8 h-8 rounded-full"
+    class="w-14 h-14 rounded-full"
 />
 
             <button
@@ -104,11 +104,13 @@
               name="lastname"
               class="w-full p-2 border border-gray-300 rounded-lg"
               value="{{ Auth::user()->lastname }}"
+              readonly
             />
           </div>
           <div>
             <label class="block text-gray-600">Email</label>
             <input
+            
               type="email"
               id="email"
               name="phone"
