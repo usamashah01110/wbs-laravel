@@ -44,53 +44,58 @@
               </div>
             </div>
 
-            <!-- Grid Section -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <!-- User Will Documents -->
-              <div>
-                <h2 class="text-lg font-bold text-gray-700 mb-4">
-                  User Will Documents
-                </h2>
-                <div id="willDocuments" class="space-y-2"></div>
-              </div>
-
-              <!-- Power of Attorney Documents -->
-              <div>
-                <h2 class="text-lg font-bold text-gray-700 mb-4">
-                  Power of Attorney Documents
-                </h2>
-                <div id="powerDocuments" class="space-y-2"></div>
-              </div>
-
-              <!-- Recipient Details -->
-              <div>
-                <h2 class="text-lg font-bold text-gray-700 mb-4">
-                  Recipient Details
-                </h2>
-                <table class="w-full border-collapse border border-gray-300">
-                  <thead>
-                    <tr class="bg-gray-100">
-                      <th class="border border-gray-300 px-4 py-2 text-left">
-                        Name
-                      </th>
-                      <th class="border border-gray-300 px-4 py-2 text-left">
-                        Number
-                      </th>
-                      <th class="border border-gray-300 px-4 py-2 text-left">
-                        Email
-                      </th>
-                      <th class="border border-gray-300 px-4 py-2 text-left">
-                        Phone
-                      </th>
-                      <th class="border border-gray-300 px-4 py-2 text-left">
-                        Created At
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody id="recipientTable"></tbody>
-                </table>
-              </div>
+    <!-- Main Grid Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- First Row -->
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-lg font-semibold">Will</h2>
+            <div class="flex gap-4 pt-4">
+                <div
+                    class="border-2 border-dashed border-gray-300 rounded h-40 flex flex-col items-center justify-center text-gray-500 cursor-pointer w-1/4 p-4"
+                    onclick="document.getElementById('willUpload').click()"
+                >
+                    <i class="fas fa-plus"></i>
+                    <p>Click to upload.</p>
+                    <p class="text-sm">Must be a Word or PDF document.</p>
+                    <input
+                        type="file"
+                        id="willUpload"
+                        accept=".pdf,.doc,.docx"
+                        class="hidden"
+                        onchange="uploadDocumentAjax(this)"
+                    />
+                </div>
+                <div id="willDocuments" class="space-y-2 w-3/4"></div>
             </div>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow space-y-4">
+            <h2 class="text-lg font-semibold">Will Recipients</h2>
+            <ul id="willRecipients" class="space-y-2">
+                <li class="flex items-center space-x-2">
+                    <button
+                        class="bg-[#3A5F8F] text-white px-3 py-1 rounded hover:bg-[#F4A261] transition-all duration-300"
+                        onclick="openPopup('willRecipients')"
+                    >
+                        +
+                    </button>
+                    <p>Click here to add recipient</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Second Row -->
+        <div class="bg-white p-6 rounded shadow space-y-4">
+            <h2 class="text-lg font-semibold">Power of Attorney</h2>
+            <div id="poaContainer" class="flex gap-4">
+                <div id="poaDocuments" class="space-y-2 w-3/4"></div>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow space-y-4">
+            <h2 class="text-lg font-semibold">Power of Attorney Recipients</h2>
+        </div>
+    </div>
           </section>
         </main>
       </div>
@@ -156,7 +161,6 @@
         fetch("/api/logged-in-user")
           .then((response) => response.json())
           .then((data) => {
-            // Populate data if needed
             console.log("Logged-in user data:", data);
           })
           .catch((error) => console.error("Error fetching user data:", error));
