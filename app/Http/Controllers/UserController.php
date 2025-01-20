@@ -108,7 +108,7 @@ class UserController extends Controller
     // }
     public function userDetails($id)
     {
-        $user = User::find($id);
+        $user = User::with(['documents', 'recipients'])->find($id);
     
         if (!$user) {
             return redirect()->route('admin.dashboard')->with('error', 'User not found.');

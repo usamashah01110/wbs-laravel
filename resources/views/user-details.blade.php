@@ -43,67 +43,82 @@
                 <input id="fileInput" type="file" class="hidden" />
               </div>
             </div>
-
     <!-- Main Grid Section -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- First Row -->
         <div class="bg-white p-6 rounded shadow">
             <h2 class="text-lg font-semibold">Will</h2>
-            <div class="flex gap-4 pt-4">
-                <div id="willDocuments" class="space-y-2 w-3/4">
-                <p class="truncate w-3/4">${doc.name}</p>
-                <button class="text-blue-500" onclick="viewDocument('${doc.path}')">
-                    <i class="fas fa-eye"></i>
-                </button>
-                <button class="text-red-500" onclick="downlaodDocument(${doc.id})">
+            <div class="flex flex-col gap-4 pt-4">
+              @forelse ($user->documents->where('documnet_type', 'will') as $doc)
+                <div class="flex items-center space-x-2">
+                  <p class="truncate w-3/4">{{ $doc->name }}</p>
+                  <a href="{{ asset('storage/' . $doc->path) }}" class="text-blue-500" target="_blank" download>
                     <i class="fas fa-download"></i>
-                </button>
+                  </a>
                 </div>
+              @empty
+                <p class="text-gray-500">N/A</p>
+              @endforelse
             </div>
-        </div>
+          </div>
 
-        <div class="bg-white p-6 rounded shadow space-y-4">
-            <h2 class="text-lg font-semibold">Will Recipients</h2>
-            <div>
-                        <p class="recipient-name font-semibold">${recipient.name}</p>
-                        <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
-                        <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
-                    </div>
-                    <div class="space-x-2">
-                        <button class="text-blue-500" onclick="openattPopup('willRecipients', ${list.children.length}, ${recipient.id})"><i class="fas fa-edit"></i></button>
-                        <button class="text-red-500" onclick="deleteattRecipient('willRecipients', ${recipient.id})"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-        </div>
+    <div class="bg-white p-6 rounded shadow space-y-4">
+    <h2 class="text-lg font-semibold">Will Recipients</h2>
+    @forelse ($user->recipients->where('type', 'will') as $recipient)
+      <div>
+        <p class="recipient-name font-semibold">{{ $recipient->name ?? 'N/A' }}</p>
+        <p class="recipient-mobile text-sm text-gray-600">{{ $recipient->mobile ?? 'N/A' }}</p>
+        <p class="recipient-email text-sm text-gray-600">{{ $recipient->email ?? 'N/A' }}</p>
+      </div>
+      <div class="space-x-2">
+        <!--<button class="text-blue-500" onclick="openattPopup('willRecipients', {{ $recipient->id }})">-->
+        <!--  <i class="fas fa-edit"></i>-->
+        <!--</button>-->
+        <!--<button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">-->
+        <!--  <i class="fas fa-trash-alt"></i>-->
+        <!--</button>-->
+      </div>
+    @empty
+      <p class="text-gray-500">N/A</p>
+    @endforelse
+  </div>
 
         <!-- Second Row -->
-        <div class="bg-white p-6 rounded shadow space-y-4">
+ <div class="bg-white p-6 rounded shadow">
             <h2 class="text-lg font-semibold">Power of Attorney</h2>
-            <div id="poaContainer" class="flex gap-4">
-                <div id="poaDocuments" class="space-y-2 w-3/4">
-                <p class="truncate w-3/4">${doc.name}</p>
-                <button class="text-blue-500" onclick="viewDocument('${doc.path}')">
-                    <i class="fas fa-eye"></i>
-                </button>
-                <button class="text-red-500" onclick="downlaodDocument(${doc.id})">
+            <div class="flex flex-col gap-4 pt-4">
+              @forelse ($user->documents->where('documnet_type', 'attorny') as $doc)
+                <div class="flex items-center space-x-2">
+                  <p class="truncate w-3/4">{{ $doc->name }}</p>
+                  <a href="{{ asset('storage/' . $doc->path) }}" class="text-blue-500" target="_blank" download>
                     <i class="fas fa-download"></i>
-                </button>
+                  </a>
                 </div>
+              @empty
+                <p class="text-gray-500">N/A</p>
+              @endforelse
             </div>
-        </div>
-
-        <div class="bg-white p-6 rounded shadow space-y-4">
-            <h2 class="text-lg font-semibold">Power of Attorney Recipients</h2>
-            <div>
-                        <p class="recipient-name font-semibold">${recipient.name}</p>
-                        <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
-                        <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
-                    </div>
-                    <div class="space-x-2">
-                        <button class="text-blue-500" onclick="openattPopup('willRecipients', ${list.children.length}, ${recipient.id})"><i class="fas fa-edit"></i></button>
-                        <button class="text-red-500" onclick="deleteattRecipient('willRecipients', ${recipient.id})"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-        </div>
-    </div>
+          </div>
+<div class="bg-white p-6 rounded shadow space-y-4">
+    <h2 class="text-lg font-semibold">Power of Attorney Recipient</h2>
+    @forelse ($user->recipients->where('type', 'attorny') as $recipient)
+      <div>
+        <p class="recipient-name font-semibold">{{ $recipient->name ?? 'N/A' }}</p>
+        <p class="recipient-mobile text-sm text-gray-600">{{ $recipient->mobile ?? 'N/A' }}</p>
+        <p class="recipient-email text-sm text-gray-600">{{ $recipient->email ?? 'N/A' }}</p>
+      </div>
+      <div class="space-x-2">
+        <!--<button class="text-blue-500" onclick="openattPopup('willRecipients', {{ $recipient->id }})">-->
+        <!--  <i class="fas fa-edit"></i>-->
+        <!--</button>-->
+        <!--<button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">-->
+        <!--  <i class="fas fa-trash-alt"></i>-->
+        <!--</button>-->
+      </div>
+    @empty
+      <p class="text-gray-500">N/A</p>
+    @endforelse
+  </div>
+      
           </section>
         </main>
       </div>
