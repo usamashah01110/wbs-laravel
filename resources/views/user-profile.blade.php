@@ -207,7 +207,7 @@
               <div class="grid lg:grid-cols-3 grid-cols-1 gap-10">
                 <!-- Full Will -->
                 <div
-                  class="flex flex-col shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
+                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
                 >
                   <div class="text-center pt-10">
                     <i
@@ -236,7 +236,7 @@
 
                 <!-- Power of Attorney -->
                 <div
-                  class="flex flex-col shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
+                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
                 >
                   <div class="text-center pt-10">
                     <i
@@ -265,7 +265,7 @@
 
                 <!-- Executor of Will -->
                 <div
-                  class="flex flex-col shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
+                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
                 >
                   <div class="text-center pt-10">
                     <i
@@ -295,7 +295,7 @@
 
                 <!-- Notarization -->
                 <div
-                  class="flex flex-col shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
+                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
                 >
                   <div class="text-center pt-10">
                     <i
@@ -324,7 +324,7 @@
 
                 <!-- DWP Will -->
                 <div
-                  class="flex flex-col shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
+                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
                 >
                   <div class="text-center pt-10">
                     <i class="fas fa-book text-6xl text-[#F4A261] pb-10"></i>
@@ -351,7 +351,7 @@
 
                 <!-- Lawyer Drafted Will -->
                 <div
-                  class="flex flex-col shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
+                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
                 >
                   <div class="text-center pt-10">
                     <i class="fas fa-gavel text-6xl text-[#F4A261] pb-10"></i>
