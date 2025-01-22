@@ -12,7 +12,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <!-- favicon -->
-    <link href="{{ asset('image/WBS-Logo.png')}}" rel="shortcut icon" />
+    <link href="{{ asset('images/WBS-Logo.png')}}" rel="shortcut icon" />
     <!-- Main Css -->
     <link href="{{ asset('css/style.css')}}" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -176,7 +176,7 @@
             <p class="text-base font-medium text-muted mt-3 capitalize">
               Using state of the art technologies in compliance with all laws,
               Will Be Sent is the first platform that allows users to seamlessly
-              create store and send a will to recepiants!
+              create, store, and send a will to recepiants!
             </p>
 
             <div class="flex flex-wrap mt-9 text-center gap-3">
@@ -188,7 +188,7 @@
               <a
                 class="py-2 px-6 bg-[#F4A261] text-white font-medium rounded-lg hover:bg-[#3A5F8F] transition-all duration-300 ease-in-out"
                 href="{{ route('register') }}"
-                >Sing up for free</a
+                >Sign Up for free</a
               >
             </div>
           </div>
