@@ -30,7 +30,7 @@
               <div class="relative">
                 <img
                   id="profileImage"
-                  src="{{ auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/usere.png') }}"
+                  src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/usere.png') }}"
                   alt="Profile"
                   class="w-24 h-24 rounded-full object-cover"
                 />
