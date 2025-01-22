@@ -172,6 +172,95 @@
           </form>
       </section>
     </main>
+
+<!-- Packages Section -->
+<main id="packageDetailsSection" class="flex-1 p-6 tab-content">
+  <section class="bg-white p-6 rounded-lg shadow">
+    <div class="flex items-center mb-6 justify-between">
+      <h2 class="text-2xl font-bold text-gray-800">Package Details</h2>
+      <a class="text-2xl cursor-pointer" href="{{url('/pricing')}}">
+        <i class="fas fa-times"></i>
+      </a>
+    </div>
+    <div class="text-gray-700 space-y-4">
+      <p class="text-lg">
+        <strong>You have subscribed to the <span class="text-[#F4A261]">Will Plan</span>.</strong>
+      </p>
+      <ul class="list-disc pl-6">
+        <li>You can create 1 full will.</li>
+        <li>You can add up to 2 recipients.</li>
+      </ul>
+      <p>
+        If you need more features, please check our 
+        <a href="{{url('/pricing')}}" class="text-blue-600 underline">pricing</a> page 
+        and purchase according to your requirements.
+      </p>
+    </div>
+    <div class="text-right mt-6">
+      <a
+        href="{{url('/pricing')}}"
+        class="bg-[#3A5F8F] text-white px-6 py-2 rounded-lg hover:bg-[#F4A261] transition-all duration-300 ease-in-out"
+      >
+        Upgrade Plan
+      </a>
+    </div>
+  </section>
+    <!-- DWP Will -->
+    <div
+                  class="flex flex-col shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
+                >
+                  <div class="text-center pt-10">
+                    <i class="fas fa-book text-6xl text-[#F4A261] pb-10"></i>
+                    <!-- Font Awesome Icon -->
+                    <h5 class="text-2xl font-semibold text-black">
+                      Document Writter Drafted Will
+                    </h5>
+                    <h2 class="text-5xl mt-5 mb-1 items-center align-middle">
+                      <sup class="text-3xl align-middle">$</sup>
+                      <span>250</span>
+                    </h2>
+                    <span class="text-base font-medium text-muted"
+                      >per will</span
+                    >
+                  </div>
+                  <div class="flex justify-center px-10 py-10">
+                    <button
+                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
+                    >
+                      Get Started
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Lawyer Drafted Will -->
+                <div
+                  class="flex flex-col shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
+                >
+                  <div class="text-center pt-10">
+                    <i class="fas fa-gavel text-6xl text-[#F4A261] pb-10"></i>
+                    <!-- Font Awesome Icon -->
+                    <h5 class="text-2xl font-semibold text-black">
+                      Lawyer Drafted Will
+                    </h5>
+                    <h2 class="text-5xl mt-5 mb-1 items-center align-middle">
+                      <sup class="text-3xl align-middle">$</sup>
+                      <span>450</span>
+                    </h2>
+                    <span class="text-base font-medium text-muted"
+                      >per will</span
+                    >
+                  </div>
+                  <div class="flex justify-center px-10 py-10">
+                    <button
+                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
+                    >
+                      Get Started
+                    </button>
+                  </div>
+                </div>
+              </div>
+</main>
+
     <!-- Footer Start -->
     <footer class="bg-[#3A5F8F]">
       <div class="container">
