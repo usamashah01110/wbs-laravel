@@ -177,10 +177,7 @@
 <main id="packageDetailsSection" class="flex-1 p-6 tab-content">
   <section class="bg-white p-6 rounded-lg shadow">
     <div class="flex items-center mb-6 justify-between">
-      <h2 class="text-2xl font-bold text-gray-800">Package Details</h2>
-      <a class="text-2xl cursor-pointer" href="{{url('/pricing')}}">
-        <i class="fas fa-times"></i>
-      </a>
+      <h2 class="text-2xl font-bold text-gray-800">Package Details</h2>      
     </div>
     <div class="text-gray-700 space-y-4">
       <p class="text-lg">
@@ -199,19 +196,6 @@
       <!-- Pricing Start -->
       <section id="pricing" class="py-20">
       <div class="container">
-        <div class="max-w-2xl mx-auto text-center">
-          <div>
-            <span
-              class="text-sm text-primary uppercase font-semibold tracking-wider text-default-950"
-            >
-              Pricing
-            </span>
-          </div>
-          <h2 class="text-3xl md:text-4xl/tight font-semibold text-black mt-4">
-            Simple, Straight Forward Pricing
-          </h2>
-        </div>
-
         <div class="grid grid-cols-1 mt-8">
           <div id="StarterContent">
             <div
