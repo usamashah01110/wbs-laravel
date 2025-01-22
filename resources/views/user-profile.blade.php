@@ -139,6 +139,16 @@
 {{--              <option value="female">Female</option>--}}
 {{--            </select>--}}
 {{--          </div>--}}
+            <div>
+            <label class="block text-gray-600">City</label>
+            <input
+              type="text"
+              id="dob"
+              name="city"
+              class="w-full p-2 border border-gray-300 rounded-lg"
+              value="{{ Auth::user()->city }}"
+            />
+          </div>
           <div>
             <label class="block text-gray-600">State</label>
             <input
@@ -147,16 +157,6 @@
               name="country"
               class="w-full p-2 border border-gray-300 rounded-lg"
               value="{{ Auth::user()->state }}"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-600">City</label>
-            <input
-              type="text"
-              id="dob"
-              name="city"
-              class="w-full p-2 border border-gray-300 rounded-lg"
-              value="{{ Auth::user()->city }}"
             />
           </div>
         </div>

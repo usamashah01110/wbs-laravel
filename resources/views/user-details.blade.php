@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <link href="{{ asset('image/WBS-Logo.png') }}" rel="shortcut icon" />
+    <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon" />
   </head>
   <body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
     <!-- Header -->
@@ -70,12 +70,12 @@
         <p class="recipient-email text-sm text-gray-600">{{ $recipient->email ?? 'N/A' }}</p>
       </div>
       <div class="space-x-2">
-        <!--<button class="text-blue-500" onclick="openattPopup('willRecipients', {{ $recipient->id }})">-->
-        <!--  <i class="fas fa-edit"></i>-->
-        <!--</button>-->
-        <!--<button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">-->
-        <!--  <i class="fas fa-trash-alt"></i>-->
-        <!--</button>-->
+        <button class="text-blue-500" onclick="openattPopup('willRecipients', {{ $recipient->id }})">
+         <i class="fas fa-edit"></i>
+        </button>
+        <button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">
+         <i class="fas fa-trash-alt"></i>
+        </button>
       </div>
     @empty
       <p class="text-gray-500">N/A</p>
@@ -107,12 +107,12 @@
         <p class="recipient-email text-sm text-gray-600">{{ $recipient->email ?? 'N/A' }}</p>
       </div>
       <div class="space-x-2">
-        <!--<button class="text-blue-500" onclick="openattPopup('willRecipients', {{ $recipient->id }})">-->
-        <!--  <i class="fas fa-edit"></i>-->
-        <!--</button>-->
-        <!--<button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">-->
-        <!--  <i class="fas fa-trash-alt"></i>-->
-        <!--</button>-->
+        <button class="text-blue-500" onclick="openattPopup('willRecipients', {{ $recipient->id }})">
+         <i class="fas fa-edit"></i>
+        </button>
+        <button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">
+         <i class="fas fa-trash-alt"></i>
+        </button>
       </div>
     @empty
       <p class="text-gray-500">N/A</p>
