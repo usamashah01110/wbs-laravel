@@ -196,7 +196,7 @@
       <!-- Pricing Start -->
       <section id="pricing" class="py-20">
       <div class="container">
-        <div class="grid grid-cols-1 mt-8">
+        <div class="grid grid-cols-1">
           <div id="StarterContent">
             <div
               class="mt-14"
@@ -215,6 +215,8 @@
                     ></i>
                     <!-- Font Awesome Icon -->
                     <h5 class="text-2xl font-semibold text-black">Full Will</h5>
+                    <p>Will be able to upload a WILL along with add 2 recipients of the WILL.
+                    </p>
                     <h2 class="text-5xl mt-5 mb-1 items-center align-middle">
                       <sup class="text-3xl align-middle">$</sup>
                       <span>10</span>
@@ -273,6 +275,7 @@
                     <h5 class="text-2xl font-semibold text-black">
                       Executor Of Will
                     </h5>
+                    <p>Will Be Sent be the Executor of the will.</p>
                     <h2 class="text-5xl mt-5 mb-1 items-center align-middle">
                       <sup class="text-3xl align-middle">+ $</sup>
                       <span>1</span>
@@ -314,7 +317,7 @@
                     <button
                       class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
                     >
-                      Get Started
+                      Buy
                     </button>
                   </div>
                 </div>
@@ -341,7 +344,7 @@
                     <button
                       class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
                     >
-                      Get Started
+                      Buy
                     </button>
                   </div>
                 </div>
@@ -368,7 +371,7 @@
                     <button
                       class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
                     >
-                      Get Started
+                      Buy
                     </button>
                   </div>
                 </div>
