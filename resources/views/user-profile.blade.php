@@ -401,7 +401,7 @@
 
 
 // Mock user subscription data
-  const userHasPackage = true;
+  const userHasPackage = false;
 
 // DOM Elements
 const packageTitle = document.getElementById("packageTitle");
