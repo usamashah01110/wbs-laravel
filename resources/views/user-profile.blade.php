@@ -85,7 +85,7 @@
         </div>
           <form action="{{ route('user.update') }}" method="POST">
               @csrf
-        <div id="profileFields" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div id="profileFields" class="grid grid-cols-2 md:grid-cols-3 gap-4">
           <div>
             <label class="block text-gray-600">First Name</label>
             <input
