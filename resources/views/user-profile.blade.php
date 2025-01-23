@@ -399,5 +399,34 @@
           });
       });
 
+
+// Mock user subscription data
+  const userHasPackage = true;
+
+// DOM Elements
+const packageTitle = document.getElementById("packageTitle");
+const packageDescription = document.getElementById("packageDescription");
+const packageFeatures = document.getElementById("packageFeatures");
+const packageInfo = document.getElementById("packageInfo");
+const packageButton = document.getElementById("packageButton");
+
+// Dynamic Content Based on Subscription Status
+if (userHasPackage) {
+  packageTitle.innerText = "Your Current Package";
+  packageDescription.innerHTML = `
+    <strong>You have subscribed to the <span class="text-[#F4A261]">Will Plan</span>.</strong>
+  `;
+  packageFeatures.classList.remove("hidden");
+  packageInfo.innerText = "Looking for additional features? Upgrade your plan to access more options.";
+  packageButton.innerText = "Upgrade";
+} else {
+  packageTitle.innerText = "No Active Package";
+  packageDescription.innerHTML = `
+    <strong>You do not have an active subscription.</strong>
+  `;
+  packageInfo.innerText = "Get started with our plans to secure your documents.";
+  packageButton.innerText = "Get Started";
+}
+
   </script>
 </html>
