@@ -26,7 +26,7 @@
         <main class="flex-1 p-6">
           <section class="bg-white p-6 rounded-lg shadow">
             <!-- Profile Image -->
-            <div class="flex flex-col items-center mb-6">
+            <div class="flex items-center mb-6">
               <div class="relative">
                 <img
                   id="profileImage"
@@ -34,13 +34,9 @@
                   alt="Profile"
                   class="w-24 h-24 rounded-full object-cover"
                 />
-                <button
-                  id="editProfileImage"
-                  class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full"
-                >
-                  Edit
-                </button>
-                <input id="fileInput" type="file" class="hidden" />
+              </div>
+              <div>
+                
               </div>
             </div>
     <!-- Main Grid Section -->
@@ -48,6 +44,21 @@
         <div class="bg-white p-6 rounded shadow">
             <h2 class="text-lg font-semibold">Will</h2>
             <div class="flex flex-col gap-4 pt-4">
+            <div
+                    class="border-2 border-dashed border-gray-300 rounded items-center justify-center text-gray-500 cursor-pointer p-4"
+                    onclick="document.getElementById('willUpload').click()"
+                >
+                    <i class="fas fa-plus"></i>
+                    <p>Click to upload.</p>
+                    <p class="text-sm">Must be a Word or PDF document.</p>
+                    <input
+                        type="file"
+                        id="willUpload"
+                        accept=".pdf,.doc,.docx"
+                        class="hidden"
+                        onchange="uploadDocumentAjax(this)"
+                    />
+                </div>
               @forelse ($user->documents->where('documnet_type', 'will') as $doc)
                 <div class="flex items-center space-x-2">
                   <p class="truncate w-3/4">{{ $doc->name }}</p>
@@ -86,6 +97,21 @@
  <div class="bg-white p-6 rounded shadow">
             <h2 class="text-lg font-semibold">Power of Attorney</h2>
             <div class="flex flex-col gap-4 pt-4">
+            <div
+                    class="border-2 border-dashed border-gray-300 rounded items-center justify-center text-gray-500 cursor-pointer p-4"
+                    onclick="document.getElementById('poaUpload').click()"
+                >
+                    <i class="fas fa-plus"></i>
+                    <p>Click to upload.</p>
+                    <p class="text-sm">Must be a Word or PDF document.</p>
+                    <input
+                        type="file"
+                        id="poaUpload"
+                        accept=".pdf,.doc,.docx"
+                        class="hidden"
+                        onchange="uploadAttornyAjax(this)"
+                    />
+                </div>
               @forelse ($user->documents->where('documnet_type', 'attorny') as $doc)
                 <div class="flex items-center space-x-2">
                   <p class="truncate w-3/4">{{ $doc->name }}</p>
