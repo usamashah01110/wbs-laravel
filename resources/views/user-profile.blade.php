@@ -176,211 +176,34 @@
 <!-- Packages Section -->
 <main id="packageDetailsSection" class="flex-1 p-6 tab-content">
   <section class="bg-white p-6 rounded-lg shadow">
+    <!-- Header Section -->
     <div class="flex items-center mb-6 justify-between">
-      <h2 class="text-2xl font-bold text-gray-800">Package Details</h2>      
+      <h2 class="text-2xl font-bold text-gray-800">
+        <span id="packageTitle">Package Details</span>
+      </h2>
     </div>
+
+    <!-- Dynamic Content -->
     <div class="text-gray-700 space-y-4">
-      <p class="text-lg">
-        <strong>You have subscribed to the <span class="text-[#F4A261]">Will Plan</span>.</strong>
-      </p>
-      <ul class="list-disc pl-6">
+      <p id="packageDescription" class="text-lg"></p>
+      <ul id="packageFeatures" class="list-disc pl-6 hidden">
         <li>You can create 1 full will.</li>
         <li>You can add up to 2 recipients.</li>
       </ul>
-      <p>
-        If you need more features, please check our pricing page 
-        and purchase according to your requirements.
+      <p id="packageInfo">
+        <!-- Placeholder for extra information -->
       </p>
+
+      <!-- Button Section -->
+      <button
+        id="packageButton"
+        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+        onclick="redirectToCheckout()"
+      >
+        Get Started
+      </button>
     </div>
   </section>
-      <!-- Pricing Start -->
-      <section id="pricing" class="py-20">
-      <div class="container">
-        <div class="grid grid-cols-1">
-          <div id="StarterContent">
-            <div
-              class="mt-14"
-              id="start-month"
-              role="tabpanel"
-              aria-labelledby="start-month-tab"
-            >
-              <div class="grid lg:grid-cols-3 grid-cols-1 gap-10">
-                <!-- Full Will -->
-                <div
-                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
-                >
-                  <div class="text-center pt-10">
-                    <i
-                      class="fas fa-file-alt text-6xl text-[#F4A261] pb-10"
-                    ></i>
-                    <!-- Font Awesome Icon -->
-                    <h5 class="text-2xl font-semibold text-black">Full Will</h5>
-                    <p>Will be able to upload a WILL along with add 2 recipients of the WILL.
-                    </p>
-                    <h2 class="text-5xl mt-5 mb-1 items-center align-middle">
-                      <sup class="text-3xl align-middle">$</sup>
-                      <span>10</span>
-                    </h2>
-                    <span class="text-base font-medium text-muted"
-                      >per month</span
-                    >
-                  </div>
-                  <div class="flex justify-center px-10 py-10">
-                    <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
-                    >
-                      Get Started
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Power of Attorney -->
-                <div
-                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
-                >
-                  <div class="text-center pt-10">
-                    <i
-                      class="fas fa-pen-square text-6xl text-[#F4A261] pb-10"
-                    ></i>
-                    <!-- Font Awesome Icon -->
-                    <h5 class="text-2xl font-semibold text-black">
-                      Power Of Attorney
-                    </h5>
-                    <h2 class="text-5xl mt-5 mb-1 items-center align-middle">
-                      <sup class="text-3xl align-middle">+ $</sup>
-                      <span>1</span>
-                    </h2>
-                    <span class="text-base font-medium text-muted"
-                      >per month</span
-                    >
-                  </div>
-                  <div class="flex justify-center px-10 py-10">
-                    <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
-                    >
-                      Get Started
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Executor of Will -->
-                <div
-                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
-                >
-                  <div class="text-center pt-10">
-                    <i
-                      class="fas fa-user-shield text-6xl text-[#F4A261] pb-10"
-                    ></i>
-                    <!-- Font Awesome Icon -->
-                    <h5 class="text-2xl font-semibold text-black">
-                      Executor Of Will
-                    </h5>
-                    <p>Will Be Sent be the Executor of the will.</p>
-                    <h2 class="text-5xl mt-5 mb-1 items-center align-middle">
-                      <sup class="text-3xl align-middle">+ $</sup>
-                      <span>1</span>
-                    </h2>
-                    <span class="text-base font-medium text-muted"
-                      >per month</span
-                    >
-                  </div>
-                  <div class="flex justify-center px-10 py-10">
-                    <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
-                    >
-                      Get Started
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Notarization -->
-                <div
-                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
-                >
-                  <div class="text-center pt-10">
-                    <i
-                      class="fas fa-pencil-alt text-6xl text-[#F4A261] pb-10"
-                    ></i>
-                    <!-- Font Awesome Icon -->
-                    <h5 class="text-2xl font-semibold text-black">
-                      Notarization
-                    </h5>
-                    <h2 class="text-5xl mt-5 mb-1 items-center align-middle">
-                      <sup class="text-3xl align-middle">$</sup>
-                      <span>25</span>
-                    </h2>
-                    <span class="text-base font-medium text-muted"
-                      >per document</span
-                    >
-                  </div>
-                  <div class="flex justify-center px-10 py-10">
-                    <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
-                    >
-                      Buy
-                    </button>
-                  </div>
-                </div>
-
-                <!-- DWP Will -->
-                <div
-                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
-                >
-                  <div class="text-center pt-10">
-                    <i class="fas fa-book text-6xl text-[#F4A261] pb-10"></i>
-                    <!-- Font Awesome Icon -->
-                    <h5 class="text-2xl font-semibold text-black">
-                      Document Writter Drafted Will
-                    </h5>
-                    <h2 class="text-5xl mt-5 mb-1 items-center align-middle">
-                      <sup class="text-3xl align-middle">$</sup>
-                      <span>250</span>
-                    </h2>
-                    <span class="text-base font-medium text-muted"
-                      >per will</span
-                    >
-                  </div>
-                  <div class="flex justify-center px-10 py-10">
-                    <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
-                    >
-                      Buy
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Lawyer Drafted Will -->
-                <div
-                  class="flex flex-col justify-between shadow-2xl rounded-xl bg-white overflow-hidden hover:bg-[#E2E8F0] transition-all duration-300"
-                >
-                  <div class="text-center pt-10">
-                    <i class="fas fa-gavel text-6xl text-[#F4A261] pb-10"></i>
-                    <!-- Font Awesome Icon -->
-                    <h5 class="text-2xl font-semibold text-black">
-                      Lawyer Drafted Will
-                    </h5>
-                    <h2 class="text-5xl mt-5 mb-1 items-center align-middle">
-                      <sup class="text-3xl align-middle">$</sup>
-                      <span>450</span>
-                    </h2>
-                    <span class="text-base font-medium text-muted"
-                      >per will</span
-                    >
-                  </div>
-                  <div class="flex justify-center px-10 py-10">
-                    <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#F4A261] transition-all duration-500 font-medium w-full"
-                    >
-                      Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 </main>
 
     <!-- Footer Start -->
