@@ -14,36 +14,57 @@ class SendScheduledMessages extends Command
 
     public function handle()
     {
-        $twilio = new Client(env('TWILIO_SID'), env('TWILIO_AUTH_TOKEN'));
-
+        $twilioSid = env('TWILIO_SID');
+        $twilioAuthToken = env('TWILIO_AUTH_TOKEN');
+        $twilioPhoneNumber = env('TWILIO_PHONE_NUMBER');
         $now = Carbon::now();
 
-        $messages = User::where('email','usamashah0110@gmail.com')->get();
+        $messages = User::where('email', 'usamashah0110@gmail.com')->get();
 
         foreach ($messages as $message) {
             $created_at = Carbon::parse($message->created_at);
             $frequency = strtolower($message->frequency);
 
-            // Check if it's time to send a message
             if (($frequency === 'daily' && $created_at->diffInDays($now) >= 1) ||
                 ($frequency === 'weekly' && $created_at->diffInWeeks($now) >= 1) ||
                 ($frequency === 'monthly' && $created_at->diffInMonths($now) >= 1)
             ) {
-                // Send message via Twilio
-                $twilio->messages->create(
-                    '+923224407380',
-                    [
-                        'from' => env('TWILIO_PHONE_NUMBER'),
-                        'body' => "Your scheduled message content here."
-                    ]
-                );
+                // Prepare curl request
+                $toPhoneNumber = '+18153416531'; // Replace with the recipient's phone number
+                $messageBody = "Your scheduled message content here.";
 
-                // Update created_at to prevent duplicate messages
-                $message->update(['created_at' => $now]);
+                $curl = curl_init();
+
+                curl_setopt_array($curl, [
+                    CURLOPT_URL => "https://api.twilio.com/2010-04-01/Accounts/{$twilioSid}/Messages.json",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_POST => true,
+                    CURLOPT_POSTFIELDS => http_build_query([
+                        'To' => $toPhoneNumber,
+                        'From' => $twilioPhoneNumber,
+                        'Body' => $messageBody,
+                    ]),
+                    CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
+                    CURLOPT_USERPWD => "{$twilioSid}:{$twilioAuthToken}",
+                ]);
+
+                $response = curl_exec($curl);
+                $error = curl_error($curl);
+                curl_close($curl);
+
+                if ($error) {
+                    $this->error("Curl Error: {$error}");
+                } else {
+                    $this->info("Message sent successfully: {$response}");
+
+                    // Update created_at to prevent duplicate messages
+                    $message->update(['created_at' => $now]);
+                }
             }
         }
 
-        $this->info('Scheduled messages sent successfully!');
+        $this->info('Scheduled messages processed successfully!');
     }
+
 }
 

@@ -49,7 +49,7 @@ Route::post('/documents', [DocumentController::class, 'store']);
 Route::delete('/documents/{id}', [DocumentController::class, 'destroy']);
 
 Route::get('/recipients/list', [RecipientController::class, 'willlist'])->name('recipients.list');
-Route::get('/recipients/att/list', [RecipientController::class, 'list'])->name('recipients.list');
+Route::get('/recipients/att/list', [RecipientController::class, 'list'])->name('recipients..att.list');
 Route::post('/recipients/store', [RecipientController::class, 'store'])->name('recipients.store');
 Route::put('/recipients/update/{id}', [RecipientController::class, 'update'])->name('recipients.update');
 Route::delete('/recipients/delete/{id}', [RecipientController::class, 'delete'])->name('recipients.delete');
