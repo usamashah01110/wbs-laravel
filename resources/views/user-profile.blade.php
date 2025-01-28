@@ -110,7 +110,7 @@
           <div>
             <label class="block text-gray-600">Email</label>
             <input
-            
+
               type="email"
               id="email"
               name="phone"
@@ -174,37 +174,74 @@
     </main>
 
 <!-- Packages Section -->
-<main id="packageDetailsSection" class="flex-1 p-6 tab-content">
-  <section class="bg-white p-6 rounded-lg shadow">
-    <!-- Header Section -->
-    <div class="flex items-center mb-6 justify-between">
-      <h2 class="text-2xl font-bold text-gray-800">
-        <span id="packageTitle">Package Details</span>
-      </h2>
-    </div>
+    <main id="packageDetailsSection" class="flex-1 p-6 tab-content">
+        <section class="bg-white p-6 rounded-lg shadow">
+            <!-- Header Section -->
+            <div class="flex items-center mb-6 justify-between">
+                <h2 class="text-2xl font-bold text-gray-800">
+        <span id="packageTitle">
+          @if(Auth::user()->subscriptions->isNotEmpty())
+                Subscription Details
+            @else
+                Package Details
+            @endif
+        </span>
+                </h2>
+            </div>
 
-    <!-- Dynamic Content -->
-    <div class="text-gray-700 space-y-4">
-      <p id="packageDescription" class="text-lg"></p>
-      <ul id="packageFeatures" class="list-disc pl-6 hidden">
-        <li>You can create 1 full will.</li>
-        <li>You can add up to 2 recipients.</li>
-      </ul>
-      <p id="packageInfo">
-        <!-- Placeholder for extra information -->
-      </p>
+            <!-- Dynamic Content -->
+            <div class="text-gray-700 space-y-4">
+                @if(Auth::user()->subscriptions->isNotEmpty())
+                    <!-- Show Subscription Details -->
+                    <p id="subscriptionInfo" class="text-lg">
+                        Your current plan:
+                        <strong>
+                            @if(Auth::user()->subscriptions->first()->type == 'monthly')
+                                Monthly
+                            @else
+                                Yearly
+                            @endif
+                        </strong>
+                    </p>
 
-      <!-- Button Section -->
-      <button
-        id="packageButton"
-        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#F4A261] transition-all duration-300"
-        onclick="redirectToCheckout()"
-      >
-        Get Started
-      </button>
-    </div>
-  </section>
-</main>
+                    <ul id="packageFeatures" class="list-disc pl-6">
+                        <li >You have  {{ Auth::user()->subscriptions->first()->fullWill == '1' ? ' full will Subscription.' : 'no active full will.' }}</li>
+                        <li>You have   {{ Auth::user()->subscriptions->first()->poa == '1' ? ' Power of Attorny Subscription.' : 'no active full will.' }}</li>
+                       <li> You have   {{ Auth::user()->subscriptions->first()->executor == '1' ? ' Executor Subscription.' : 'no active Executor Subscription' }}</li>
+                    </ul>
+                    <br>
+
+                    <!-- Update Button -->
+                    <a
+                        id="packageButton"
+                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+                        href="{{ route('checkout') }}"
+                    >
+                        Update
+                    </a>
+                @else
+                    <!-- Package Details and Get Started Button -->
+                    <p id="packageDescription" class="text-lg"></p>
+                    <ul id="packageFeatures" class="list-disc pl-6 hidden">
+                        <li>You can create 1 full will.</li>
+                        <li>You can add up to 2 recipients.</li>
+                    </ul>
+
+                    <br>
+
+                    <!-- Get Started Button -->
+                    <a
+                        id="packageButton"
+                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+                        href="{{ route('checkout') }}"
+                    >
+                        Get Started
+                    </a>
+                @endif
+            </div>
+        </section>
+    </main>
+
 
     <!-- Footer Start -->
     <footer class="bg-[#3A5F8F]">
@@ -335,7 +372,7 @@
             </div>
           </div>
         </div>
-        
+
       <div
         id="toastContainer"
         class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"
@@ -399,34 +436,34 @@
           });
       });
 
-
-// Mock user subscription data
-  const userHasPackage = false;
-
-// DOM Elements
-const packageTitle = document.getElementById("packageTitle");
-const packageDescription = document.getElementById("packageDescription");
-const packageFeatures = document.getElementById("packageFeatures");
-const packageInfo = document.getElementById("packageInfo");
-const packageButton = document.getElementById("packageButton");
-
-// Dynamic Content Based on Subscription Status
-if (userHasPackage) {
-  packageTitle.innerText = "Your Current Package";
-  packageDescription.innerHTML = `
-    <strong>You have subscribed to the <span class="text-[#F4A261]">Will Plan</span>.</strong>
-  `;
-  packageFeatures.classList.remove("hidden");
-  packageInfo.innerText = "Looking for additional features? Upgrade your plan to access more options.";
-  packageButton.innerText = "Upgrade";
-} else {
-  packageTitle.innerText = "No Active Package";
-  packageDescription.innerHTML = `
-    <strong>You do not have an active subscription.</strong>
-  `;
-  packageInfo.innerText = "Get started with our plans to secure your documents.";
-  packageButton.innerText = "Get Started";
-}
+//
+// // Mock user subscription data
+//   const userHasPackage = false;
+//
+// // DOM Elements
+// const packageTitle = document.getElementById("packageTitle");
+// const packageDescription = document.getElementById("packageDescription");
+// const packageFeatures = document.getElementById("packageFeatures");
+// const packageInfo = document.getElementById("packageInfo");
+// const packageButton = document.getElementById("packageButton");
+//
+// // Dynamic Content Based on Subscription Status
+// if (userHasPackage) {
+//   packageTitle.innerText = "Your Current Package";
+//   packageDescription.innerHTML = `
+//     <strong>You have subscribed to the <span class="text-[#F4A261]">Will Plan</span>.</strong>
+//   `;
+//   packageFeatures.classList.remove("hidden");
+//   packageInfo.innerText = "Looking for additional features? Upgrade your plan to access more options.";
+//   packageButton.innerText = "Upgrade";
+// } else {
+//   packageTitle.innerText = "No Active Package";
+//   packageDescription.innerHTML = `
+//     <strong>You do not have an active subscription.</strong>
+//   `;
+//   packageInfo.innerText = "Get started with our plans to secure your documents.";
+//   packageButton.innerText = "Get Started";
+// }
 
   </script>
 </html>

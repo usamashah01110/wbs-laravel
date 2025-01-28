@@ -31,11 +31,11 @@
     </div>
     <div class="relative">
         <button id="dropdownButton" class="flex items-center gap-2 transition">
-            
+
             <img
     src="
     {{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
-            
+
     alt="Profile"
     class="w-8 h-8 rounded-full"
 />
@@ -56,7 +56,7 @@
             >
             <form method="POST" action="{{ route('logout') }}" class="block">
         @csrf
-        <x-responsive-nav-link 
+        <x-responsive-nav-link
             :href="route('logout')"
             class="block px-4 py-2 hover:bg-gray-200 text-red-500 transition-all duration-300"
             onclick="event.preventDefault();
@@ -543,7 +543,7 @@
                 </div>
             </div>
         </div>
-        
+
       <div
         id="toastContainer"
         class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"
@@ -775,7 +775,6 @@
                         closePopup();
                         window.location.reload();
                     } else {
-                        alert('Failed to save recipient data!');
                     }
                 })
                 .catch(error => {
@@ -824,7 +823,7 @@
             })
             .catch(error => {
                 console.error('Error fetching recipients:', error);
-                alert('Failed to load recipient data.');
+
             });
     }
 
@@ -975,7 +974,7 @@
             })
             .catch(error => {
                 console.error('Error fetching recipients:', error);
-                alert('Failed to load recipient data.');
+
             });
     }
 

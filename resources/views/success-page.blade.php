@@ -48,13 +48,13 @@
           <!-- Navigation Buttons -->
           <div class="mt-8 space-y-4">
             <a
-              href="dashboard.html"
+              href="{{ route('dashboard') }}"
               class="w-full inline-block text-white bg-[#3A5F8F] py-3 rounded-lg font-medium hover:bg-[#F4A261] transition-all duration-300 ease-in-out"
             >
               Go to Dashboard
             </a>
             <a
-              href="index.html"
+              href="{{ url('/') }}"
               class="w-full inline-block text-[#3A5F8F] underline font-medium hover:text-[#F4A261] transition-all duration-300 ease-in-out"
             >
               Back to Homepage

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\UserController;
@@ -54,6 +55,10 @@ Route::post('/recipients/store', [RecipientController::class, 'store'])->name('r
 Route::put('/recipients/update/{id}', [RecipientController::class, 'update'])->name('recipients.update');
 Route::delete('/recipients/delete/{id}', [RecipientController::class, 'delete'])->name('recipients.delete');
 
+Route::get('/checkout', [PaymentController::class, 'index'])->name('checkout');
+Route::get('/payment/checkout', [PaymentController::class, 'paymentPage'])->name('paymentPage');
+Route::post('/payment/create-intent', [PaymentController::class, 'createPaymentIntent'])->name('paymentIntent');
+Route::get('payment/success', [PaymentController::class, 'handlePaymentSuccess'])->name('payment.success');
 
 Route::post('/send-email', [ContactController::class, 'sendEmail']);
 
