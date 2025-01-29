@@ -150,7 +150,7 @@
 
                 const paymentType = billingCycle;
                 const subscriptionId = paymentData.subscriptionId;
-                const subscription = @json($request['subscription']);
+                const subscription = @json($request['subscription'] ?? null);
 
 
                 // Confirm the payment
