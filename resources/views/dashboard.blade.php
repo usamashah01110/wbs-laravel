@@ -34,7 +34,7 @@
 
             <img
     src="
-    {{ asset('storage/' . auth()->user()->profile_image) ?? asset('images/user.png') }}"
+    {{ optional(auth()->user())->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
 
     alt="Profile"
     class="w-8 h-8 rounded-full"
