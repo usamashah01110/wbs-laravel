@@ -384,6 +384,13 @@
     </footer>
 
     <script>
+            // Dropdown toggle
+    const dropdownButton = document.getElementById("dropdownButton");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    dropdownButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+    });
+    
         const billingCycleRadios = document.querySelectorAll('input[name="billingCycle"]');
         const subscriptionCheckboxes = document.querySelectorAll('input[name="subscription[]"]');
         const totalAmountInput = document.getElementById('totalAmount');

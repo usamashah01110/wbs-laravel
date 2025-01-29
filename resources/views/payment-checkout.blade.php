@@ -10,7 +10,6 @@
 </head>
 <body class="bg-gray-100">
 <!-- Header -->
-<header class="bg-[#3A5F8F] px-6 text-white shadow-md">
 
     @include('user-header')
 
@@ -63,6 +62,13 @@
 <!-- Stripe JS -->
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+        // Dropdown toggle
+        const dropdownButton = document.getElementById("dropdownButton");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    dropdownButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+    });
+    
     document.addEventListener('DOMContentLoaded', () => {
         const stripe = Stripe("{{ env('STRIPE_KEY') }}");
         const payNowButton = document.getElementById('payNowButton');
