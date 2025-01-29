@@ -205,9 +205,11 @@
                     </p>
 
                     <ul id="packageFeatures" class="list-disc pl-6">
-                        <li >You have  {{ Auth::user()->subscriptions->first()->fullWill == '1' ? ' full will Subscription.' : 'no active full will.' }}</li>
-                        <li>You have   {{ Auth::user()->subscriptions->first()->poa == '1' ? ' Power of Attorny Subscription.' : 'no active full will.' }}</li>
-                       <li> You have   {{ Auth::user()->subscriptions->first()->executor == '1' ? ' Executor Subscription.' : 'no active Executor Subscription' }}</li>
+                        <li>You have {{ isset(Auth::user()->subscriptions->first()->fullWill) && Auth::user()->subscriptions->first()->fullWill == '1' ? 'full will Subscription.' : 'no active full will.' }}</li>
+
+                        <li>You have {{ isset(Auth::user()->subscriptions->first()->poa) && Auth::user()->subscriptions->first()->poa == '1' ? 'Power of Attorney Subscription.' : 'no active Power of Attorney Subscription.' }}</li>
+
+                        <li>You have {{ isset(Auth::user()->subscriptions->first()->executor) && Auth::user()->subscriptions->first()->executor == '1' ? 'Executor Subscription.' : 'no active Executor Subscription.' }}</li>
                     </ul>
                     <br>
 
