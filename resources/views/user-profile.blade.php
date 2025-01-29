@@ -110,7 +110,7 @@
           <div>
             <label class="block text-gray-600">Email</label>
             <input
-
+                readonly
               type="email"
               id="email"
               name="phone"
