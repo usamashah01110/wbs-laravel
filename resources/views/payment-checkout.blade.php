@@ -12,7 +12,7 @@
 <!-- Header -->
 <header class="bg-[#3A5F8F] px-6 text-white shadow-md">
     <div class="container mx-auto flex justify-between items-center">
-        <img src="../assets/images/WBS-Logo.png" alt="WBS Logo" class="h-10" />
+        <img src="{{ asset('images/WBS-Logo.png') }}" alt="WBS Logo" class="h-10" />
         <h1 class="text-xl font-semibold">Payment</h1>
     </div>
 </header>
@@ -21,7 +21,7 @@
 <main class="container mx-auto my-8 px-6 grid md:grid-cols-2 gap-6">
     <!-- Illustration Section -->
     <section class="hidden md:flex items-center justify-center bg-white shadow-lg rounded-lg p-8">
-        <img src="../../assets/images/payment.jpg" alt="Payment Illustration" class="w-3/4" />
+        <img src="{{ asset('images/payment.jpg') }}" alt="Payment Illustration" class="w-3/4" />
     </section>
 
     <!-- Payment Section -->
