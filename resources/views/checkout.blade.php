@@ -12,7 +12,7 @@
     <!-- Header -->
     <header class="bg-[#3A5F8F] px-6 text-white shadow-md">
       <div class="container mx-auto flex justify-between items-center">
-        <img src="../assets/images/WBS-Logo.png" alt="WBS Logo" class="h-10" />
+        <img src="{{ asset('images/WBS-Logo.png') }}" alt="WBS Logo" class="h-10" />
         <h1 class="text-xl font-semibold">Checkout</h1>
       </div>
     </header>
