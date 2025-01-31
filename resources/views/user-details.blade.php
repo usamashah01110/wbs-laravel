@@ -36,7 +36,7 @@
                 />
               </div>
               <div>
-                
+
               </div>
             </div>
     <!-- Main Grid Section -->
@@ -44,7 +44,7 @@
         <div class="bg-white p-6 rounded shadow">
             <h2 class="text-lg font-semibold">Will</h2>
             <div class="flex flex-col gap-4 pt-4">
-            <div
+            {{-- <div
                     class="border-2 border-dashed border-gray-300 rounded items-center justify-center text-gray-500 cursor-pointer p-4"
                     onclick="document.getElementById('willUpload').click()"
                 >
@@ -58,7 +58,7 @@
                         class="hidden"
                         onchange="uploadDocumentAjax(this)"
                     />
-                </div>
+                </div> --}}
               @forelse ($user->documents->where('documnet_type', 'will') as $doc)
                 <div class="flex items-center space-x-2">
                   <p class="truncate w-3/4">{{ $doc->name }}</p>
@@ -144,7 +144,7 @@
       <p class="text-gray-500">N/A</p>
     @endforelse
   </div>
-      
+
           </section>
         </main>
       </div>
