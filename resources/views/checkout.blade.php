@@ -10,12 +10,8 @@
   </head>
   <body class="bg-gray-100">
     <!-- Header -->
-    <header class="bg-[#3A5F8F] px-6 text-white shadow-md">
-      <div class="container mx-auto flex justify-between items-center">
-        <img src="../assets/images/WBS-Logo.png" alt="WBS Logo" class="h-10" />
-        <h1 class="text-xl font-semibold">Checkout</h1>
-      </div>
-    </header>
+
+    @include('user-header')
 
     <!-- Main Content -->
     <main class="container mx-auto my-8 px-6 grid md:grid-cols-2 gap-6">
@@ -388,6 +384,13 @@
     </footer>
 
     <script>
+            // Dropdown toggle
+    const dropdownButton = document.getElementById("dropdownButton");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    dropdownButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+    });
+    
         const billingCycleRadios = document.querySelectorAll('input[name="billingCycle"]');
         const subscriptionCheckboxes = document.querySelectorAll('input[name="subscription[]"]');
         const totalAmountInput = document.getElementById('totalAmount');
