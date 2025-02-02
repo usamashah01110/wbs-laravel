@@ -17,8 +17,8 @@
   <body>
     @include('user-header')
     <main class="container mx-auto my-8 px-6 grid md:grid-cols-2 gap-6">
-        <main id="myAccountSection" class="flex-1 p-6 tab-content">
-            <section class="bg-white p-6 rounded-lg shadow">
+        <main id="myAccountSection" class="flex-1 tab-content">
+            <section class="bg-white p-6 rounded-lg shadow-lg">
             <div class="flex items-center mb-6 justify-between">
                 <div class="relative">
                 <img id="profileImage" src="{{ optional(auth()->user())->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}" alt="Profile" class="w-24 h-24 rounded-full" />
@@ -70,14 +70,14 @@
                 </div>
                 </div>
                 <div class="text-right mt-6">
-                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-all duration-300">Update</button>
+                <button type="submit" class="bg-[#415A77] text-white px-6 py-2 rounded-lg hover:bg-secondary transition-all duration-300">Update</button>
                 </div>
             </form>
             </section>
         </main>
 
-        <main id="packageDetailsSection" class="flex-1 p-6 tab-content">
-            <section class="bg-white p-8 rounded-lg shadow-lg">
+        <main id="packageDetailsSection" class="flex-1 tab-content">
+            <section class="bg-white p-6 rounded-lg shadow-lg h-full">
                 <div class="flex items-center mb-6 justify-between border-b pb-4">
                     <h2 class="text-3xl font-bold text-gray-800">
                         <span id="packageTitle">
@@ -95,7 +95,7 @@
                         <div class="p-4 bg-gray-100 rounded-lg">
                             <p id="subscriptionInfo" class="text-lg font-semibold">
                                 Your current plan:
-                                <strong class="text-primary">
+                                <strong class="text-[#415A77]">
                                     @if(Auth::user()->subscriptions->first()->type == 'monthly')
                                         Monthly
                                     @else
@@ -110,7 +110,7 @@
                             <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->executor == '1' ? 'an Executor Subscription.' : 'no active Executor Subscription.' }}</li>
                         </ul>
                         <div class="text-center mt-6">
-                            <a id="packageButton" class="bg-primary text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
+                            <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
                                 Update Subscription
                             </a>
                         </div>
@@ -121,7 +121,7 @@
                             <li class="text-gray-800">You can add up to 2 recipients.</li>
                         </ul>
                         <div class="text-center mt-6">
-                            <a id="packageButton" class="bg-primary text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
+                            <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
                                 Get Started
                             </a>
                         </div>
