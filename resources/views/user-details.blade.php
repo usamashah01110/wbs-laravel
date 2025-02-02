@@ -65,6 +65,9 @@
                   <a href="{{ asset('storage/' . $doc->path) }}" class="text-blue-500" target="_blank" download>
                     <i class="fas fa-download"></i>
                   </a>
+                  <a href="{{ asset('storage/' . $doc->path) }}" class="text-blue-500" target="_blank" onclick="viewDocument('${doc.path}')">
+                    <i class="fas fa-eye"></i>
+                </a>
                 </div>
               @empty
                 <p class="text-gray-500">N/A</p>
@@ -84,9 +87,10 @@
         <button class="text-blue-500" onclick="openattPopup('willRecipients', {{ $recipient->id }})">
          <i class="fas fa-edit"></i>
         </button>
-        <button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">
+
+        {{-- <button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">
          <i class="fas fa-trash-alt"></i>
-        </button>
+        </button> --}}
       </div>
     @empty
       <p class="text-gray-500">N/A</p>
