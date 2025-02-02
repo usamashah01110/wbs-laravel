@@ -522,7 +522,7 @@
 
     if (fullWill !== 1) {
         showToast("You don't have a subscription plan.", 'error');
-        return; // Exit if condition is not met
+        return;
     }
         const file = input.files[0];
         if (!file) return;
@@ -558,8 +558,8 @@
     const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
 
     if (fullWill !== 1) {
-        alert("You don't have a subscription plan.");
-        return; // Exit if condition is not met
+        showToast("You don't have a subscription plan.", 'error');
+        return;
     }
 
     const formData = new FormData();
