@@ -57,28 +57,28 @@
           <li>
             <a
               href="#services"
-              class="text-gray-700 hover:text-[#3A5F8F] font-medium transition"
+              class="text-gray-700 hover:text-[#415a77] font-medium transition"
               >Services</a
             >
           </li>
           <li>
             <a
               href="#pricing"
-              class="text-gray-700 hover:text-[#3A5F8F] font-medium transition"
+              class="text-gray-700 hover:text-[#415a77] font-medium transition"
               >Pricing</a
             >
           </li>
           <li>
             <a
               href="#testimonial"
-              class="text-gray-700 hover:text-[#3A5F8F] font-medium transition"
+              class="text-gray-700 hover:text-[#415a77] font-medium transition"
               >Reviews</a
             >
           </li>
           <li>
             <a
               href="#blog"
-              class="text-gray-700 hover:text-[#3A5F8F] font-medium transition"
+              class="text-gray-700 hover:text-[#415a77] font-medium transition"
               >Blog</a
             >
           </li>
@@ -97,12 +97,12 @@
       <div class="hidden lg:flex space-x-4">
         <a
           href="{{ route('login') }}"
-          class="px-4 py-2 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300"
+          class="px-4 py-2 bg-[#415a77] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300"
           >Login</a
         >
         <a
           href="{{ route('register') }}"
-          class="px-4 py-2 bg-[#f47d61] text-white font-medium rounded-lg hover:bg-[#3A5F8F] transition-all duration-300"
+          class="px-4 py-2 bg-[#f47d61] text-white font-medium rounded-lg hover:bg-[#415a77] transition-all duration-300"
           >Signup</a
         >
       </div>
@@ -154,12 +154,12 @@
       <div class="flex space-x-4 mt-4 justify-center">
         <a
           href="{{ route('login') }}"
-          class="px-4 py-2 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300"
+          class="px-4 py-2 bg-[#415a77] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300"
           >Login</a
         >
         <a
           href="{{ route('register') }}"
-          class="px-4 py-2 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300"
+          class="px-4 py-2 bg-[#415a77] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300"
           >Signup</a
         >
       </div>
@@ -190,12 +190,12 @@
 
             <div class="flex flex-wrap mt-9 text-center gap-3">
               <a
-                class="py-2 px-6 bg-[#3A5F8F] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out"
+                class="py-2 px-6 bg-[#415a77] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out"
                 href="#pricing"
                 >View Pricing</a
               >
               <a
-                class="py-2 px-6 bg-[#f47d61] text-white font-medium rounded-lg hover:bg-[#3A5F8F] transition-all duration-300 ease-in-out"
+                class="py-2 px-6 bg-[#f47d61] text-white font-medium rounded-lg hover:bg-[#415a77] transition-all duration-300 ease-in-out"
                 href="{{ route('register') }}">Sign up for free</a
                 >
             </div>
@@ -236,7 +236,7 @@
               <div
                 class="items-center justify-center flex bg-[#E2E8F0] rounded-[49%_80%_40%_90%_/_50%_30%_70%_80%] h-20 w-20 border"
               >
-                <i class="fas fa-file text-4xl text-[#3A5F8F]"></i>
+                <i class="fas fa-file text-4xl text-[#415a77]"></i>
               </div>
             </div>
             <h1 class="text-xl font-semibold pt-4">Full Will</h1>
@@ -250,7 +250,7 @@
               <div
                 class="items-center justify-center flex bg-[#E2E8F0] rounded-[49%_80%_40%_90%_/_50%_30%_70%_80%] h-20 w-20 border"
               >
-                <i class="fas fa-file-signature text-4xl text-[#3A5F8F]"></i>
+                <i class="fas fa-file-signature text-4xl text-[#415a77]"></i>
               </div>
             </div>
             <h1 class="text-xl font-semibold pt-4">Power Of Attorney</h1>
@@ -264,7 +264,7 @@
               <div
                 class="items-center justify-center flex bg-[#E2E8F0] rounded-[49%_80%_40%_90%_/_50%_30%_70%_80%] h-20 w-20 border"
               >
-                <i class="fas fa-handshake text-4xl text-[#3A5F8F]"></i>
+                <i class="fas fa-handshake text-4xl text-[#415a77]"></i>
               </div>
             </div>
             <h1 class="text-xl font-semibold pt-4">Will Executor</h1>
@@ -278,7 +278,7 @@
               <div
                 class="items-center justify-center flex bg-[#E2E8F0] rounded-[49%_80%_40%_90%_/_50%_30%_70%_80%] h-20 w-20 border"
               >
-                <i class="fas fa-certificate text-4xl text-[#3A5F8F]"></i>
+                <i class="fas fa-certificate text-4xl text-[#415a77]"></i>
               </div>
             </div>
             <h1 class="text-xl font-semibold pt-4">Notarization</h1>
@@ -318,7 +318,7 @@
                   <div
                     class="items-center justify-center flex bg-[#E2E8F0] rounded-full h-20 w-20 border border-dashed border-green-50"
                   >
-                    <i class="fas fa-user-plus text-4xl text-[#3A5F8F]"></i>
+                    <i class="fas fa-user-plus text-4xl text-[#415a77]"></i>
                   </div>
                 </div>
                 <h1 class="text-xl font-semibold pt-6">1. Sign Up</h1>
@@ -332,7 +332,7 @@
                   <div
                     class="items-center justify-center flex bg-[#E2E8F0] rounded-full h-20 w-20 border border-dashed border-red-50"
                   >
-                    <i class="fas fa-user-cog text-4xl text-[#3A5F8F]"></i>
+                    <i class="fas fa-user-cog text-4xl text-[#415a77]"></i>
                   </div>
                 </div>
                 <h1 class="text-xl font-semibold pt-6">2. Configure Account</h1>
@@ -346,7 +346,7 @@
                   <div
                     class="items-center justify-center flex bg-[#E2E8F0] rounded-full h-20 w-20 border border-dashed border-primary/10"
                   >
-                    <i class="fas fa-file-alt text-4xl text-[#3A5F8F]"></i>
+                    <i class="fas fa-file-alt text-4xl text-[#415a77]"></i>
                   </div>
                 </div>
                 <h1 class="text-xl font-semibold pt-6">3. Choose Docs</h1>
@@ -413,7 +413,7 @@
                   </div>
                   <div class="flex justify-center px-10 py-10">
                     <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
+                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#415a77] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
                     >
                       Get Started
                     </button>
@@ -442,7 +442,7 @@
                   </div>
                   <div class="flex justify-center px-10 py-10">
                     <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
+                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#415a77] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
                     >
                       Get Started
                     </button>
@@ -471,7 +471,7 @@
                   </div>
                   <div class="flex justify-center px-10 py-10">
                     <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
+                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#415a77] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
                     >
                       Get Started
                     </button>
@@ -500,7 +500,7 @@
                   </div>
                   <div class="flex justify-center px-10 py-10">
                     <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
+                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#415a77] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
                     >
                       Get Started
                     </button>
@@ -527,7 +527,7 @@
                   </div>
                   <div class="flex justify-center px-10 py-10">
                     <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
+                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#415a77] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
                     >
                       Get Started
                     </button>
@@ -554,7 +554,7 @@
                   </div>
                   <div class="flex justify-center px-10 py-10">
                     <button
-                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#3A5F8F] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
+                      class="text-white py-2 px-6 inline-flex rounded-md text-base items-center justify-center border border-primary text-black bg-[#415a77] hover:bg-[#f47d61] transition-all duration-500 font-medium w-full"
                     >
                       Get Started
                     </button>
@@ -712,7 +712,7 @@
       <!-- Button at the bottom of the section -->
       <div class="text-center mt-12">
         <button
-          class="py-3 px-8 rounded-md text-white font-medium bg-[#3A5F8F] hover:bg-[#f47d61] transition-all duration-300"
+          class="py-3 px-8 rounded-md text-white font-medium bg-[#415a77] hover:bg-[#f47d61] transition-all duration-300"
         >
           Get Started <i class="mdi mdi-arrow-right ms-2"></i>
         </button>
@@ -1036,7 +1036,7 @@
                 <div class="mt-6">
                   <button
                     type="submit"
-                    class="py-3 px-8 rounded-md text-white text-base font-medium bg-gradient-to-r from-[#f47d61] to-[#3A5F8F] hover:bg-gradient-to-r hover:from-[#3A5F8F] hover:to-[#f47d61] transition-all duration-300 ease-in-out"
+                    class="py-3 px-8 rounded-md text-white text-base font-medium bg-gradient-to-r from-[#f47d61] to-[#415a77] hover:bg-gradient-to-r hover:from-[#415a77] hover:to-[#f47d61] transition-all duration-300 ease-in-out"
                   >
                     Send Message <i class="mdi mdi-send ms-2"></i>
                   </button>
@@ -1050,7 +1050,7 @@
     <!-- Contact End -->
 
     <!-- Footer Start -->
-    <footer class="bg-[#3A5F8F]">
+    <footer class="bg-[#415a77]">
       <div class="container">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 py-4">
           <div class="col-span-full lg:col-span-2">
@@ -1202,7 +1202,7 @@
 
             <div class="flex gap-2">
               <a
-                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#3A5F8F] transition-all duration-300"
+                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300"
                 href="#"
               >
                 <svg
@@ -1219,7 +1219,7 @@
                 </svg>
               </a>
               <a
-                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#3A5F8F] transition-all duration-300"
+                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300"
                 href="#"
               >
                 <svg
@@ -1236,7 +1236,7 @@
                 </svg>
               </a>
               <a
-                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#3A5F8F] transition-all duration-300"
+                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300"
                 href="#"
               >
                 <svg

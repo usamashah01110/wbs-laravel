@@ -1,6 +1,6 @@
 <nav
     id="sidebar"
-    class="bg-[#3A5F8F] text-gray-100 w-64 h-full flex-shrink-0 transition-all duration-300 flex flex-col justify-between"
+    class="bg-[#415a77] text-gray-100 w-64 h-full flex-shrink-0 transition-all duration-300 flex flex-col justify-between"
 >
     <div>
         <div class="p-4">

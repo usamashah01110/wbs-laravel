@@ -40,7 +40,7 @@
 {{--                  checked--}}
 {{--                />--}}
 {{--                <div--}}
-{{--                  class="flex items-center justify-center py-2 px-4 border-2 border-gray-300 rounded-lg cursor-pointer text-gray-700 font-medium peer-checked:border-[#3A5F8F] peer-checked:bg-[#3A5F8F] peer-checked:text-white transition-all duration-300"--}}
+{{--                  class="flex items-center justify-center py-2 px-4 border-2 border-gray-300 rounded-lg cursor-pointer text-gray-700 font-medium peer-checked:border-[#415a77] peer-checked:bg-[#415a77] peer-checked:text-white transition-all duration-300"--}}
 {{--                >--}}
 {{--                  Monthly--}}
 {{--                </div>--}}
@@ -53,7 +53,7 @@
 {{--                  class="hidden peer"--}}
 {{--                />--}}
 {{--                <div--}}
-{{--                  class="flex items-center justify-center py-2 px-4 border-2 border-gray-300 rounded-lg cursor-pointer text-gray-700 font-medium peer-checked:border-[#3A5F8F] peer-checked:bg-[#3A5F8F] peer-checked:text-white transition-all duration-300"--}}
+{{--                  class="flex items-center justify-center py-2 px-4 border-2 border-gray-300 rounded-lg cursor-pointer text-gray-700 font-medium peer-checked:border-[#415a77] peer-checked:bg-[#415a77] peer-checked:text-white transition-all duration-300"--}}
 {{--                >--}}
 {{--                  Yearly--}}
 {{--                </div>--}}
@@ -73,7 +73,7 @@
 {{--                class="hidden peer"--}}
 {{--              />--}}
 {{--              <div--}}
-{{--                class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#3A5F8F] peer-checked:border-[#3A5F8F] transition-all duration-300"--}}
+{{--                class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"--}}
 {{--              ></div>--}}
 {{--              <div>--}}
 {{--                <h3 class="font-semibold">Full Will</h3>--}}
@@ -91,7 +91,7 @@
 {{--            >--}}
 {{--              <input type="checkbox" id="poa" name="poa" value="1" class="hidden peer" />--}}
 {{--              <div--}}
-{{--                class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#3A5F8F] peer-checked:border-[#3A5F8F] transition-all duration-300"--}}
+{{--                class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"--}}
 {{--              ></div>--}}
 {{--              <div>--}}
 {{--                <h3 class="font-semibold">Power of Attorney (POA)</h3>--}}
@@ -114,7 +114,7 @@
 {{--                class="hidden peer"--}}
 {{--              />--}}
 {{--              <div--}}
-{{--                class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#3A5F8F] peer-checked:border-[#3A5F8F] transition-all duration-300"--}}
+{{--                class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"--}}
 {{--              ></div>--}}
 {{--              <div>--}}
 {{--                <h3 class="font-semibold">Executor of Will</h3>--}}
@@ -135,7 +135,7 @@
 {{--            </h3>--}}
 {{--            <button--}}
 {{--              type="button"--}}
-{{--              class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"--}}
+{{--              class="mt-4 bg-[#415a77] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"--}}
 {{--            >--}}
 {{--              Subscribe--}}
 {{--            </button>--}}
@@ -162,7 +162,7 @@
                               checked
                           />
                           <div
-                              class="flex items-center justify-center py-2 px-4 border-2 border-gray-300 rounded-lg cursor-pointer text-gray-700 font-medium peer-checked:border-[#3A5F8F] peer-checked:bg-[#3A5F8F] peer-checked:text-white transition-all duration-300"
+                              class="flex items-center justify-center py-2 px-4 border-2 border-gray-300 rounded-lg cursor-pointer text-gray-700 font-medium peer-checked:border-[#415a77] peer-checked:bg-[#415a77] peer-checked:text-white transition-all duration-300"
                           >
                               Monthly
                           </div>
@@ -175,7 +175,7 @@
                               class="hidden peer"
                           />
                           <div
-                              class="flex items-center justify-center py-2 px-4 border-2 border-gray-300 rounded-lg cursor-pointer text-gray-700 font-medium peer-checked:border-[#3A5F8F] peer-checked:bg-[#3A5F8F] peer-checked:text-white transition-all duration-300"
+                              class="flex items-center justify-center py-2 px-4 border-2 border-gray-300 rounded-lg cursor-pointer text-gray-700 font-medium peer-checked:border-[#415a77] peer-checked:bg-[#415a77] peer-checked:text-white transition-all duration-300"
                           >
                               Yearly
                           </div>
@@ -196,7 +196,7 @@
                           @if(isset(Auth::user()->subscriptions->first()->fullWill) && Auth::user()->subscriptions->first()->fullWill == '1') checked @endif
                       />
                       <div
-                          class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#3A5F8F] peer-checked:border-[#3A5F8F] transition-all duration-300"
+                          class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"
                       ></div>
                       <div>
                           <h3 class="font-semibold">Full Will</h3>
@@ -220,7 +220,7 @@
                           @if(isset(Auth::user()->subscriptions->first()->poa) && Auth::user()->subscriptions->first()->poa == '1') checked @endif
                       />
                       <div
-                          class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#3A5F8F] peer-checked:border-[#3A5F8F] transition-all duration-300"
+                          class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"
                       ></div>
                       <div>
                           <h3 class="font-semibold">Power of Attorney (POA)</h3>
@@ -244,7 +244,7 @@
                           @if(isset(Auth::user()->subscriptions->first()->executor) && Auth::user()->subscriptions->first()->executor == '1') checked @endif
                       />
                       <div
-                          class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#3A5F8F] peer-checked:border-[#3A5F8F] transition-all duration-300"
+                          class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"
                       ></div>
                       <div>
                           <h3 class="font-semibold">Executor of Will</h3>
@@ -268,7 +268,7 @@
                   </h3>
                   <button
                       type="submit"
-                      class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
+                      class="mt-4 bg-[#415a77] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
                   >
                       Subscribe
                   </button>
@@ -293,7 +293,7 @@
                         onchange="updateTotal()"
                     />
                     <div
-                        class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#3A5F8F] peer-checked:border-[#3A5F8F] transition-all duration-300"
+                        class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"
                     ></div>
                     <div>
                         <h3 class="text-xl font-semibold text-gray-800">Notarization</h3>
@@ -314,7 +314,7 @@
                         onchange="updateTotal()"
                     />
                     <div
-                        class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#3A5F8F] peer-checked:border-[#3A5F8F] transition-all duration-300"
+                        class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"
                     ></div>
                     <div>
                         <h3 class="text-xl font-semibold text-gray-800">
@@ -337,7 +337,7 @@
                         onchange="updateTotal()"
                     />
                     <div
-                        class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#3A5F8F] peer-checked:border-[#3A5F8F] transition-all duration-300"
+                        class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"
                     ></div>
                     <div>
                         <h3 class="text-xl font-semibold text-gray-800">
@@ -357,7 +357,7 @@
                     </h3>
                     <button
                         type="submit"
-                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
+                        class="mt-4 bg-[#415a77] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
                         id="buyButton"
                     >
                         Buy: $0
@@ -371,7 +371,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#3A5F8F] text-white py-4">
+    <footer class="bg-[#415a77] text-white py-4">
       <div class="container mx-auto text-center">
         <p>
           ©

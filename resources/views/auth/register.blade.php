@@ -125,7 +125,7 @@
             </select>
             <button
               type="submit"
-              class="w-full bg-[#3A5F8F] text-white font-medium py-3 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out"
+              class="w-full bg-[#415a77] text-white font-medium py-3 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out"
             >
               Sign Up
             </button>
@@ -133,7 +133,7 @@
               Already have an account?
               <a
                 href="{{ route('login') }}"
-                class="text-[#3A5F8F] underline font-medium hover:text-[#f47d61] transition-all duration-300 ease-in-out"
+                class="text-[#415a77] underline font-medium hover:text-[#f47d61] transition-all duration-300 ease-in-out"
                 >Login</a
               >
             </p>

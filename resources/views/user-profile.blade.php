@@ -127,7 +127,7 @@
           <button
               type="submit"
             id="editProfileButton"
-            class="bg-[#3A5F8F] text-white px-6 py-2 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out"
+            class="bg-[#415a77] text-white px-6 py-2 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out"
           >
             Update
           </button>
@@ -179,7 +179,7 @@
                     <!-- Update Button -->
                     <a
                         id="packageButton"
-                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
+                        class="mt-4 bg-[#415a77] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
                         href="{{ route('checkout') }}"
                     >
                         Update
@@ -197,7 +197,7 @@
                     <!-- Get Started Button -->
                     <a
                         id="packageButton"
-                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
+                        class="mt-4 bg-[#415a77] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
                         href="{{ route('checkout') }}"
                     >
                         Get Started
@@ -209,7 +209,7 @@
 
 
     <!-- Footer Start -->
-    <footer class="bg-[#3A5F8F]">
+    <footer class="bg-[#415a77]">
       <div class="container">
         <div class="flex w-11/12 mx-auto justify-between items-center py-4">
           <div class="flex flex-col">
@@ -284,7 +284,7 @@
 
             <div class="flex gap-2">
               <a
-                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#3A5F8F] transition-all duration-300"
+                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300"
                 href="#"
               >
                 <svg
@@ -301,7 +301,7 @@
                 </svg>
               </a>
               <a
-                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#3A5F8F] transition-all duration-300"
+                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300"
                 href="#"
               >
                 <svg
@@ -318,7 +318,7 @@
                 </svg>
               </a>
               <a
-                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#3A5F8F] transition-all duration-300"
+                class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300"
                 href="#"
               >
                 <svg

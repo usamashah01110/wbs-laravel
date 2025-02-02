@@ -25,7 +25,7 @@
 <!-- Dasboard Start -->
 <section class="bg-[#E2E8F0] p-6">
     <!-- Welcome Section -->
-    <div class="text-center bg-[#3A5F8F] text-white py-2 rounded mb-6">
+    <div class="text-center bg-[#415a77] text-white py-2 rounded mb-6">
         <h1 class="text-xl font-semibold">Welcome back, {{ Auth::user()->firstname }} {{ Auth::user()->lastname  }}</h1>
     </div>
     <!-- Main Grid Section -->
@@ -58,7 +58,7 @@
             <ul id="willRecipients" class="space-y-2">
                 <li class="flex items-center space-x-2">
                     <button
-                        class="bg-[#3A5F8F] text-white px-3 py-1 rounded hover:bg-[#f47d61] transition-all duration-300"
+                        class="bg-[#415a77] text-white px-3 py-1 rounded hover:bg-[#f47d61] transition-all duration-300"
                         onclick="openPopup('willRecipients')"
                     >
                         +
@@ -96,7 +96,7 @@
             <ul id="poaRecipients" class="space-y-2">
                 <li class="flex items-center space-x-2">
                     <button
-                        class="bg-[#3A5F8F] text-white px-3 py-1 rounded hover:bg-[#f47d61] transition-all duration-300"
+                        class="bg-[#415a77] text-white px-3 py-1 rounded hover:bg-[#f47d61] transition-all duration-300"
                         onclick="openattPopup('poaRecipients')"
                     >
                         +
@@ -158,7 +158,7 @@
                     </button>
                     <button
                         type="submit"
-                        class="bg-[#3A5F8F] text-white px-4 py-2 rounded hover:bg-[#f47d61]"
+                        class="bg-[#415a77] text-white px-4 py-2 rounded hover:bg-[#f47d61]"
                     >
                         Save
                     </button>
@@ -218,7 +218,7 @@
                     </button>
                     <button
                         type="submit"
-                        class="bg-[#3A5F8F] text-white px-4 py-2 rounded hover:bg-[#f47d61]"
+                        class="bg-[#415a77] text-white px-4 py-2 rounded hover:bg-[#f47d61]"
                     >
                         Save
                     </button>
@@ -277,7 +277,7 @@
                             </div>
                         </div>
                         <div class="mt-6">
-                            <button type="submit" class="py-3 px-8 rounded-md text-white text-base font-medium bg-gradient-to-r from-[#f47d61] to-[#3A5F8F] hover:bg-gradient-to-r hover:from-[#3A5F8F] hover:to-[#f47d61] transition-all duration-300 ease-in-out">
+                            <button type="submit" class="py-3 px-8 rounded-md text-white text-base font-medium bg-gradient-to-r from-[#f47d61] to-[#415a77] hover:bg-gradient-to-r hover:from-[#415a77] hover:to-[#f47d61] transition-all duration-300 ease-in-out">
                                 Send Message <i class="mdi mdi-send ms-2"></i>
                             </button>
                         </div>
@@ -290,7 +290,7 @@
 <!-- Contact End -->
 
 <!-- Footer Start -->
-<footer class="bg-[#3A5F8F]">
+<footer class="bg-[#415a77]">
     <div class="container">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 py-4">
             <div class="col-span-full lg:col-span-2">
@@ -442,7 +442,7 @@
 
                 <div class="flex gap-2">
                     <a
-                        class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#3A5F8F] transition-all duration-300"
+                        class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300"
                         href="#"
                     >
                         <svg
@@ -459,7 +459,7 @@
                         </svg>
                     </a>
                     <a
-                        class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#3A5F8F] transition-all duration-300"
+                        class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300"
                         href="#"
                     >
                         <svg
@@ -476,7 +476,7 @@
                         </svg>
                     </a>
                     <a
-                        class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#3A5F8F] transition-all duration-300"
+                        class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300"
                         href="#"
                     >
                         <svg

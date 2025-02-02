@@ -43,7 +43,7 @@
                 name="email"
                 id="email"
                 placeholder="admin@example.com"
-                class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[#3A5F8F]"
+                class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[#415a77]"
                 required
               />
             </div>
@@ -58,13 +58,13 @@
                 type="password"
                 name="password"
                 placeholder="***********"
-                class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[#3A5F8F]"
+                class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[#415a77]"
                 required
               />
             </div>
             <button
               type="submit"
-              class="w-full bg-[#3A5F8F] text-white py-3 rounded-lg font-medium hover:bg-[#f47d61] transition-all duration-300"
+              class="w-full bg-[#415a77] text-white py-3 rounded-lg font-medium hover:bg-[#f47d61] transition-all duration-300"
             >
               Login
             </button>
