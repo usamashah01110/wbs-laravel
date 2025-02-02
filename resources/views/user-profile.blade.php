@@ -127,7 +127,7 @@
           <button
               type="submit"
             id="editProfileButton"
-            class="bg-[#3A5F8F] text-white px-6 py-2 rounded-lg hover:bg-[#F4A261] transition-all duration-300 ease-in-out"
+            class="bg-[#3A5F8F] text-white px-6 py-2 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out"
           >
             Update
           </button>
@@ -179,7 +179,7 @@
                     <!-- Update Button -->
                     <a
                         id="packageButton"
-                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
                         href="{{ route('checkout') }}"
                     >
                         Update
@@ -197,7 +197,7 @@
                     <!-- Get Started Button -->
                     <a
                         id="packageButton"
-                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
                         href="{{ route('checkout') }}"
                     >
                         Get Started
@@ -271,7 +271,7 @@
         </div>
       </div>
 
-      <div class="bg-[#F4A261]">
+      <div class="bg-[#f47d61]">
         <!-- 1B283F -->
         <div class="container">
           <div class="flex justify-between items-center w-11/12 mx-auto">
@@ -416,7 +416,7 @@
 // if (userHasPackage) {
 //   packageTitle.innerText = "Your Current Package";
 //   packageDescription.innerHTML = `
-//     <strong>You have subscribed to the <span class="text-[#F4A261]">Will Plan</span>.</strong>
+//     <strong>You have subscribed to the <span class="text-[#f47d61]">Will Plan</span>.</strong>
 //   `;
 //   packageFeatures.classList.remove("hidden");
 //   packageInfo.innerText = "Looking for additional features? Upgrade your plan to access more options.";

@@ -1,5 +1,5 @@
 <header
-class="bg-[#F4A261] shadow-lg px-6 py-4 flex justify-between items-center"
+class="bg-[#f47d61] shadow-lg px-6 py-4 flex justify-between items-center"
 >
 <div class="flex items-center">
     <img

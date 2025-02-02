@@ -135,7 +135,7 @@
 {{--            </h3>--}}
 {{--            <button--}}
 {{--              type="button"--}}
-{{--              class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#F4A261] transition-all duration-300"--}}
+{{--              class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"--}}
 {{--            >--}}
 {{--              Subscribe--}}
 {{--            </button>--}}
@@ -268,7 +268,7 @@
                   </h3>
                   <button
                       type="submit"
-                      class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+                      class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
                   >
                       Subscribe
                   </button>
@@ -357,7 +357,7 @@
                     </h3>
                     <button
                         type="submit"
-                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#F4A261] transition-all duration-300"
+                        class="mt-4 bg-[#3A5F8F] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
                         id="buyButton"
                     >
                         Buy: $0
@@ -390,7 +390,7 @@
     dropdownButton.addEventListener("click", () => {
         dropdownMenu.classList.toggle("hidden");
     });
-    
+
         const billingCycleRadios = document.querySelectorAll('input[name="billingCycle"]');
         const subscriptionCheckboxes = document.querySelectorAll('input[name="subscription[]"]');
         const totalAmountInput = document.getElementById('totalAmount');

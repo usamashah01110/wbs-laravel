@@ -58,7 +58,7 @@
             <ul id="willRecipients" class="space-y-2">
                 <li class="flex items-center space-x-2">
                     <button
-                        class="bg-[#3A5F8F] text-white px-3 py-1 rounded hover:bg-[#F4A261] transition-all duration-300"
+                        class="bg-[#3A5F8F] text-white px-3 py-1 rounded hover:bg-[#f47d61] transition-all duration-300"
                         onclick="openPopup('willRecipients')"
                     >
                         +
@@ -96,7 +96,7 @@
             <ul id="poaRecipients" class="space-y-2">
                 <li class="flex items-center space-x-2">
                     <button
-                        class="bg-[#3A5F8F] text-white px-3 py-1 rounded hover:bg-[#F4A261] transition-all duration-300"
+                        class="bg-[#3A5F8F] text-white px-3 py-1 rounded hover:bg-[#f47d61] transition-all duration-300"
                         onclick="openattPopup('poaRecipients')"
                     >
                         +
@@ -158,7 +158,7 @@
                     </button>
                     <button
                         type="submit"
-                        class="bg-[#3A5F8F] text-white px-4 py-2 rounded hover:bg-[#F4A261]"
+                        class="bg-[#3A5F8F] text-white px-4 py-2 rounded hover:bg-[#f47d61]"
                     >
                         Save
                     </button>
@@ -218,7 +218,7 @@
                     </button>
                     <button
                         type="submit"
-                        class="bg-[#3A5F8F] text-white px-4 py-2 rounded hover:bg-[#F4A261]"
+                        class="bg-[#3A5F8F] text-white px-4 py-2 rounded hover:bg-[#f47d61]"
                     >
                         Save
                     </button>
@@ -277,7 +277,7 @@
                             </div>
                         </div>
                         <div class="mt-6">
-                            <button type="submit" class="py-3 px-8 rounded-md text-white text-base font-medium bg-gradient-to-r from-[#F4A261] to-[#3A5F8F] hover:bg-gradient-to-r hover:from-[#3A5F8F] hover:to-[#F4A261] transition-all duration-300 ease-in-out">
+                            <button type="submit" class="py-3 px-8 rounded-md text-white text-base font-medium bg-gradient-to-r from-[#f47d61] to-[#3A5F8F] hover:bg-gradient-to-r hover:from-[#3A5F8F] hover:to-[#f47d61] transition-all duration-300 ease-in-out">
                                 Send Message <i class="mdi mdi-send ms-2"></i>
                             </button>
                         </div>
@@ -429,7 +429,7 @@
         </div>
     </div>
 
-    <div class="bg-[#F4A261]">
+    <div class="bg-[#f47d61]">
         <!-- 1B283F -->
         <div class="container">
             <div class="flex justify-between items-center">
