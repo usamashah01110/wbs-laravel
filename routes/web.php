@@ -63,10 +63,6 @@ Route::get('payment/success', [PaymentController::class, 'handlePaymentSuccess']
 Route::post('/send-email', [ContactController::class, 'sendEmail']);
 
 
-Route::get('/terms', function () {
-    return view('terms');
-});
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
