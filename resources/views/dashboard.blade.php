@@ -210,7 +210,7 @@
                     <button
                         type="button"
                         class="bg-gray-300 px-4 py-2 rounded"
-                        onclick="closePopup()"
+                        onclick="closePopupPOA()"
                     >
                         Cancel
                     </button>
@@ -435,7 +435,7 @@
         popupModal.classList.remove("hidden");
     }
 
-    function closePopup() {
+    function closePopupPOA() {
         document.getElementById("popattoronyModal").classList.add("hidden");
         currentListId = "";  // Reset listId
         editingIndex = null;  // Reset editing index
@@ -473,7 +473,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success === true) {
-                        closePopup();
+                        closePopupPOA();
                         window.location.reload();
                     } else {
                     }
