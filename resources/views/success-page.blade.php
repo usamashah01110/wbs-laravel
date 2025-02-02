@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Success - WBS</title>
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link href="assets/images/WBS-Logo.png" rel="shortcut icon" />
+    <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
@@ -16,9 +16,9 @@
         <div class="p-8 text-center">
           <!-- Logo -->
           <img
-            src="../assets/images/WBS-Logo.png"
+            src="{{ asset('images/WBS-Logo.png') }}"
             alt="WBS Logo"
-            class="h-12 mx-auto mb-4"
+            class="h-12 w-12 mx-auto mb-4"
           />
           <!-- Success Message -->
           <h2 class="text-2xl font-semibold text-gray-700">
