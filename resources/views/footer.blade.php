@@ -1,5 +1,5 @@
-<footer class="bg-[#415a77]">
-    <div class="container">
+<footer>
+    <div class="container bg-[#415a77]">
         <div class="flex w-11/12 mx-auto justify-between items-center py-4">
             <div class="flex flex-col">
                 <img src="{{ asset('images/WBS-Logo.png') }}" alt="" class="h-10 w-14" />
