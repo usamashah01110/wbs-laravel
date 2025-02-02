@@ -2,7 +2,7 @@
     <div class="container">
       <div class="flex w-11/12 mx-auto justify-between items-center py-4">
         <div class="flex flex-col">
-          <img src="{{ asset('images/WBS-Logo.png') }}" alt="" class="h-10" />
+          <img src="{{ asset('images/WBS-Logo.png') }}" alt="" class="h-10 w-10" />
           <p class="text-gray-300 max-w-xs mt-6">
             Will Be Sent is a proud subsidary of
             <a herf="" target="blank" href="https://arvoequities.com"

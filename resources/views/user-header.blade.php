@@ -44,3 +44,12 @@ class="w-8 h-8 rounded-full"
     </div>
 </div>
 </header>
+<script>
+            // Dropdown toggle
+            const dropdownButton = document.getElementById("dropdownButton");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    dropdownButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+    });
+
+</script>
