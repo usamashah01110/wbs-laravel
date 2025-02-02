@@ -57,7 +57,7 @@
                 </div>
                 <div>
                     <label class="block text-gray-600">Check-in Frequency</label>
-                    <select name="frequency" class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black" required>
+                    <select name="frequency" class="px-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black" required>
                     <option value="" disabled selected>Check-in Frequency</option>
                     <option value="daily">Daily</option>
                     <option value="weekly">Weekly</option>
@@ -78,17 +78,15 @@
 
         <main id="packageDetailsSection" class="flex-1 tab-content">
             <section class="bg-white p-6 rounded-lg shadow-lg h-full">
-                <div class="flex items-center mb-6 justify-between border-b pb-4">
-                    <h2 class="text-3xl font-bold text-gray-800">
-                        <span id="packageTitle">
-                            @if(Auth::user()->subscriptions->isNotEmpty())
-                                Subscription Details
-                            @else
-                                Package Details
-                            @endif
-                        </span>
-                    </h2>
-                </div>
+                <h2 class="mb-6 border-b pb-4 text-3xl font-bold text-gray-800">
+                    <span id="packageTitle">
+                        @if(Auth::user()->subscriptions->isNotEmpty())
+                            Subscription Details
+                        @else
+                            Package Details
+                        @endif
+                    </span>
+                </h2>
 
                 <div class="text-gray-700 space-y-6">
                     @if(Auth::user()->subscriptions->isNotEmpty())
@@ -109,7 +107,7 @@
                             <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->poa == '1' ? 'a Power of Attorney Subscription.' : 'no active Power of Attorney Subscription.' }}</li>
                             <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->executor == '1' ? 'an Executor Subscription.' : 'no active Executor Subscription.' }}</li>
                         </ul>
-                        <div class="text-center mt-6">
+                        <div class="text-right mt-6">
                             <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
                                 Update Subscription
                             </a>
@@ -120,7 +118,7 @@
                             <li class="text-gray-800">You can create 1 full will.</li>
                             <li class="text-gray-800">You can add up to 2 recipients.</li>
                         </ul>
-                        <div class="text-center mt-6">
+                        <div class="text-right mt-6">
                             <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
                                 Get Started
                             </a>
