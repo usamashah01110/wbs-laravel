@@ -16,10 +16,10 @@
 
   <body>
     @include('user-header')
+    <div class="container my-4">
+        <a class="text-2xl cursor-pointer" href="{{url('/dashboard')}}"><i class="fas fa-arrow-left"></i></a>
+    </div>
     <main class="container mx-auto my-8 px-6 grid md:grid-cols-2 gap-6">
-        <div>
-            <a class="text-2xl cursor-pointer" href="{{url('/dashboard')}}"><i class="fas fa-arrow-left"></i></a>
-        </div>
         <main id="myAccountSection" class="flex-1 tab-content">
             <section class="bg-white p-6 rounded-lg shadow-lg">
             <div class="flex items-center mb-6 justify-between">
