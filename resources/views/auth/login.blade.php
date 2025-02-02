@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - WBS</title>
+    <title>WBS | Login</title>
     <!-- favicon -->
     <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
@@ -60,7 +60,7 @@
           </form>
           <p class="text-xs text-center text-gray-500 mt-4">
             By logging in, you agree to the
-            <a href="#" class="text-black underline">Terms & Conditions</a> and the
+            <a href="{{ route('terms') }}" class="text-black underline">Terms & Conditions</a> and the
             <a href="#" class="text-black underline">Privacy Policy</a>.
           </p>
         </div>
