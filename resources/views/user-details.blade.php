@@ -60,10 +60,10 @@
                     />
                 </div> --}}
               @forelse ($user->documents->where('documnet_type', 'will') as $doc)
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-between">
                   <p class="truncate w-3/4">{{ $doc->name }}</p>
                   <div class="flex items-center gap-4">
-                    <a href="{{ asset('storage/' . $doc->path) }}" class="text-blue-500" target="_blank" download>
+                    <a href="{{ asset('storage/' . $doc->path) }}" class="text-green-500" target="_blank" download>
                         <i class="fas fa-download"></i>
                       </a>
                       <a href="{{ asset('storage/' . $doc->path) }}" class="text-blue-500" target="_blank" onclick="viewDocument('${doc.path}')">
