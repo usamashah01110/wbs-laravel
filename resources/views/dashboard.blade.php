@@ -264,7 +264,7 @@
                     fetchDocuments();
                 }
             })
-            .catch(() => alert("An error occurred during the upload."));
+            .catch(() => showToast("An error occurred during the upload."));
     }
 
 
@@ -298,11 +298,11 @@
             if (data.success) {
                 displayUploadedDocument(data.fileName, data.fileUrl);
             } else {
-                // alert(data.message || "Document upload failed.");
+                // showToast(data.message || "Document upload failed.");
                 fetchDocuments();
             }
         })
-        .catch(() => alert("An error occurred during the upload."));
+        .catch(() => showToast("An error occurred during the upload."));
     }
 
 
@@ -338,10 +338,10 @@
                 if (data.success) {
                     displayUploadedDocument(data.fileName, data.fileUrl);
                 } else {
-                    // alert(data.message || "Document upload failed.");
+                    // showToast(data.message || "Document upload failed.");
                     fetchAttorny();                  }
             })
-            .catch(() => alert("An error occurred during the upload."));
+            .catch(() => showToast("An error occurred during the upload."));
     }
 
 
@@ -480,7 +480,7 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('An error occurred while saving recipient data!');
+                    showToast('An error occurred while saving recipient data!');
                 });
         });
 
@@ -545,12 +545,12 @@
                     if (data.success) {
                         window.location.reload();
                     } else {
-                        alert('Failed to delete recipient.');
+                        showToast('Failed to delete recipient.');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('An error occurred while deleting the recipient!');
+                    showToast('An error occurred while deleting the recipient!');
                 });
         }
     }
@@ -625,12 +625,12 @@
                         closePopup();
                         window.location.reload();
                     } else {
-                        alert('Failed to save recipient data!');
+                        showToast('Failed to save recipient data!');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('An error occurred while saving recipient data!');
+                    showToast('An error occurred while saving recipient data!');
                 });
         });
 
@@ -696,12 +696,12 @@
                     if (data.success) {
                         window.location.reload();
                     } else {
-                        alert('Failed to delete recipient.');
+                        showToast('Failed to delete recipient.');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('An error occurred while deleting the recipient!');
+                    showToast('An error occurred while deleting the recipient!');
                 });
         }
     }
@@ -743,15 +743,15 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Your message has been sent successfully!');
+                    showToast('Your message has been sent successfully!');
                     document.getElementById('contactForm').reset();
                 } else {
-                    alert('There was an issue sending your message. Please try again.');
+                    showToast('There was an issue sending your message. Please try again.');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Failed to send the message. Please try again later.');
+                showToast('Failed to send the message. Please try again later.');
             });
     });
 
