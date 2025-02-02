@@ -97,7 +97,7 @@
  <div class="bg-white p-6 rounded shadow">
             <h2 class="text-lg font-semibold">Power of Attorney</h2>
             <div class="flex flex-col gap-4 pt-4">
-            <div
+            {{-- <div
                     class="border-2 border-dashed border-gray-300 rounded items-center justify-center text-gray-500 cursor-pointer p-4"
                     onclick="document.getElementById('poaUpload').click()"
                 >
@@ -111,7 +111,7 @@
                         class="hidden"
                         onchange="uploadAttornyAjax(this)"
                     />
-                </div>
+                </div> --}}
               @forelse ($user->documents->where('documnet_type', 'attorny') as $doc)
                 <div class="flex items-center space-x-2">
                   <p class="truncate w-3/4">{{ $doc->name }}</p>
