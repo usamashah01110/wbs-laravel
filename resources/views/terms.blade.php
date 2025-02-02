@@ -31,7 +31,7 @@
 
         <section class="mb-6">
             <h2 class="text-xl font-semibold">3. Subscription Terms</h2>
-        <ul>
+        <ul class="list-disc">
             <li>
                 <span>Subscription Plans: </span>You can choose from monthly or annual subscription plans. Payment will be charged to your account at the start of each billing period.
 
