@@ -8,20 +8,18 @@
     <meta name="keywords" content="willbesent" />
     <meta name="author" content="willbesent" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{ asset('images/WBS-Logo.png') }}" type="image/png">
+    <link href="{{ asset('css/style.css')}}" rel="stylesheet" type="text/css" />
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <!-- favicon -->
-         <link rel="icon" href="{{ asset('images/WBS-Logo.png') }}" type="image/png">
-    <!-- Main Css -->
-    <link href="{{ asset('css/style.css')}}" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-<!-- Navbar Start -->
 @include('user-header')
+
 <!-- Dasboard Start -->
 <section class="bg-[#E2E8F0] p-6">
     <!-- Welcome Section -->
@@ -227,67 +225,7 @@
         </div>
     </div>
 </section>
-
 <!-- Dasboard End -->
-
-<!-- Contact Start -->
-<section id="contact" class="py-10 bg-gray-100">
-    <div class="container">
-        <div class="grid lg:grid-cols-3 gap-6 items-center">
-            <!-- Contact Info -->
-            <div>
-                <div>
-                    <span class="text-sm text-primary uppercase font-semibold tracking-wider text-default-950 mb-6">Contact Us</span>
-                </div>
-                <h2 class="text-3xl md:text-4xl font-semibold mt-4 text-gray-800">Your Questions, Our Support</h2>
-                <!-- Address, Email, Phone, etc. -->
-                <!-- This section remains unchanged -->
-            </div>
-
-            <!-- Form Section -->
-            <div class="lg:col-span-2 lg:ms-24">
-                <div class="p-8 md:p-12 rounded-lg shadow-xl bg-white border border-gray-200">
-                    <form id="contactForm">
-                        <div class="grid sm:grid-cols-2 gap-6">
-                            <div>
-                                <label for="formFirstName" class="block text-sm font-semibold text-black mb-2">First Name</label>
-                                <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formFirstName" placeholder="Your first name..." required />
-                            </div>
-
-                            <div>
-                                <label for="formLastName" class="block text-sm font-semibold text-black mb-2">Last Name</label>
-                                <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formLastName" placeholder="Your last name..." required />
-                            </div>
-
-                            <div>
-                                <label for="formEmail" class="block text-sm font-semibold text-black mb-2">Email Address</label>
-                                <input type="email" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formEmail" placeholder="Your email..." required />
-                            </div>
-
-                            <div>
-                                <label for="formPhone" class="block text-sm font-semibold text-black mb-2">Phone Number</label>
-                                <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formPhone" placeholder="Your phone number..." required />
-                            </div>
-
-                            <div class="sm:col-span-2">
-                                <div class="mb-4">
-                                    <label for="formMessages" class="block text-sm font-semibold text-black mb-2">Message</label>
-                                    <textarea class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formMessages" rows="4" placeholder="Your message..." required></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <button type="submit" class="py-3 px-8 rounded-md text-white text-base font-medium bg-gradient-to-r from-[#f47d61] to-[#415a77] hover:bg-gradient-to-r hover:from-[#415a77] hover:to-[#f47d61] transition-all duration-300 ease-in-out">
-                                Send Message <i class="mdi mdi-send ms-2"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Contact End -->
 
 @include('footer')
 @include('toast')
@@ -365,7 +303,7 @@
             }
         })
         .catch(() => alert("An error occurred during the upload."));
-}
+    }
 
 
 
