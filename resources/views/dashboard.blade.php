@@ -599,7 +599,7 @@
 
     // Check conditions before uploading
     if (fullWill !== 1 || poa !== 1 || executor !== 1) {
-        alert("You need a valid subscription plan to upload this document.");
+        showToast("You need a valid subscription plan to upload this document.", 'error');
         return;
     }
 
