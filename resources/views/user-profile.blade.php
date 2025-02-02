@@ -16,123 +16,121 @@
 
   <body>
     @include('user-header')
+    <main class="container mx-auto my-8 px-6 grid md:grid-cols-2 gap-6">
+        <main id="myAccountSection" class="flex-1 p-6 tab-content">
+            <section class="bg-white p-6 rounded-lg shadow">
+            <div class="flex items-center mb-6 justify-between">
+                <div class="relative">
+                <img id="profileImage" src="{{ optional(auth()->user())->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}" alt="Profile" class="w-24 h-24 rounded-full" />
+                <button id="editProfileImage" class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full border">Edit</button>
+                <input id="fileInput" type="file" class="hidden" />
+                </div>
+                <a class="text-2xl cursor-pointer" href="{{url('/dashboard')}}"><i class="fas fa-times"></i></a>
+            </div>
 
-    <main id="myAccountSection" class="flex-1 p-6 tab-content">
-      <section class="bg-white p-6 rounded-lg shadow">
-        <div class="flex items-center mb-6 justify-between">
-          <div class="relative">
-            <img id="profileImage" src="{{ optional(auth()->user())->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}" alt="Profile" class="w-24 h-24 rounded-full" />
-            <button id="editProfileImage" class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full border">Edit</button>
-            <input id="fileInput" type="file" class="hidden" />
-          </div>
-          <a class="text-2xl cursor-pointer" href="{{url('/dashboard')}}"><i class="fas fa-times"></i></a>
-        </div>
+            <form action="{{ route('user.update') }}" method="POST">
+                @csrf
+                <div id="profileFields" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-gray-600">First Name</label>
+                    <input type="text" name="firstname" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->firstname }}" />
+                </div>
+                <div>
+                    <label class="block text-gray-600">Last Name</label>
+                    <input type="text" name="lastname" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->lastname }}" />
+                </div>
+                <div>
+                    <label class="block text-gray-600">Email</label>
+                    <input readonly type="email" name="email" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->email }}" />
+                </div>
+                <div>
+                    <label class="block text-gray-600">Phone Number</label>
+                    <input type="text" name="phone" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->phone }}" />
+                </div>
+                <div>
+                    <label class="block text-gray-600">City</label>
+                    <input type="text" name="city" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->city }}" />
+                </div>
+                <div>
+                    <label class="block text-gray-600">State</label>
+                    <input type="text" name="state" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->state }}" />
+                </div>
+                <div>
+                    <label class="block text-gray-600">Check-in Frequency</label>
+                    <select name="frequency" class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black" required>
+                    <option value="" disabled selected>Check-in Frequency</option>
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-600">Message Time</label>
+                    <input type="time" name="message_time" class="w-full p-2 border border-gray-300 rounded-lg" required />
+                </div>
+                </div>
+                <div class="text-right mt-6">
+                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-all duration-300">Update</button>
+                </div>
+            </form>
+            </section>
+        </main>
 
-        <form action="{{ route('user.update') }}" method="POST">
-          @csrf
-          <div id="profileFields" class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div>
-              <label class="block text-gray-600">First Name</label>
-              <input type="text" name="firstname" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->firstname }}" />
-            </div>
-            <div>
-              <label class="block text-gray-600">Last Name</label>
-              <input type="text" name="lastname" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->lastname }}" />
-            </div>
-            <div>
-              <label class="block text-gray-600">Email</label>
-              <input readonly type="email" name="email" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->email }}" />
-            </div>
-            <div>
-              <label class="block text-gray-600">Phone Number</label>
-              <input type="text" name="phone" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->phone }}" />
-            </div>
-            <div>
-              <label class="block text-gray-600">City</label>
-              <input type="text" name="city" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->city }}" />
-            </div>
-            <div>
-              <label class="block text-gray-600">State</label>
-              <input type="text" name="state" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->state }}" />
-            </div>
-            <div>
-              <label class="block text-gray-600">Check-in Frequency</label>
-              <select name="frequency" class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black" required>
-                <option value="" disabled selected>Check-in Frequency</option>
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-gray-600">Message Time</label>
-              <input type="time" name="message_time" class="w-full p-2 border border-gray-300 rounded-lg" required />
-            </div>
-          </div>
-          <div class="text-right mt-6">
-            <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-all duration-300">Update</button>
-          </div>
-        </form>
-      </section>
+        <main id="packageDetailsSection" class="flex-1 p-6 tab-content">
+            <section class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="flex items-center mb-6 justify-between border-b pb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">
+                        <span id="packageTitle">
+                            @if(Auth::user()->subscriptions->isNotEmpty())
+                                Subscription Details
+                            @else
+                                Package Details
+                            @endif
+                        </span>
+                    </h2>
+                </div>
+
+                <div class="text-gray-700 space-y-6">
+                    @if(Auth::user()->subscriptions->isNotEmpty())
+                        <div class="p-4 bg-gray-100 rounded-lg">
+                            <p id="subscriptionInfo" class="text-lg font-semibold">
+                                Your current plan:
+                                <strong class="text-primary">
+                                    @if(Auth::user()->subscriptions->first()->type == 'monthly')
+                                        Monthly
+                                    @else
+                                        Yearly
+                                    @endif
+                                </strong>
+                            </p>
+                        </div>
+                        <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
+                            <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->fullWill == '1' ? 'a full will Subscription.' : 'no active full will.' }}</li>
+                            <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->poa == '1' ? 'a Power of Attorney Subscription.' : 'no active Power of Attorney Subscription.' }}</li>
+                            <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->executor == '1' ? 'an Executor Subscription.' : 'no active Executor Subscription.' }}</li>
+                        </ul>
+                        <div class="text-center mt-6">
+                            <a id="packageButton" class="bg-primary text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
+                                Update Subscription
+                            </a>
+                        </div>
+                    @else
+                        <p id="packageDescription" class="text-lg text-gray-800">Choose a package that suits your needs.</p>
+                        <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
+                            <li class="text-gray-800">You can create 1 full will.</li>
+                            <li class="text-gray-800">You can add up to 2 recipients.</li>
+                        </ul>
+                        <div class="text-center mt-6">
+                            <a id="packageButton" class="bg-primary text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
+                                Get Started
+                            </a>
+                        </div>
+                    @endif
+                </div>
+            </section>
+        </main>
     </main>
-
-    <main id="packageDetailsSection" class="flex-1 p-6 tab-content">
-        <section class="bg-white p-8 rounded-lg shadow-lg">
-            <div class="flex items-center mb-6 justify-between border-b pb-4">
-                <h2 class="text-3xl font-bold text-gray-800">
-                    <span id="packageTitle">
-                        @if(Auth::user()->subscriptions->isNotEmpty())
-                            Subscription Details
-                        @else
-                            Package Details
-                        @endif
-                    </span>
-                </h2>
-            </div>
-
-            <div class="text-gray-700 space-y-6">
-                @if(Auth::user()->subscriptions->isNotEmpty())
-                    <div class="p-4 bg-gray-100 rounded-lg">
-                        <p id="subscriptionInfo" class="text-lg font-semibold">
-                            Your current plan:
-                            <strong class="text-primary">
-                                @if(Auth::user()->subscriptions->first()->type == 'monthly')
-                                    Monthly
-                                @else
-                                    Yearly
-                                @endif
-                            </strong>
-                        </p>
-                    </div>
-                    <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
-                        <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->fullWill == '1' ? 'a full will Subscription.' : 'no active full will.' }}</li>
-                        <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->poa == '1' ? 'a Power of Attorney Subscription.' : 'no active Power of Attorney Subscription.' }}</li>
-                        <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->executor == '1' ? 'an Executor Subscription.' : 'no active Executor Subscription.' }}</li>
-                    </ul>
-                    <div class="text-center mt-6">
-                        <a id="packageButton" class="bg-primary text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
-                            Update Subscription
-                        </a>
-                    </div>
-                @else
-                    <p id="packageDescription" class="text-lg text-gray-800">Choose a package that suits your needs.</p>
-                    <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
-                        <li class="text-gray-800">You can create 1 full will.</li>
-                        <li class="text-gray-800">You can add up to 2 recipients.</li>
-                    </ul>
-                    <div class="text-center mt-6">
-                        <a id="packageButton" class="bg-primary text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
-                            Get Started
-                        </a>
-                    </div>
-                @endif
-            </div>
-        </section>
-    </main>
-
-
-    <div id="toastContainer" class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"></div>
-
+    @include('toast')
     @include('footer')
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -178,11 +176,6 @@
         });
       });
 
-      function showToast(message, type = "success") {
-        const toast = `<div class="p-3 text-white bg-${type === "success" ? "green" : "red"}-500 rounded-md">${message}</div>`;
-        $("#toastContainer").html(toast);
-        setTimeout(() => $("#toastContainer").html(""), 3000);
-      }
     </script>
   </body>
 </html>
