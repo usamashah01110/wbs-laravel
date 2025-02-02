@@ -706,15 +706,6 @@
         }
     }
 
-    // Dropdown toggle
-    const dropdownButton = document.getElementById("dropdownButton");
-    const dropdownMenu = document.getElementById("dropdownMenu");
-    dropdownButton.addEventListener("click", () => {
-        dropdownMenu.classList.toggle("hidden");
-    });
-
-
-
     document.getElementById('contactForm').addEventListener('submit', function (e) {
         e.preventDefault(); // Prevent the form from submitting normally
 
