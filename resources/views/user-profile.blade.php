@@ -3,258 +3,186 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WBS | Will Be Sent</title>
+    <title>WBS | User Profile</title>
     <meta name="description" content="willbesent" />
     <meta name="keywords" content="willbesent" />
     <meta name="author" content="willbesent" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <!-- favicon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="assets/images/WBS-Logo.png" rel="shortcut icon" />
-      <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- Main Css -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body>
-    <!-- Navbar Start -->
     @include('user-header')
 
-    <!-- User Account -->
     <main id="myAccountSection" class="flex-1 p-6 tab-content">
       <section class="bg-white p-6 rounded-lg shadow">
         <div class="flex items-center mb-6 justify-between">
           <div class="relative">
-          <img
-                  src="{{ optional(auth()->user())->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
-                  alt="Profile"
-                  class="w-24 h-24 rounded-full"
-            />
-
-            <button
-              id="editProfileImage"
-              class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full border"
-            >
-              Edit
-            </button>
+            <img id="profileImage" src="{{ optional(auth()->user())->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}" alt="Profile" class="w-24 h-24 rounded-full" />
+            <button id="editProfileImage" class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full border">Edit</button>
             <input id="fileInput" type="file" class="hidden" />
           </div>
-          <a class="text-2xl cursor-pointer" href="{{url('/dashboard')}}"
-            ><i class="fas fa-times"></i
-          ></a>
+          <a class="text-2xl cursor-pointer" href="{{url('/dashboard')}}"><i class="fas fa-times"></i></a>
         </div>
-          <form action="{{ route('user.update') }}" method="POST">
-              @csrf
-        <div id="profileFields" class="grid grid-cols-2 md:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-gray-600">First Name</label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstname"
-              class="w-full p-2 border border-gray-300 rounded-lg"
-              value="{{ Auth::user()->firstname }}"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-600">Last Name</label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastname"
-              class="w-full p-2 border border-gray-300 rounded-lg"
-              value="{{ Auth::user()->lastname }}"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-600">Email</label>
-            <input
-                readonly
-              type="email"
-              id="email"
-              name="phone"
-              class="w-full p-2 border border-gray-300 rounded-lg"
-              value="{{ Auth::user()->email }}"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-600">Phone Number</label>
-            <input
-              type="text"
-              id="phoneNumber"
-              name="phone"
-              class="w-full p-2 border border-gray-300 rounded-lg"
-              value="{{ Auth::user()->phone }}"
-            />
-          </div>
+
+        <form action="{{ route('user.update') }}" method="POST">
+          @csrf
+          <div id="profileFields" class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div>
-            <label class="block text-gray-600">City</label>
-            <input
-              type="text"
-              id="dob"
-              name="city"
-              class="w-full p-2 border border-gray-300 rounded-lg"
-              value="{{ Auth::user()->city }}"
-            />
+              <label class="block text-gray-600">First Name</label>
+              <input type="text" name="firstname" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->firstname }}" />
+            </div>
+            <div>
+              <label class="block text-gray-600">Last Name</label>
+              <input type="text" name="lastname" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->lastname }}" />
+            </div>
+            <div>
+              <label class="block text-gray-600">Email</label>
+              <input readonly type="email" name="email" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->email }}" />
+            </div>
+            <div>
+              <label class="block text-gray-600">Phone Number</label>
+              <input type="text" name="phone" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->phone }}" />
+            </div>
+            <div>
+              <label class="block text-gray-600">City</label>
+              <input type="text" name="city" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->city }}" />
+            </div>
+            <div>
+              <label class="block text-gray-600">State</label>
+              <input type="text" name="state" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->state }}" />
+            </div>
+            <div>
+              <label class="block text-gray-600">Check-in Frequency</label>
+              <select name="frequency" class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black" required>
+                <option value="" disabled selected>Check-in Frequency</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-gray-600">Message Time</label>
+              <input type="time" name="message_time" class="w-full p-2 border border-gray-300 rounded-lg" required />
+            </div>
           </div>
-          <div>
-            <label class="block text-gray-600">State</label>
-            <input
-              type="text"
-              id="country"
-              name="country"
-              class="w-full p-2 border border-gray-300 rounded-lg"
-              value="{{ Auth::user()->state }}"
-            />
+          <div class="text-right mt-6">
+            <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-all duration-300">Update</button>
           </div>
-        </div>
-        <div class="text-right mt-6">
-          <button
-              type="submit"
-            id="editProfileButton"
-            class="bg-[#415a77] text-white px-6 py-2 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out"
-          >
-            Update
-          </button>
-        </div>
-          </form>
+        </form>
       </section>
     </main>
 
-<!-- Packages Section -->
     <main id="packageDetailsSection" class="flex-1 p-6 tab-content">
-        <section class="bg-white p-6 rounded-lg shadow">
-            <!-- Header Section -->
-            <div class="flex items-center mb-6 justify-between">
-                <h2 class="text-2xl font-bold text-gray-800">
-        <span id="packageTitle">
-          @if(Auth::user()->subscriptions->isNotEmpty())
-                Subscription Details
-            @else
-                Package Details
-            @endif
-        </span>
+        <section class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="flex items-center mb-6 justify-between border-b pb-4">
+                <h2 class="text-3xl font-bold text-gray-800">
+                    <span id="packageTitle">
+                        @if(Auth::user()->subscriptions->isNotEmpty())
+                            Subscription Details
+                        @else
+                            Package Details
+                        @endif
+                    </span>
                 </h2>
             </div>
 
-            <!-- Dynamic Content -->
-            <div class="text-gray-700 space-y-4">
+            <div class="text-gray-700 space-y-6">
                 @if(Auth::user()->subscriptions->isNotEmpty())
-                    <!-- Show Subscription Details -->
-                    <p id="subscriptionInfo" class="text-lg">
-                        Your current plan:
-                        <strong>
-                            @if(Auth::user()->subscriptions->first()->type == 'monthly')
-                                Monthly
-                            @else
-                                Yearly
-                            @endif
-                        </strong>
-                    </p>
-
-                    <ul id="packageFeatures" class="list-disc pl-6">
-                        <li>You have {{ isset(Auth::user()->subscriptions->first()->fullWill) && Auth::user()->subscriptions->first()->fullWill == '1' ? 'full will Subscription.' : 'no active full will.' }}</li>
-
-                        <li>You have {{ isset(Auth::user()->subscriptions->first()->poa) && Auth::user()->subscriptions->first()->poa == '1' ? 'Power of Attorney Subscription.' : 'no active Power of Attorney Subscription.' }}</li>
-
-                        <li>You have {{ isset(Auth::user()->subscriptions->first()->executor) && Auth::user()->subscriptions->first()->executor == '1' ? 'Executor Subscription.' : 'no active Executor Subscription.' }}</li>
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <p id="subscriptionInfo" class="text-lg font-semibold">
+                            Your current plan:
+                            <strong class="text-primary">
+                                @if(Auth::user()->subscriptions->first()->type == 'monthly')
+                                    Monthly
+                                @else
+                                    Yearly
+                                @endif
+                            </strong>
+                        </p>
+                    </div>
+                    <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
+                        <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->fullWill == '1' ? 'a full will Subscription.' : 'no active full will.' }}</li>
+                        <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->poa == '1' ? 'a Power of Attorney Subscription.' : 'no active Power of Attorney Subscription.' }}</li>
+                        <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->executor == '1' ? 'an Executor Subscription.' : 'no active Executor Subscription.' }}</li>
                     </ul>
-                    <br>
-
-                    <!-- Update Button -->
-                    <a
-                        id="packageButton"
-                        class="mt-4 bg-[#415a77] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
-                        href="{{ route('checkout') }}"
-                    >
-                        Update
-                    </a>
+                    <div class="text-center mt-6">
+                        <a id="packageButton" class="bg-primary text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
+                            Update Subscription
+                        </a>
+                    </div>
                 @else
-                    <!-- Package Details and Get Started Button -->
-                    <p id="packageDescription" class="text-lg"></p>
-                    <ul id="packageFeatures" class="list-disc pl-6 hidden">
-                        <li>You can create 1 full will.</li>
-                        <li>You can add up to 2 recipients.</li>
+                    <p id="packageDescription" class="text-lg text-gray-800">Choose a package that suits your needs.</p>
+                    <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
+                        <li class="text-gray-800">You can create 1 full will.</li>
+                        <li class="text-gray-800">You can add up to 2 recipients.</li>
                     </ul>
-
-                    <br>
-
-                    <!-- Get Started Button -->
-                    <a
-                        id="packageButton"
-                        class="mt-4 bg-[#415a77] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
-                        href="{{ route('checkout') }}"
-                    >
-                        Get Started
-                    </a>
+                    <div class="text-center mt-6">
+                        <a id="packageButton" class="bg-primary text-white py-3 px-6 rounded-lg hover:bg-secondary transition-all duration-300" href="{{ route('checkout') }}">
+                            Get Started
+                        </a>
+                    </div>
                 @endif
             </div>
         </section>
     </main>
 
 
-    <!-- Footer Start -->
-@include('footer')
-    <!-- Footer End -->
-    <div
-    id="toastContainer"
-    class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"
-  ></div>
-  </body>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="./"></script>
-  <script>
+    <div id="toastContainer" class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"></div>
 
+    @include('footer')
 
-
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
       $(document).ready(function () {
-          // Show file input when 'Edit' button is clicked
-          $("#editProfileImage").on("click", function () {
-              $("#fileInput").click();
-          });
+        $("#editProfileImage").on("click", function () {
+          $("#fileInput").click();
+        });
 
-          // Handle file selection and upload
-          $("#fileInput").on("change", function () {
-              const file = this.files[0];
+        $("#fileInput").on("change", function () {
+          const file = this.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              $("#profileImage").attr("src", e.target.result);
+            };
+            reader.readAsDataURL(file);
 
-              if (file) {
-                  // Display selected image preview
-                  const reader = new FileReader();
-                  reader.onload = function (e) {
-                      $("#profileImage").attr("src", e.target.result);
-                  };
-                  reader.readAsDataURL(file);
+            const formData = new FormData();
+            formData.append("profile_image", file);
+            $("#profileImage").addClass("opacity-50");
 
-                  // Upload file using AJAX
-                  const formData = new FormData();
-                  formData.append("profile_image", file);
-
-                  $.ajax({
-                      url: "/update-profile-image", // Update this URL to your endpoint
-                      type: "POST",
-                      data: formData,
-                      contentType: false,
-                      processData: false,
-                      headers: {
-                          "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"), // Add CSRF token if using Laravel
-                      },
-                      success: function (response) {
-                          showToast("Profile image uploaded successfully!");
-                          // Optionally update the image preview with the server URL
-                          $("#profileImage").attr("src", response.imageUrl);
-                      },
-                      error: function (error) {
-                        showToast("Failed to update profile image.", "error");
-                      },
-                  });
-              }
-          });
+            $.ajax({
+              url: "/update-profile-image",
+              type: "POST",
+              data: formData,
+              contentType: false,
+              processData: false,
+              headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+              },
+              success: function (response) {
+                $("#profileImage").removeClass("opacity-50");
+                $("#profileImage").attr("src", response.imageUrl);
+                showToast("Profile image uploaded successfully!");
+                setTimeout(() => location.reload(), 1000);
+              },
+              error: function () {
+                showToast("Failed to update profile image.", "error");
+              },
+            });
+          }
+        });
       });
 
-  </script>
+      function showToast(message, type = "success") {
+        const toast = `<div class="p-3 text-white bg-${type === "success" ? "green" : "red"}-500 rounded-md">${message}</div>`;
+        $("#toastContainer").html(toast);
+        setTimeout(() => $("#toastContainer").html(""), 3000);
+      }
+    </script>
+  </body>
 </html>

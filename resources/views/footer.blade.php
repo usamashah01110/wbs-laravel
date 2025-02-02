@@ -1,4 +1,4 @@
-<footer class="bg-secondary">
+<footer class="bg-[#415a77]">
     <div class="container">
         <div class="flex w-11/12 mx-auto justify-between items-center py-4">
             <div class="flex flex-col">
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="bg-primary">
+    <div class="bg-[#f47d61]">
         <div class="container">
             <div class="flex justify-between items-center w-11/12 mx-auto py-4">
                 <p class="text-base text-white">
