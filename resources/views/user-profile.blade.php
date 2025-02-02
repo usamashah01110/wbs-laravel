@@ -200,6 +200,10 @@
     <!-- Footer Start -->
 @include('footer')
     <!-- Footer End -->
+    <div
+    id="toastContainer"
+    class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"
+  ></div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="./"></script>
