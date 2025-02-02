@@ -230,6 +230,65 @@
 
 <!-- Dasboard End -->
 
+<!-- Contact Start -->
+<section id="contact" class="py-10 bg-gray-100">
+    <div class="container">
+        <div class="grid lg:grid-cols-3 gap-6 items-center">
+            <!-- Contact Info -->
+            <div>
+                <div>
+                    <span class="text-sm text-primary uppercase font-semibold tracking-wider text-default-950 mb-6">Contact Us</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-semibold mt-4 text-gray-800">Your Questions, Our Support</h2>
+                <!-- Address, Email, Phone, etc. -->
+                <!-- This section remains unchanged -->
+            </div>
+
+            <!-- Form Section -->
+            <div class="lg:col-span-2 lg:ms-24">
+                <div class="p-8 md:p-12 rounded-lg shadow-xl bg-white border border-gray-200">
+                    <form id="contactForm">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="formFirstName" class="block text-sm font-semibold text-black mb-2">First Name</label>
+                                <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formFirstName" placeholder="Your first name..." required />
+                            </div>
+
+                            <div>
+                                <label for="formLastName" class="block text-sm font-semibold text-black mb-2">Last Name</label>
+                                <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formLastName" placeholder="Your last name..." required />
+                            </div>
+
+                            <div>
+                                <label for="formEmail" class="block text-sm font-semibold text-black mb-2">Email Address</label>
+                                <input type="email" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formEmail" placeholder="Your email..." required />
+                            </div>
+
+                            <div>
+                                <label for="formPhone" class="block text-sm font-semibold text-black mb-2">Phone Number</label>
+                                <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formPhone" placeholder="Your phone number..." required />
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <div class="mb-4">
+                                    <label for="formMessages" class="block text-sm font-semibold text-black mb-2">Message</label>
+                                    <textarea class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-gray-300 focus:ring-primary" id="formMessages" rows="4" placeholder="Your message..." required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit" class="py-3 px-8 rounded-md text-white text-base font-medium bg-gradient-to-r from-[#f47d61] to-[#415a77] hover:bg-gradient-to-r hover:from-[#415a77] hover:to-[#f47d61] transition-all duration-300 ease-in-out">
+                                Send Message <i class="mdi mdi-send ms-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact End -->
+
 @include('footer')
 @include('toast')
 
@@ -237,14 +296,14 @@
     fetchDocuments();
     fetchAttorny();
 
-    function uploadDocumentAjax(input) {
-        const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
 
-        if (fullWill !== 1) {
-            showToast("You don't have a subscription plan.", "error");
-            return;
-        }
+     function uploadDocumentAjax(input) {
+          const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
 
+    if (fullWill !== 1) {
+        showToast("You don't have a subscription plan.", 'error');
+        return;
+    }
         const file = input.files[0];
         if (!file) return;
 
@@ -256,115 +315,106 @@
             method: "POST",
             body: formData,
             headers: {
-                "X-CSRF-TOKEN": document
-                    .querySelector('meta[name="csrf-token"]')
-                    .getAttribute("content"),
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
             },
         })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
+            .then(response => response.json())
+            .then(response => {
+                if (response.success) {
                     displayUploadedDocument(data.fileName, data.fileUrl);
                 } else {
                     fetchDocuments();
                 }
             })
-            .catch(() => {
-                showToast("An error occurred during the upload.");
-            });
+            .catch(() => alert("An error occurred during the upload."));
     }
 
-    function uploadDocumentAjax(input) {
+
+
+   function uploadDocumentAjax(input) {
+    const file = input.files[0];
+    if (!file) return;
+
+    const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
+
+    if (fullWill !== 1) {
+        showToast("You don't have a subscription plan.", 'error');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("document", file);
+    formData.append("document_type", 'will');
+
+    // Send AJAX request
+    fetch("/documents", {
+        method: "POST",
+        body: formData,
+        headers: {
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.success) {
+                displayUploadedDocument(data.fileName, data.fileUrl);
+            } else {
+                // alert(data.message || "Document upload failed.");
+                fetchDocuments();
+            }
+        })
+        .catch(() => alert("An error occurred during the upload."));
+}
+
+
+
+  function uploadAttornyAjax(input) {
         const file = input.files[0];
         if (!file) return;
 
-        const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
+            const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
+    const poa = {{ Auth::user()->subscriptions[0]['poa'] ?? 0 }};
+    const executor = {{ Auth::user()->subscriptions[0]['executor'] ?? 0 }};
 
-        if (fullWill !== 1) {
-            showToast("You don't have a subscription plan.", "error");
-            return;
-        }
+    // Check conditions before uploading
+    if (fullWill !== 1 || poa !== 1 || executor !== 1) {
+        showToast("You need a valid subscription plan to upload this document.", 'error');
+        return;
+    }
 
         const formData = new FormData();
         formData.append("document", file);
-        formData.append("document_type", "will");
+        formData.append("document_type", 'attorny');
 
         // Send AJAX request
         fetch("/documents", {
             method: "POST",
             body: formData,
             headers: {
-                "X-CSRF-TOKEN": document
-                    .querySelector('meta[name="csrf-token"]')
-                    .getAttribute("content"),
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
             },
         })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
+            .then(response => response.json())
+            .then(data => {
                 if (data.success) {
                     displayUploadedDocument(data.fileName, data.fileUrl);
                 } else {
-                    fetchDocuments();
-                }
+                    // alert(data.message || "Document upload failed.");
+                    fetchAttorny();                  }
             })
-            .catch(() => {
-                showToast("An error occurred during the upload.");
-            });
+            .catch(() => alert("An error occurred during the upload."));
     }
 
-    function uploadAttornyAjax(input) {
-        const file = input.files[0];
-        if (!file) return;
-
-        const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
-        const poa = {{ Auth::user()->subscriptions[0]['poa'] ?? 0 }};
-        const executor = {{ Auth::user()->subscriptions[0]['executor'] ?? 0 }};
-
-        // Check conditions before uploading
-        if (fullWill !== 1 || poa !== 1 || executor !== 1) {
-            showToast(
-                "You need a valid subscription plan to upload this document.",
-                "error"
-            );
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("document", file);
-        formData.append("document_type", "attorny");
-
-        // Send AJAX request
-        fetch("/documents", {
-            method: "POST",
-            body: formData,
-            headers: {
-                "X-CSRF-TOKEN": document
-                    .querySelector('meta[name="csrf-token"]')
-                    .getAttribute("content"),
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    displayUploadedDocument(data.fileName, data.fileUrl);
-                } else {
-                    fetchAttorny();
-                }
-            })
-            .catch(() => {
-                showToast("An error occurred during the upload.");
-            });
-    }
 
     async function fetchDocuments() {
-        const response = await fetch("/all/documents");
+        const response = await fetch('/all/documents');
         const documents = await response.json();
 
         const container = document.getElementById("willDocuments");
         container.innerHTML = "";
 
-        documents.forEach((doc) => {
+        documents.forEach(doc => {
             const div = document.createElement("div");
             div.className = "flex items-center justify-between bg-gray-100 p-2 rounded";
             div.innerHTML = `
@@ -381,13 +431,13 @@
     }
 
     async function fetchAttorny() {
-        const response = await fetch("/all/attorny/documents");
+        const response = await fetch('/all/attorny/documents');
         const documents = await response.json();
 
         const container = document.getElementById("poaDocuments");
         container.innerHTML = "";
 
-        documents.forEach((doc) => {
+        documents.forEach(doc => {
             const div = document.createElement("div");
             div.className = "flex items-center justify-between bg-gray-100 p-2 rounded";
             div.innerHTML = `
@@ -409,36 +459,34 @@
 
     async function deleteDocument(id) {
         await fetch(`/documents/${id}`, {
-            method: "DELETE",
+            method: 'DELETE',
             headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}",
-            },
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
         });
-
         fetchDocuments();
         fetchAttorny();
     }
 
-    // Initialize recipient fetch
     let currentListId = "";
     let editingIndex = null;
     fetchRecipients();
     fetchAttornyRecipients();
 
-    function openattPopup(listId, index = null, id = null) {
+    function openattPopup(listId, index = null, id =  null) {
         currentListId = listId;
         editingIndex = id;
-
+        updateId = id;
         const popupModal = document.getElementById("popattoronyModal");
         const form = document.getElementById("popupAttornyForm");
 
         if (index !== null) {
             const list = document.getElementById(listId);
             const item = list.children[index];
-
             const name = item.querySelector(".recipient-name").innerText;
             const mobile = item.querySelector(".recipient-mobile").innerText;
             const email = item.querySelector(".recipient-email").innerText;
+            const id = item.querySelector(".recipient-email").innerText;
 
             form.recipientName.value = name;
             form.recipientMobile.value = mobile;
@@ -446,305 +494,338 @@
         } else {
             form.reset();
         }
-
         popupModal.classList.remove("hidden");
     }
 
     function closePopup() {
         document.getElementById("popattoronyModal").classList.add("hidden");
-        currentListId = ""; // Reset listId
-        editingIndex = null; // Reset editing index
+        currentListId = "";  // Reset listId
+        editingIndex = null;  // Reset editing index
     }
 
-    document.getElementById("popupAttornyForm").addEventListener("submit", function (e) {
-        e.preventDefault();
+    document
+        .getElementById("popupAttornyForm")
+        .addEventListener("submit", function (e) {
+            e.preventDefault();
 
-        const name = this.recipientName.value;
-        const mobile = this.recipientMobile.value;
-        const email = this.recipientEmail.value;
+            const name = this.recipientName.value;
+            const mobile = this.recipientMobile.value;
+            const email = this.recipientEmail.value;
 
-        const recipientData = {
-            name: name,
-            mobile: mobile,
-            email: email,
-            type: "attorny",
-        };
+            const list = document.getElementById(currentListId);
+            const recipientData = {
+                name: name,
+                mobile: mobile,
+                email: email,
+                type: 'attorny'
+            };
 
-        // Check if we're editing an existing item
-        const url =
-            editingIndex !== null ? `/recipients/update/${editingIndex}` : "/recipients/store";
-        const method = editingIndex !== null ? "PUT" : "POST";
+            // Check if we're editing an existing item
+            const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
+            const method = editingIndex !== null ? 'PUT' : 'POST';
 
-        fetch(url, {
-            method: method,
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"), // Ensure CSRF protection
-            },
-            body: JSON.stringify(recipientData),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success === true) {
-                    closePopup();
-                    window.location.reload();
-                }
+            fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF protection
+                },
+                body: JSON.stringify(recipientData)
             })
-            .catch((error) => {
-                console.error("Error:", error);
-                showToast("An error occurred while saving recipient data!");
-            });
-    });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success === true) {
+                        closePopup();
+                        window.location.reload();
+                    } else {
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while saving recipient data!');
+                });
+        });
 
-    async function fetchAttornyRecipients() {
-        const list = document.getElementById("poaRecipients");
-
+    function fetchAttornyRecipients() {
+        const list = document.getElementById('poaRecipients');
+        console.log('List element with id ' + currentListId + ' not found.');
         if (!list) {
-            console.error("List element with id " + currentListId + " not found.");
+            console.error('List element with id ' + currentListId + ' not found.');
             return;
         }
 
-        try {
-            const response = await fetch("/recipients/att/list", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                },
+        fetch('/recipients/att/list', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF protection
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.recipients.length > 0) {
+                    data.recipients.forEach((recipient, index) => {
+                        const li = document.createElement("li");
+                        li.className = "flex items-center justify-between space-x-2 bg-gray-100 p-2 rounded";
+                        li.innerHTML = `
+                    <div>
+                        <p class="recipient-name font-semibold">${recipient.name}</p>
+                        <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
+                        <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
+                    </div>
+                    <div class="space-x-2">
+                        <button class="text-blue-500" onclick="openattPopup('willRecipients', ${list.children.length}, ${recipient.id})"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500" onclick="deleteattRecipient('willRecipients', ${recipient.id})"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                `;
+                        list.appendChild(li);
+                    });
+                } else {
+                    console.log('No recipients found.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching recipients:', error);
+
             });
+    }
 
-            const data = await response.json();
-            list.innerHTML = ""; // Clear existing list
+    function deleteattRecipient(listId, index) {
+        const list = document.getElementById(listId);
+        const item = list.children[index];
 
-            if (data.success && data.recipients.length > 0) {
-                data.recipients.forEach((recipient, index) => {
-                    const li = document.createElement("li");
-                    li.className = "flex items-center justify-between space-x-2 bg-gray-100 p-2 rounded";
-                    li.innerHTML = `
-                        <div>
-                            <p class="recipient-name font-semibold">${recipient.name}</p>
-                            <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
-                            <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
-                        </div>
-                        <div class="space-x-2">
-                            <button class="text-blue-500" onclick="openattPopup('poaRecipients', ${index}, ${recipient.id})">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="text-red-500" onclick="deleteattRecipient('poaRecipients', ${recipient.id})">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    `;
-                    list.appendChild(li);
+        if (confirm('Are you sure you want to delete this recipient?')) {
+            fetch(`/recipients/delete/${index}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+            .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    } else {
+                        alert('Failed to delete recipient.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while deleting the recipient!');
                 });
-            } else {
-                console.log("No recipients found.");
-            }
-        } catch (error) {
-            console.error("Error fetching recipients:", error);
         }
     }
 
-    async function deleteattRecipient(listId, recipientId) {
-        if (!confirm("Are you sure you want to delete this recipient?")) return;
 
-        try {
-            const response = await fetch(`/recipients/delete/${recipientId}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                },
-            });
 
-            const data = await response.json();
 
-            if (data.success) {
-                window.location.reload();
-            } else {
-                showToast("Failed to delete recipient.");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            showToast("An error occurred while deleting the recipient!");
-        }
-    }
 
-    function openPopup(listId, index = null, id = null) {
+
+    function openPopup(listId, index = null, id =  null) {
         currentListId = listId;
         editingIndex = id;
+        updateId = id;
         const popupModal = document.getElementById("popupModal");
         const form = document.getElementById("popupForm");
 
         if (index !== null) {
             const list = document.getElementById(listId);
             const item = list.children[index];
+            const name = item.querySelector(".recipient-name").innerText;
+            const mobile = item.querySelector(".recipient-mobile").innerText;
+            const email = item.querySelector(".recipient-email").innerText;
+            const id = item.querySelector(".recipient-email").innerText;
 
-            form.recipientName.value = item.querySelector(".recipient-name").innerText;
-            form.recipientMobile.value = item.querySelector(".recipient-mobile").innerText;
-            form.recipientEmail.value = item.querySelector(".recipient-email").innerText;
+            form.recipientName.value = name;
+            form.recipientMobile.value = mobile;
+            form.recipientEmail.value = email;
         } else {
             form.reset();
         }
-
         popupModal.classList.remove("hidden");
     }
 
     function closePopup() {
         document.getElementById("popupModal").classList.add("hidden");
-        currentListId = "";
-        editingIndex = null;
+        currentListId = "";  // Reset listId
+        editingIndex = null;  // Reset editing index
     }
 
-    document.getElementById("popupForm").addEventListener("submit", async function (e) {
-        e.preventDefault();
+    document
+        .getElementById("popupForm")
+        .addEventListener("submit", function (e) {
+            e.preventDefault();
 
-        const name = this.recipientName.value;
-        const mobile = this.recipientMobile.value;
-        const email = this.recipientEmail.value;
+            const name = this.recipientName.value;
+            const mobile = this.recipientMobile.value;
+            const email = this.recipientEmail.value;
 
-        const recipientData = {
-            name,
-            mobile,
-            email,
-            type: "will",
-        };
+            const list = document.getElementById(currentListId);
+            const recipientData = {
+                name: name,
+                mobile: mobile,
+                email: email,
+                type: 'will'
+            };
 
-        const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : "/recipients/store";
-        const method = editingIndex !== null ? "PUT" : "POST";
+            // Check if we're editing an existing item
+            const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
+            const method = editingIndex !== null ? 'PUT' : 'POST';
 
-        try {
-            const response = await fetch(url, {
-                method,
+            fetch(url, {
+                method: method,
                 headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF protection
                 },
-                body: JSON.stringify(recipientData),
-            });
+                body: JSON.stringify(recipientData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success === true) {
+                        closePopup();
+                        window.location.reload();
+                    } else {
+                        alert('Failed to save recipient data!');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while saving recipient data!');
+                });
+        });
 
-            const data = await response.json();
-
-            if (data.success) {
-                closePopup();
-                window.location.reload();
-            } else {
-                showToast("Failed to save recipient data!");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            showToast("An error occurred while saving recipient data!");
-        }
-    });
-
-    async function fetchRecipients() {
-        const list = document.getElementById("willRecipients");
-
+    function fetchRecipients() {
+        const list = document.getElementById('willRecipients');
+        console.log('List element with id ' + currentListId + ' not found.');
+        // Check if the list exists before proceeding
         if (!list) {
-            console.error("List element with id " + currentListId + " not found.");
+            console.error('List element with id ' + currentListId + ' not found.');
             return;
         }
 
-        try {
-            const response = await fetch("/recipients/list", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                },
+        fetch('/recipients/list', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF protection
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.recipients.length > 0) {
+                    data.recipients.forEach((recipient, index) => {
+                        const li = document.createElement("li");
+                        li.className = "flex items-center justify-between space-x-2 bg-gray-100 p-2 rounded";
+                        li.innerHTML = `
+                    <div>
+                        <p class="recipient-name font-semibold">${recipient.name}</p>
+                        <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
+                        <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
+                    </div>
+                    <div class="space-x-2">
+                        <button class="text-blue-500" onclick="openPopup('willRecipients', ${list.children.length}, ${recipient.id})"><i class="fas fa-edit"></i></button>
+                        <button class="text-red-500" onclick="deleteRecipient('willRecipients', ${recipient.id})"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                `;
+                        list.appendChild(li);
+                    });
+                } else {
+                    console.log('No recipients found.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching recipients:', error);
+
             });
+    }
 
-            const data = await response.json();
-            list.innerHTML = ""; // Clear existing list
+    function deleteRecipient(listId, index) {
+        const list = document.getElementById(listId);
+        const item = list.children[index];
 
-            if (data.success && data.recipients.length > 0) {
-                data.recipients.forEach((recipient, index) => {
-                    const li = document.createElement("li");
-                    li.className = "flex items-center justify-between space-x-2 bg-gray-100 p-2 rounded";
-                    li.innerHTML = `
-                        <div>
-                            <p class="recipient-name font-semibold">${recipient.name}</p>
-                            <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
-                            <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
-                        </div>
-                        <div class="space-x-2">
-                            <button class="text-blue-500" onclick="openPopup('willRecipients', ${index}, ${recipient.id})">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="text-red-500" onclick="deleteRecipient('willRecipients', ${recipient.id})">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    `;
-                    list.appendChild(li);
+        if (confirm('Are you sure you want to delete this recipient?')) {
+            fetch(`/recipients/delete/${index}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    } else {
+                        alert('Failed to delete recipient.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while deleting the recipient!');
                 });
-            } else {
-                console.log("No recipients found.");
-            }
-        } catch (error) {
-            console.error("Error fetching recipients:", error);
         }
     }
 
-    async function deleteRecipient(listId, recipientId) {
-        if (!confirm("Are you sure you want to delete this recipient?")) return;
+    // Dropdown toggle
+    const dropdownButton = document.getElementById("dropdownButton");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    dropdownButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+    });
 
-        try {
-            const response = await fetch(`/recipients/delete/${recipientId}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                },
-            });
 
-            const data = await response.json();
 
-            if (data.success) {
-                window.location.reload();
-            } else {
-                showToast("Failed to delete recipient.");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            showToast("An error occurred while deleting the recipient!");
-        }
-    }
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent the form from submitting normally
 
-    document.getElementById("contactForm").addEventListener("submit", async function (e) {
-        e.preventDefault(); // Prevent normal form submission
+        const firstName = document.getElementById('formFirstName').value;
+        const lastName = document.getElementById('formLastName').value;
+        const email = document.getElementById('formEmail').value;
+        const phone = document.getElementById('formPhone').value;
+        const message = document.getElementById('formMessages').value;
 
         const formData = {
-            firstName: document.getElementById("formFirstName").value,
-            lastName: document.getElementById("formLastName").value,
-            email: document.getElementById("formEmail").value,
-            phone: document.getElementById("formPhone").value,
-            message: document.getElementById("formMessages").value,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            message: message
         };
 
-        try {
-            const response = await fetch("/send-email", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-                },
-                body: JSON.stringify(formData),
+        fetch('/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // For CSRF protection
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Your message has been sent successfully!');
+                    document.getElementById('contactForm').reset();
+                } else {
+                    alert('There was an issue sending your message. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to send the message. Please try again later.');
             });
-
-            const data = await response.json();
-
-            if (data.success) {
-                showToast("Your message has been sent successfully!");
-                document.getElementById("contactForm").reset();
-            } else {
-                showToast("There was an issue sending your message. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            showToast("Failed to send the message. Please try again later.");
-        }
     });
+
+    function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `p-3 rounded shadow-md text-white ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
+            toast.innerText = message;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
 
 </script>
 </body>
