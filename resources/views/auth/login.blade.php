@@ -60,8 +60,8 @@
           </form>
           <p class="text-xs text-center text-gray-500 mt-4">
             By logging in, you agree to the
-            <a href="{{ route('terms') }}" class="text-black underline">Terms & Conditions</a> and the
-            <a href="#" class="text-black underline">Privacy Policy</a>.
+            <a href="{{ route('terms') }}" class="text-black underline hover:text-[#f47d61]">Terms & Conditions</a> and the
+            <a href="{{ route('terms') }}" class="text-black underline hover:text-[#f47d61]">Privacy Policy</a>.
           </p>
         </div>
 
