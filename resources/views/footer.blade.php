@@ -1,8 +1,8 @@
-<footer>
-    <div class="container bg-[#415a77]">
+<footer class="bg-[#415a77]">
+    <div class="container">
         <div class="flex w-11/12 mx-auto justify-between items-center py-4">
             <div class="flex flex-col">
-                <img src="{{ asset('images/WBS-Logo.png') }}" alt="" class="h-10 w-14" />
+                <img src="{{ asset('images/WBS-Logo.png') }}" alt="" class="h-12 w-14" />
                 <p class="text-gray-300 max-w-xs mt-6">
                     Will Be Sent is a proud subsidiary of
                     <a href="https://arvoequities.com" target="_blank">Arvo Equities.</a>
