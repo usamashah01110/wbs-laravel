@@ -24,7 +24,6 @@
 <!-- Navbar Start -->
 
 @include('user-header')
-
 <!-- Dasboard Start -->
 <section class="bg-[#E2E8F0] p-6">
     <!-- Welcome Section -->
@@ -516,7 +515,13 @@
     fetchAttorny();
 
 
-    function uploadDocumentAjax(input) {
+     function uploadDocumentAjax(input) {
+          const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
+
+    if (fullWill !== 1) {
+        alert("You don't have a subscription plan.");
+        return; // Exit if condition is not met
+    }
         const file = input.files[0];
         if (!file) return;
 
@@ -532,50 +537,69 @@
             },
         })
             .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+            .then(response => {
+                if (response.success) {
                     displayUploadedDocument(data.fileName, data.fileUrl);
                 } else {
-                    showToast("Document upload failed.", "error");
-                    // alert(data.message || "Document upload failed.");
                     fetchDocuments();
                 }
             })
             .catch(() => alert("An error occurred during the upload."));
     }
 
-    function uploadDocumentAjax(input) {
-        const file = input.files[0];
-        if (!file) return;
 
-        const formData = new FormData();
-        formData.append("document", file);
-        formData.append("document_type", 'will');
 
-        // Send AJAX request
-        fetch("/documents", {
-            method: "POST",
-            body: formData,
-            headers: {
+   function uploadDocumentAjax(input) {
+    const file = input.files[0];
+    if (!file) return;
+    
+    const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
+
+    if (fullWill !== 1) {
+        alert("You don't have a subscription plan.");
+        return; // Exit if condition is not met
+    }
+
+    const formData = new FormData();
+    formData.append("document", file);
+    formData.append("document_type", 'will');
+
+    // Send AJAX request
+    fetch("/documents", {
+        method: "POST",
+        body: formData,
+        headers: {
                 "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-            },
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.success) {
+                displayUploadedDocument(data.fileName, data.fileUrl);
+            } else {
+                // alert(data.message || "Document upload failed.");
+                fetchDocuments();
+            }
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    displayUploadedDocument(data.fileName, data.fileUrl);
-                } else {
-                    // alert(data.message || "Document upload failed.");
-                    fetchDocuments();
-                }
-            })
-            .catch(() => alert("An error occurred during the upload."));
-    }
+        .catch(() => alert("An error occurred during the upload."));
+}
 
 
-    function uploadAttornyAjax(input) {
+
+  function uploadAttornyAjax(input) {
         const file = input.files[0];
         if (!file) return;
+        
+            const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
+    const poa = {{ Auth::user()->subscriptions[0]['poa'] ?? 0 }};
+    const executor = {{ Auth::user()->subscriptions[0]['executor'] ?? 0 }};
+
+    // Check conditions before uploading
+    if (fullWill !== 1 || poa !== 1 || executor !== 1) {
+        alert("You need a valid subscription plan to upload this document.");
+        return;
+    }
 
         const formData = new FormData();
         formData.append("document", file);
@@ -599,6 +623,7 @@
             })
             .catch(() => alert("An error occurred during the upload."));
     }
+
 
     async function fetchDocuments() {
         const response = await fetch('/all/documents');
