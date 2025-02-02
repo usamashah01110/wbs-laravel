@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WBS | Will Be Sent</title>
+    <title>WBS | Dashboard</title>
     <meta name="description" content="willbesent" />
     <meta name="keywords" content="willbesent" />
     <meta name="author" content="willbesent" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <!-- favicon -->
-    {{--      <link rel="icon" href="{{ asset('images/WBS-Logo.png') }}" type="image/png">--}}
+         <link rel="icon" href="{{ asset('images/WBS-Logo.png') }}" type="image/png">
     <!-- Main Css -->
     <link href="{{ asset('css/style.css')}}" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,15 +21,13 @@
 
 <body>
 <!-- Navbar Start -->
-
 @include('user-header')
 <!-- Dasboard Start -->
 <section class="bg-[#E2E8F0] p-6">
     <!-- Welcome Section -->
-    <div class="text-center bg-[#3A5F8F] text-white py-4 rounded mb-6">
+    <div class="text-center bg-[#3A5F8F] text-white py-2 rounded mb-6">
         <h1 class="text-xl font-semibold">Welcome back, {{ Auth::user()->firstname }} {{ Auth::user()->lastname  }}</h1>
     </div>
-
     <!-- Main Grid Section -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- First Row -->
@@ -234,7 +231,7 @@
 <!-- Dasboard End -->
 
 <!-- Contact Start -->
-<section id="contact" class="py-20 bg-gray-100">
+<section id="contact" class="py-10 bg-gray-100">
     <div class="container">
         <div class="grid lg:grid-cols-3 gap-6 items-center">
             <!-- Contact Info -->
@@ -506,7 +503,12 @@
     </div>
 </footer>
 <!-- Footer End -->
-
+      <!-- Toast Notifications -->
+      <div
+        id="toastContainer"
+        class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"
+      ></div>
+    </div>
 <!-- Js -->
 <script>
 
@@ -519,7 +521,7 @@
           const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
 
     if (fullWill !== 1) {
-        alert("You don't have a subscription plan.");
+        showToast("You don't have a subscription plan.", 'error');
         return; // Exit if condition is not met
     }
         const file = input.files[0];
@@ -552,7 +554,7 @@
    function uploadDocumentAjax(input) {
     const file = input.files[0];
     if (!file) return;
-    
+
     const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
 
     if (fullWill !== 1) {
@@ -590,7 +592,7 @@
   function uploadAttornyAjax(input) {
         const file = input.files[0];
         if (!file) return;
-        
+
             const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
     const poa = {{ Auth::user()->subscriptions[0]['poa'] ?? 0 }};
     const executor = {{ Auth::user()->subscriptions[0]['executor'] ?? 0 }};
@@ -1034,6 +1036,16 @@
                 alert('Failed to send the message. Please try again later.');
             });
     });
+
+    function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `p-3 rounded shadow-md text-white ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
+            toast.innerText = message;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
 
 </script>
 </body>
