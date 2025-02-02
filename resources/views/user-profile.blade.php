@@ -17,6 +17,9 @@
   <body>
     @include('user-header')
     <main class="container mx-auto my-8 px-6 grid md:grid-cols-2 gap-6">
+        <div>
+            <a class="text-2xl cursor-pointer" href="{{url('/dashboard')}}"><i class="fas fa-arrow-left"></i></a>
+        </div>
         <main id="myAccountSection" class="flex-1 tab-content">
             <section class="bg-white p-6 rounded-lg shadow-lg">
             <div class="flex items-center mb-6 justify-between">
@@ -25,7 +28,6 @@
                 <button id="editProfileImage" class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full border">Edit</button>
                 <input id="fileInput" type="file" class="hidden" />
                 </div>
-                <a class="text-2xl cursor-pointer" href="{{url('/dashboard')}}"><i class="fas fa-times"></i></a>
             </div>
 
             <form action="{{ route('user.update') }}" method="POST">
