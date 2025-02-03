@@ -16,6 +16,13 @@ class RecipientController extends Controller
             'email' => 'required|email',
         ]);
 
+        if ($user->recipients()->count() >= 2) {
+            return response()->json([
+                'error' => false,
+                'message' => 'You can only upload more then two recipients .',
+            ], 400);
+        }
+
         $recipient = Recipient::create([
             'user_id' => Auth::id(),
             'name' => $request->name,

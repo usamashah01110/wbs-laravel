@@ -114,12 +114,23 @@
             <h3 class="text-lg font-semibold mb-4">Add Recipient</h3>
             <form id="popupForm" class="space-y-4">
                 <div>
-                    <label for="recipientName" class="block text-sm font-medium"
-                    >Name</label
+                    <label for="recipientFirstName" class="block text-sm font-medium"
+                    >First Name</label
                     >
                     <input
                         type="text"
-                        id="recipientName"
+                        id="recipientFirstName"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="recipientLastName" class="block text-sm font-medium"
+                    >Mobile Number</label
+                    >
+                    <input
+                        type="text"
+                        id="recipientLastName"
                         class="w-full border border-gray-300 rounded p-2"
                         required
                     />
@@ -142,6 +153,39 @@
                     <input
                         type="email"
                         id="recipientEmail"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="recipientState" class="block text-sm font-medium"
+                    >Email</label
+                    >
+                    <input
+                        type="text"
+                        id="recipientState"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="recipientZip" class="block text-sm font-medium"
+                    >Zip</label
+                    >
+                    <input
+                        type="text"
+                        id="recipientZip"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="recipientCity" class="block text-sm font-medium"
+                    >City</label
+                    >
+                    <input
+                        type="text"
+                        id="recipientCity"
                         class="w-full border border-gray-300 rounded p-2"
                         required
                     />
@@ -174,12 +218,23 @@
             <h3 class="text-lg font-semibold mb-4">Add Recipient</h3>
             <form id="popupAttornyForm" class="space-y-4">
                 <div>
-                    <label for="recipientName" class="block text-sm font-medium"
-                    >Name</label
+                    <label for="recipientFirstName" class="block text-sm font-medium"
+                    >First Name</label
                     >
                     <input
                         type="text"
-                        id="recipientName"
+                        id="recipientFirstName"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="recipientLastName" class="block text-sm font-medium"
+                    >Last Name</label
+                    >
+                    <input
+                        type="text"
+                        id="recipientLastName"
                         class="w-full border border-gray-300 rounded p-2"
                         required
                     />
@@ -202,6 +257,40 @@
                     <input
                         type="email"
                         id="recipientEmail"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="recipientState" class="block text-sm font-medium"
+                    >State</label
+                    >
+                    <input
+                        type="email"
+                        id="recipientState"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="recipientZip" class="block text-sm font-medium"
+                    >Zip</label
+                    >
+                    <input
+                        type="text"
+                        id="recipientZip"
+                        class="w-full border border-gray-300 rounded p-2"
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label for="recipientCity" class="block text-sm font-medium"
+                    >City</label
+                    >
+                    <input
+                        type="text"
+                        id="recipientCity"
                         class="w-full border border-gray-300 rounded p-2"
                         required
                     />
@@ -298,7 +387,7 @@
             if (data.success) {
                 displayUploadedDocument(data.fileName, data.fileUrl);
             } else {
-                // showToast(data.message || "Document upload failed.");
+                 showToast(data.message || "Document upload failed.");
                 fetchDocuments();
             }
         })

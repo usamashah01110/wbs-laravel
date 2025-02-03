@@ -94,18 +94,29 @@
       </div>
 
       <!-- Login/Signup -->
-      <div class="hidden lg:flex space-x-4">
-        <a
-          href="{{ route('login') }}"
-          class="px-4 py-2 bg-[#415a77] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300"
-          >Login</a
-        >
-        <a
-          href="{{ route('register') }}"
-          class="px-4 py-2 bg-[#f47d61] text-white font-medium rounded-lg hover:bg-[#415a77] transition-all duration-300"
-          >Signup</a
-        >
-      </div>
+        <div class="hidden lg:flex space-x-4">
+            @if(Auth::check())
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button
+                        type="submit"
+                        class="px-4 py-2 bg-[#415a77] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300">
+                        Logout
+                    </button>
+                </form>
+            @else
+                <a
+                    href="{{ route('login') }}"
+                    class="px-4 py-2 bg-[#415a77] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300">
+                    Login
+                </a>
+                <a
+                    href="{{ route('register') }}"
+                    class="px-4 py-2 bg-[#f47d61] text-white font-medium rounded-lg hover:bg-[#415a77] transition-all duration-300">
+                    Signup
+                </a>
+            @endif
+        </div>
     </div>
 
     <!-- Mobile Menu -->

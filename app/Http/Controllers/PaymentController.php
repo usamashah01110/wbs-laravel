@@ -146,7 +146,7 @@ class PaymentController extends Controller
                     'stripe_status' => $stripeSubscription->status,
                     'stripe_price' => $stripePriceId,
                     'quantity' => 1,
-                    'total_amount' => $request['totalAmount'] * 100,
+                    'total_amount' => $request['totalAmount'],
                     'poa' => $poa,
                     'fullWill' => $fullWill,
                     'executor' => $executor,

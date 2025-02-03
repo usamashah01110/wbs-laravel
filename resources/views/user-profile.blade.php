@@ -55,15 +55,19 @@
                     <label class="block text-gray-600">State</label>
                     <input type="text" name="state" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ Auth::user()->state }}" />
                 </div>
-                <div>
-                    <label class="block text-gray-600">Check-in Frequency</label>
-                    <select name="frequency" class="px-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black" required>
-                    <option value="" disabled selected>Check-in Frequency</option>
-                    <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                    </select>
-                </div>
+                    <div>
+                        <label class="block text-gray-600">Check-in Frequency</label>
+                        <select
+                            name="frequency"
+                            class="px-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black"
+                            required
+                        >
+                            <option value="" disabled {{ Auth::user()->frequency ? '' : 'selected' }}>Check-in Frequency</option>
+                            <option value="daily" {{ Auth::user()->frequency === 'daily' ? 'selected' : '' }}>Daily</option>
+                            <option value="weekly" {{ Auth::user()->frequency === 'weekly' ? 'selected' : '' }}>Weekly</option>
+                            <option value="monthly" {{ Auth::user()->frequency === 'monthly' ? 'selected' : '' }}>Monthly</option>
+                        </select>
+                    </div>
                 <div>
                     <label class="block text-gray-600">Message Time</label>
                     <input type="time" name="message_time" class="w-full p-2 border border-gray-300 rounded-lg" required />
@@ -95,7 +99,7 @@
                                 Your current plan:
                                 <strong class="text-[#415A77]">
                                     @if(Auth::user()->subscriptions->first()->type == 'monthly')
-                                        Monthly
+                                        Monthly {{Auth::user()->subscriptions[0]['total_amount']}} £
                                     @else
                                         Yearly
                                     @endif
