@@ -36,7 +36,7 @@ Route::get('/user/profile', [UserController::class, 'userProfile'])->name('user.
 ;Route::get('/admin/profile', [UserController::class, 'adminProfile'])->name('admin.profile');
 
 
-Route::get('/api/users/{id}', [UserController::class, 'deleteUser']);
+Route::delete('/api/users/{id}', [UserController::class, 'deleteUser']);
 Route::get('/api/logged-in-user', [UserController::class, 'getLoggedInUser']);
 Route::post('/update-profile-image', [UserController::class, 'updateProfileImage']);
 Route::post('/update-user-details', [UserController::class, 'updateUserDetails']);
