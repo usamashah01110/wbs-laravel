@@ -16,6 +16,7 @@ class RecipientController extends Controller
             'email' => 'required|email',
         ]);
 
+        $user = Auth::user();
         if ($user->recipients()->count() >= 2) {
             return response()->json([
                 'error' => false,
