@@ -39,7 +39,7 @@
         <!-- Pay Button -->
         <button
             id="payNowButton"
-            class="w-full bg-[#3A5F8F] text-white py-3 rounded-lg hover:bg-[#F4A261] transition-all duration-300 mt-4"
+            class="w-full bg-[#415a77] text-white py-3 rounded-lg hover:bg-[#f47d61] transition-all duration-300 mt-4"
         >
             Pay Now
         </button>
@@ -47,7 +47,7 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-[#3A5F8F] text-white py-4">
+<footer class="bg-[#415a77] text-white py-4">
     <div class="container mx-auto text-center">
         <p>
             ©
@@ -68,7 +68,7 @@
     dropdownButton.addEventListener("click", () => {
         dropdownMenu.classList.toggle("hidden");
     });
-    
+
     document.addEventListener('DOMContentLoaded', () => {
         const stripe = Stripe("{{ env('STRIPE_KEY') }}");
         const payNowButton = document.getElementById('payNowButton');

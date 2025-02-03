@@ -60,11 +60,16 @@
                     />
                 </div> --}}
               @forelse ($user->documents->where('documnet_type', 'will') as $doc)
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center justify-between">
                   <p class="truncate w-3/4">{{ $doc->name }}</p>
-                  <a href="{{ asset('storage/' . $doc->path) }}" class="text-blue-500" target="_blank" download>
-                    <i class="fas fa-download"></i>
-                  </a>
+                  <div class="flex items-center gap-4">
+                    <a href="{{ asset('storage/' . $doc->path) }}" class="text-green-500" target="_blank" download>
+                        <i class="fas fa-download"></i>
+                      </a>
+                      <a href="{{ asset('storage/' . $doc->path) }}" class="text-blue-500" target="_blank" onclick="viewDocument('${doc.path}')">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                  </div>
                 </div>
               @empty
                 <p class="text-gray-500">N/A</p>
@@ -84,9 +89,10 @@
         <button class="text-blue-500" onclick="openattPopup('willRecipients', {{ $recipient->id }})">
          <i class="fas fa-edit"></i>
         </button>
-        <button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">
+
+        {{-- <button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">
          <i class="fas fa-trash-alt"></i>
-        </button>
+        </button> --}}
       </div>
     @empty
       <p class="text-gray-500">N/A</p>
@@ -97,7 +103,7 @@
  <div class="bg-white p-6 rounded shadow">
             <h2 class="text-lg font-semibold">Power of Attorney</h2>
             <div class="flex flex-col gap-4 pt-4">
-            <div
+            {{-- <div
                     class="border-2 border-dashed border-gray-300 rounded items-center justify-center text-gray-500 cursor-pointer p-4"
                     onclick="document.getElementById('poaUpload').click()"
                 >
@@ -111,13 +117,18 @@
                         class="hidden"
                         onchange="uploadAttornyAjax(this)"
                     />
-                </div>
+                </div> --}}
               @forelse ($user->documents->where('documnet_type', 'attorny') as $doc)
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center justify-between">
                   <p class="truncate w-3/4">{{ $doc->name }}</p>
-                  <a href="{{ asset('storage/' . $doc->path) }}" class="text-blue-500" target="_blank" download>
-                    <i class="fas fa-download"></i>
-                  </a>
+                  <div class="flex items-center gap-4">
+                    <a href="{{ asset('storage/' . $doc->path) }}" class="text-green-500" target="_blank" download>
+                        <i class="fas fa-download"></i>
+                      </a>
+                      <a href="{{ asset('storage/' . $doc->path) }}" class="text-blue-500" target="_blank" onclick="viewDocument('${doc.path}')">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                  </div>
                 </div>
               @empty
                 <p class="text-gray-500">N/A</p>
