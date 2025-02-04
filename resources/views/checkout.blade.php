@@ -289,7 +289,7 @@
                     One-Time Payments
                 </h2>
                 <!-- Notarization -->
-                <label class="flex items-start gap-4 border rounded-lg p-4 hover:shadow-lg transition">
+                <label class="flex items-start gap-4 border rounded-lg p-4 hover:shadow-lg transition mb-6">
                     <input
                         type="checkbox"
                         class="hidden peer payment-checkbox"
@@ -310,7 +310,7 @@
                 </label>
 
                 <!-- Document Writer Drafted Will -->
-                <label class="flex items-start gap-4 border rounded-lg p-4 hover:shadow-lg transition">
+                <label class="flex items-start gap-4 border rounded-lg p-4 hover:shadow-lg transition mb-6">
                     <input
                         type="checkbox"
                         class="hidden peer payment-checkbox"
@@ -333,7 +333,7 @@
                 </label>
 
                 <!-- Lawyer Drafted Will -->
-                <label class="flex items-start gap-4 border rounded-lg p-4 hover:shadow-lg transition">
+                <label class="flex items-start gap-4 border rounded-lg p-4 hover:shadow-lg transition mb-6">
                     <input
                         type="checkbox"
                         class="hidden peer payment-checkbox"
