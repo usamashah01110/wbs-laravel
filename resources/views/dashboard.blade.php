@@ -325,41 +325,6 @@
     fetchAttorny();
 
 
-     function uploadDocumentAjax(input) {
-          const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
-
-    if (fullWill !== 1) {
-        // showToast("You don't have a subscription plan.", 'error');
-        openPopupSub("You don't have a subscription plan.", 'error');
-        return;
-    }
-        const file = input.files[0];
-        if (!file) return;
-
-        const formData = new FormData();
-        formData.append("document", file);
-
-        // Send AJAX request
-        fetch("/documents", {
-            method: "POST",
-            body: formData,
-            headers: {
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-            },
-        })
-            .then(response => response.json())
-            .then(response => {
-                if (response.success) {
-                    displayUploadedDocument(data.fileName, data.fileUrl);
-                } else {
-                    fetchDocuments();
-                }
-            })
-            .catch(() => showToast("An error occurred during the upload."));
-    }
-
-
-
    function uploadDocumentAjax(input) {
     const file = input.files[0];
     if (!file) return;
@@ -403,15 +368,15 @@
         const file = input.files[0];
         if (!file) return;
 
-            const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
-    const poa = {{ Auth::user()->subscriptions[0]['poa'] ?? 0 }};
-    const executor = {{ Auth::user()->subscriptions[0]['executor'] ?? 0 }};
+        const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
+        const poa = {{ Auth::user()->subscriptions[0]['poa'] ?? 0 }};
+        const executor = {{ Auth::user()->subscriptions[0]['executor'] ?? 0 }};
 
-    // Check conditions before uploading
-    if (fullWill !== 1 || poa !== 1 || executor !== 1) {
-        showToast("You need a valid subscription plan to upload this document.", 'error');
-        return;
-    }
+
+        if (fullWill !== 1 || poa !== 1 ) {
+            showToast("You need a valid subscription plan to upload this document.", 'error');
+            return;
+        }
 
         const formData = new FormData();
         formData.append("document", file);
