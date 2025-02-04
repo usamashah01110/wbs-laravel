@@ -1,52 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password</title>
-    <link rel="stylesheet" href="https://cdn.tailwindcss.com">
-</head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white shadow-lg rounded-lg p-6 max-w-md w-full">
-        <h1 class="text-2xl font-semibold text-gray-700 text-center mb-4">Forgot Your Password?</h1>
-        <p class="text-sm text-gray-600 text-center mb-6">
-            No problem. Just let us know your email address and we will email you a password reset link.
-        </p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WBS | Forgot Password</title>
+    <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main class="bg-gray-100 min-h-screen flex items-center justify-center">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden max-w-5xl w-full flex flex-col md:flex-row">
+        <!-- Left Side: Form -->
+        <div class="w-full md:w-1/2 p-8">
+          <!-- Logo and Info -->
+          <div class="mb-6 text-center md:text-left">
+            <img src="{{ asset('images/WBS-Logo.png') }}" alt="WBS Logo" class="h-12 mb-2 mx-auto md:mx-0" />
+            <h2 class="text-xl font-semibold text-gray-700">Forgot Your Password?</h2>
+            <p class="text-sm text-gray-500 mt-2">
+              No problem. Just let us know your email address and we will email you a password reset link.
+            </p>
+          </div>
 
-        <!-- Session Status -->
-        @if (session('status'))
+          <!-- Session Status -->
+          @if (session('status'))
             <div class="mb-4 text-green-500 text-sm">
-                {{ session('status') }}
+              {{ session('status') }}
             </div>
-        @endif
+          @endif
 
-        <form method="POST" action="{{ route('password.email') }}">
+          <!-- Form -->
+          <form method="POST" action="{{ route('password.email') }}" class="space-y-4">
             @csrf
-
-            <!-- Email Address -->
-            <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#415a77] focus:border-[#415a77]"
-                    placeholder="Enter your email address"
-                    required
-                />
-                @error('email')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
+            <div>
+              <input type="email" name="email" placeholder="E-mail address" class="px-4 py-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black" required />
+              @error('email')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+              @enderror
             </div>
+            <button type="submit" class="w-full bg-[#415a77] text-white font-medium py-3 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out">
+              Email Password Reset Link
+            </button>
+            <p class="text-sm text-center text-gray-900 mt-4">
+              Remember your password?
+              <a href="{{ route('login') }}" class="text-[#415a77] underline font-medium hover:text-[#f47d61] transition-all duration-300 ease-in-out">
+                Login here
+              </a>
+            </p>
+          </form>
+        </div>
 
-            <div class="mt-6">
-                <button
-                    type="submit"
-                    class="w-full bg-[#415a77] text-white font-medium py-2 px-4 rounded-lg hover:bg-[#f47d61] transition-all duration-300">
-                    Email Password Reset Link
-                </button>
-            </div>
-        </form>
-    </div>
-</body>
+        <!-- Right Side: Picture -->
+        <div class="hidden md:block w-full md:w-1/2">
+          <img src="{{ asset('images/login.png') }}" alt="Forgot Password Illustration" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
