@@ -61,11 +61,13 @@
                   <p class="font-semibold {{ $user->subscription_status == 'active' ? 'text-green-500' : 'text-red-500' }}">
                     {{ ucfirst($user->subscription_status) }}
                   </p>
-
-                  @if($user->subscription)
+                  @if($user->subscriptions)
                     <div class="mt-4">
-                      <p class="text-gray-600"><strong>Plan:</strong> {{ $user->subscriptions->plan_name }}</p>
-                      <p class="text-gray-600"><strong>Expires on:</strong> {{ $user->subscriptions->expires_at }}</p>
+                        <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
+                            <li class="text-gray-800">User  have {{ $user->subscriptions[0]->fullWill == '1' ? 'a full will Subscription.' : 'no active full will.' }}</li>
+                            <li class="text-gray-800">User have {{ $user->subscriptions[0]->poa == '1' ? 'a Power of Attorney Subscription.' : 'no active Power of Attorney Subscription.' }}</li>
+                            <li class="text-gray-800">User have {{ $user->subscriptions[0]->executor == '1' ? 'an Executor Subscription.' : 'no active Executor Subscription.' }}</li>
+                        </ul>
                     </div>
                   @else
                     <p class="text-gray-500 mt-2">No active subscription</p>
