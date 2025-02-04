@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->timestamp('message_time')->nullable()->after('updated_at'); // Adjust column position if needed
+            $table->time('message_time')->nullable()->after('updated_at'); // Adjust column position if needed
         });
     }
 

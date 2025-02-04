@@ -64,8 +64,8 @@
 
                   @if($user->subscription)
                     <div class="mt-4">
-                      <p class="text-gray-600"><strong>Plan:</strong> {{ $user->subscription->plan_name }}</p>
-                      <p class="text-gray-600"><strong>Expires on:</strong> {{ $user->subscription->expires_at }}</p>
+                      <p class="text-gray-600"><strong>Plan:</strong> {{ $user->subscriptions->plan_name }}</p>
+                      <p class="text-gray-600"><strong>Expires on:</strong> {{ $user->subscriptions->expires_at }}</p>
                     </div>
                   @else
                     <p class="text-gray-500 mt-2">No active subscription</p>

@@ -70,7 +70,13 @@
                     </div>
                 <div>
                     <label class="block text-gray-600">Message Time</label>
-                    <input type="time" name="message_time" class="w-full p-2 border border-gray-300 rounded-lg" required />
+                    <input
+                        type="time"
+                        name="message_time"
+                        class="w-full p-2 border border-gray-300 rounded-lg"
+                        value="{{ Auth::user()->message_time ? \Carbon\Carbon::parse(Auth::user()->message_time)->format('H:i') : '' }}"
+                        required
+                    />
                 </div>
                 </div>
                 <div class="text-right mt-6">

@@ -30,6 +30,7 @@ class User extends Authenticatable
         'frequency',
         'password',
         'profile_image',
+        'message_time',
     ];
 
     /**
