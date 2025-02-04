@@ -15,7 +15,7 @@
     </div>
 
     <script>
-        function openModal() {
+        function openPopup() {
             document.getElementById("popupModal").classList.remove("hidden");
         }
 
