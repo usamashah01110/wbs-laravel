@@ -107,9 +107,9 @@
 
     <!-- Popup Modal -->
     <div id="popupModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white rounded-lg shadow-lg p-6 w-96 max-w-md">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Add Recipient</h3>
-            <form id="popupForm" class="space-y-4">
+            <form id="popupForm" class="grid grid-cols-2 gap-4">
                 <div>
                     <label for="recipientFirstName" class="block text-sm font-medium text-gray-700">First Name</label>
                     <input type="text" id="recipientFirstName" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required />
@@ -134,11 +134,11 @@
                     <label for="recipientZip" class="block text-sm font-medium text-gray-700">Zip</label>
                     <input type="text" id="recipientZip" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required />
                 </div>
-                <div>
+                <div class="col-span-2">
                     <label for="recipientCity" class="block text-sm font-medium text-gray-700">City</label>
                     <input type="text" id="recipientCity" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required />
                 </div>
-                <div class="flex justify-end space-x-4 mt-4">
+                <div class="col-span-2 flex justify-end space-x-4 mt-4">
                     <button type="button" class="bg-gray-300 px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-400" onclick="closePopup()">Cancel</button>
                     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Save</button>
                 </div>
@@ -146,110 +146,46 @@
         </div>
     </div>
 
-
-
-    <div
-        id="popattoronyModal"
-        class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white rounded shadow p-6 w-80">
-            <h3 class="text-lg font-semibold mb-4">Add Recipient</h3>
-            <form id="popupAttornyForm" class="space-y-4">
+    <div id="popattoronyModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Add Power of Attorney Recipient</h3>
+            <form id="popupAttornyForm" class="grid grid-cols-2 gap-4">
                 <div>
-                    <label for="recipientFirstName" class="block text-sm font-medium"
-                    >First Name</label
-                    >
-                    <input
-                        type="text"
-                        id="recipientFirstName"
-                        class="w-full border border-gray-300 rounded p-2"
-                        required
-                    />
+                    <label for="attRecipientFirstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                    <input type="text" id="attRecipientFirstName" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required />
                 </div>
                 <div>
-                    <label for="recipientLastName" class="block text-sm font-medium"
-                    >Last Name</label
-                    >
-                    <input
-                        type="text"
-                        id="recipientLastName"
-                        class="w-full border border-gray-300 rounded p-2"
-                        required
-                    />
+                    <label for="attRecipientLastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                    <input type="text" id="attRecipientLastName" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required />
                 </div>
                 <div>
-                    <label for="recipientMobile" class="block text-sm font-medium"
-                    >Mobile Number</label
-                    >
-                    <input
-                        type="text"
-                        id="recipientMobile"
-                        class="w-full border border-gray-300 rounded p-2"
-                        required
-                    />
+                    <label for="attRecipientMobile" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+                    <input type="text" id="attRecipientMobile" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required />
                 </div>
                 <div>
-                    <label for="recipientEmail" class="block text-sm font-medium"
-                    >Email</label
-                    >
-                    <input
-                        type="email"
-                        id="recipientEmail"
-                        class="w-full border border-gray-300 rounded p-2"
-                        required
-                    />
+                    <label for="attRecipientEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="attRecipientEmail" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required />
                 </div>
                 <div>
-                    <label for="recipientState" class="block text-sm font-medium"
-                    >State</label
-                    >
-                    <input
-                        type="email"
-                        id="recipientState"
-                        class="w-full border border-gray-300 rounded p-2"
-                        required
-                    />
+                    <label for="attRecipientState" class="block text-sm font-medium text-gray-700">State</label>
+                    <input type="text" id="attRecipientState" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required />
                 </div>
                 <div>
-                    <label for="recipientZip" class="block text-sm font-medium"
-                    >Zip</label
-                    >
-                    <input
-                        type="text"
-                        id="recipientZip"
-                        class="w-full border border-gray-300 rounded p-2"
-                        required
-                    />
+                    <label for="attRecipientZip" class="block text-sm font-medium text-gray-700">Zip</label>
+                    <input type="text" id="attRecipientZip" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required />
                 </div>
-
-                <div>
-                    <label for="recipientCity" class="block text-sm font-medium"
-                    >City</label
-                    >
-                    <input
-                        type="text"
-                        id="recipientCity"
-                        class="w-full border border-gray-300 rounded p-2"
-                        required
-                    />
+                <div class="col-span-2">
+                    <label for="attRecipientCity" class="block text-sm font-medium text-gray-700">City</label>
+                    <input type="text" id="attRecipientCity" class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" required />
                 </div>
-                <div class="flex justify-end space-x-4">
-                    <button
-                        type="button"
-                        class="bg-gray-300 px-4 py-2 rounded"
-                        onclick="closePopupPOA()"
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        type="submit"
-                        class="bg-[#415a77] text-white px-4 py-2 rounded hover:bg-[#f47d61]"
-                    >
-                        Save
-                    </button>
+                <div class="col-span-2 flex justify-end space-x-4 mt-4">
+                    <button type="button" class="bg-gray-300 px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-400" onclick="closePopupPOA()">Cancel</button>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Save</button>
                 </div>
             </form>
         </div>
     </div>
+
 </section>
 <!-- Dasboard End -->
 
