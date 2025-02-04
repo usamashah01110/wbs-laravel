@@ -14,15 +14,15 @@ class DocumentController extends Controller
         $request->validate([
             'document' => 'required|mimes:pdf,doc,docx|max:2048',
         ]);
-        
+
         $user = Auth::user();
 
-         if ($user->documents()->count() >= 1) {
-        return response()->json([
-            'error' => false,
-            'message' => 'You can only upload one document.',
-        ], 400);
-    }
+        if ($user->documents()->where('documnet_type', $request->document_type)->count() >= 1) {
+            return response()->json([
+                'error' => true,
+                'message' => "You can only upload one {$request->document_type} document.",
+            ], 400);
+        }
 
         if ($request->file('document')) {
             $file = $request->file('document');

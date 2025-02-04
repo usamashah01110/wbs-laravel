@@ -17,13 +17,26 @@ class RecipientController extends Controller
         ]);
 
         $user = Auth::user();
-        if ($user->recipients()->count() >= 2) {
+
+        // Check the count of 'will' and 'attorney' recipients
+        $willCount = $user->recipients()->where('type', 'will')->count();
+        $attorneyCount = $user->recipients()->where('type', 'attorny')->count();
+
+        if ($request->type == 'will' && $willCount >= 2) {
             return response()->json([
-                'error' => false,
-                'message' => 'You can only upload more then two recipients .',
+                'error' => true,
+                'message' => 'You cannot upload more than two "will" recipients',
             ], 400);
         }
 
+        if ($request->type == 'attorny' && $attorneyCount >= 2) {
+            return response()->json([
+                'error' => true,
+                'message' => 'You cannot upload more than two "attorney" recipients',
+            ], 400);
+        }
+
+        // Create the new recipient if validation passes
         $recipient = Recipient::create([
             'user_id' => Auth::id(),
             'name' => $request->name,
@@ -31,6 +44,7 @@ class RecipientController extends Controller
             'email' => $request->email,
             'type' => $request->type,
         ]);
+
 
         return response()->json(['success' => true, 'recipient' => $recipient]);
     }

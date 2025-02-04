@@ -118,7 +118,7 @@ function fetchUsers() {
           <td class="border border-gray-300 p-2">${client.lastname}</td>
           <td class="border border-gray-300 p-2">${client.email}</td>
           <td class="border border-gray-300 p-2">${client.phone}</td>
-          <td class="border border-gray-300 p-2">${client.created_at}</td>
+    <td class="border border-gray-300 p-2">${new Date(client.created_at).toLocaleDateString()}</td>
           <td class="border border-gray-300 p-2 flex justify-center gap-4">
             <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 edit-button" data-id="${client.id}">
               <i class="fas fa-edit"></i>

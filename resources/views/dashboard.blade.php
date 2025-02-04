@@ -199,41 +199,41 @@
 
 
    function uploadDocumentAjax(input) {
-    const file = input.files[0];
-    if (!file) return;
+       const file = input.files[0];
+       if (!file) return;
 
-    const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
+       const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
 
-    if (fullWill !== 1) {
-        openPopupSub("You don't have a subscription plan.", 'error');
-        // showToast("You don't have a subscription plan.", 'error');
-        return;
-    }
+       if (fullWill !== 1) {
+           openPopupSub("You don't have a subscription plan.", 'error');
+           return;
+       }
 
-    const formData = new FormData();
-    formData.append("document", file);
-    formData.append("document_type", 'will');
+       const formData = new FormData();
+       formData.append("document", file);
+       formData.append("document_type", 'will');
 
-    // Send AJAX request
-    fetch("/documents", {
-        method: "POST",
-        body: formData,
-        headers: {
-                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-        },
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data.success) {
-                displayUploadedDocument(data.fileName, data.fileUrl);
-            } else {
-                 showToast(data.message || "Document upload failed.");
-                fetchDocuments();
-            }
-        })
-        .catch(() => showToast("An error occurred during the upload."));
-    }
+       // Send AJAX request
+       fetch("/documents", {
+           method: "POST",
+           body: formData,
+           headers: {
+               "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+           },
+       }).then(response => response.text())  // Use text() if unsure about response format
+           .then(text => {
+               try {
+                   const data = JSON.parse(text);
+                   if (data.success) {
+                       window.location.reload();
+                   } else {
+                       showToast(data.message || "Document upload failed.");
+                   }
+               } catch {
+                   showToast("Unexpected response format.");
+               }
+           })
+   }
 
 
 
@@ -262,19 +262,20 @@
             headers: {
                 "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
             },
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    displayUploadedDocument(data.fileName, data.fileUrl);
-                } else {
-                    // showToast(data.message || "Document upload failed.");
-                    fetchAttorny();                  }
+        }).then(response => response.text())  // Use text() if unsure about response format
+            .then(text => {
+                try {
+                    const data = JSON.parse(text);
+                    if (data.success) {
+                        window.location.reload();
+                    } else {
+                        showToast(data.message || "Document upload failed.");
+                    }
+                } catch {
+                    showToast("Unexpected response format.");
+                }
             })
-            .catch(() => showToast("An error occurred during the upload."));
-    }
-
-
+  }
     async function fetchDocuments() {
         const response = await fetch('/all/documents');
         const documents = await response.json();
@@ -356,7 +357,7 @@
             const email = item.querySelector(".recipient-email").innerText;
             const id = item.querySelector(".recipient-email").innerText;
 
-            form.recipientName.value = name;
+            form.recipientFirstName.value = name;
             form.recipientMobile.value = mobile;
             form.recipientEmail.value = email;
         } else {
@@ -376,9 +377,9 @@
         .addEventListener("submit", function (e) {
             e.preventDefault();
 
-            const name = this.recipientName.value;
-            const mobile = this.recipientMobile.value;
-            const email = this.recipientEmail.value;
+            const name = this.attRecipientFirstName.value;
+            const mobile = this.attRecipientMobile.value;
+            const email = this.attRecipientEmail.value;
 
             const list = document.getElementById(currentListId);
             const recipientData = {
@@ -391,7 +392,7 @@
             // Check if we're editing an existing item
             const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
             const method = editingIndex !== null ? 'PUT' : 'POST';
-
+            console.log(url);
             fetch(url, {
                 method: method,
                 headers: {
@@ -406,6 +407,7 @@
                         closePopupPOA();
                         window.location.reload();
                     } else {
+                        showToast(data.message);
                     }
                 })
                 .catch(error => {
@@ -505,7 +507,7 @@
             const email = item.querySelector(".recipient-email").innerText;
             const id = item.querySelector(".recipient-email").innerText;
 
-            form.recipientName.value = name;
+            form.recipientFirstName.value = name;
             form.recipientMobile.value = mobile;
             form.recipientEmail.value = email;
         } else {
@@ -525,7 +527,7 @@
         .addEventListener("submit", function (e) {
             e.preventDefault();
 
-            const name = this.recipientName.value;
+            const name = this.recipientFirstName.value;
             const mobile = this.recipientMobile.value;
             const email = this.recipientEmail.value;
 
@@ -555,7 +557,7 @@
                         closePopup();
                         window.location.reload();
                     } else {
-                        showToast('Failed to save recipient data!');
+                        showToast(data.message);
                     }
                 })
                 .catch(error => {
