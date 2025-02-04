@@ -14,14 +14,14 @@
     <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon" />
   </head>
 
-  <body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
+  <body class="bg-gray-100 min-h-screen font-sans">
     @include('header')
     <div class="flex h-screen">
       @include('side-bar')
 
       <div class="w-full">
         <!-- Main Content -->
-        <main id="dashboardContent" class="flex-1 p-6 overflow-hidden">
+        <main id="dashboardContent" class="flex-1 p-6 ">
           <!-- Cards Section -->
           <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-[#E2E8F0] p-6 rounded-lg shadow hover:shadow-lg transition">
@@ -41,7 +41,7 @@
           <!-- Table Section -->
           <section class="mt-6 bg-white p-6 rounded-lg shadow">
             <h2 class="text-gray-700 font-bold mb-4">Clients</h2>
-            <div class="overflow-auto h-72">
+            <div class="">
               <table class="w-full border-collapse border border-gray-200" id="clientTable">
                 <thead class="sticky top-0 bg-gray-200 z-10 border border-gray-300">
                   <tr class="bg-gray-100">
