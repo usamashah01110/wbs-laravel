@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-use WelcomeEmail;
+use App\Mail\WelcomeEmail;
 
 class RegisteredUserController extends Controller
 {
