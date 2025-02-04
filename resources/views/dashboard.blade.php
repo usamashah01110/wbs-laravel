@@ -330,7 +330,7 @@
 
     if (fullWill !== 1) {
         // showToast("You don't have a subscription plan.", 'error');
-        openPopupSub();
+        openPopupSub("You don't have a subscription plan.", 'error');
         return;
     }
         const file = input.files[0];
@@ -367,7 +367,7 @@
     const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
 
     if (fullWill !== 1) {
-        openPopupSub();
+        openPopupSub("You don't have a subscription plan.", 'error');
         // showToast("You don't have a subscription plan.", 'error');
         return;
     }
