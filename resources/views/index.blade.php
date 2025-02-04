@@ -96,6 +96,11 @@
       <!-- Login/Signup -->
         <div class="hidden lg:flex space-x-4">
             @if(Auth::check())
+                <a
+                    href="/dashboard"
+                    class="px-4 py-2 bg-[#415a77] text-white font-medium rounded-lg hover:bg-[#f47d61] transition-all duration-300">
+                    Dashboard
+                </a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button
