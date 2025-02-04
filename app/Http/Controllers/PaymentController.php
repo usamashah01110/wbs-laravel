@@ -127,7 +127,6 @@ class PaymentController extends Controller
                     $paymentMethod = \Stripe\PaymentMethod::retrieve($paymentIntent->payment_method);
                     $user->update([
                         'pm_type' => $paymentMethod->type,
-                        'pm_last_four' => $paymentMethod->card->last4
                     ]);
                 }
             } else {

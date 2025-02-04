@@ -422,25 +422,23 @@
         // Initial calculation
         calculateTotal();
 
-        function updateTotal() {
-            // Get all checkboxes
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            let total = 0;
+            function updateTotal() {
+                // Get all checkboxes
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                let total = 0;
 
-            // Calculate total
-            checkboxes.forEach((checkbox) => {
-                if (checkbox.checked) {
-                    total += parseFloat(checkbox.value);
-                }
-            });
+                // Calculate total
+                checkboxes.forEach((checkbox) => {
+                    if (checkbox.checked && !isNaN(checkbox.value) && checkbox.value.trim() !== '') {
+                        total += parseFloat(checkbox.value);
+                    }
+                });
 
-            // Update total in the DOM
-            document.getElementById("oneTimeTotal").innerText = total.toFixed(2);
-            document.getElementById("buyButton").innerText = `Buy for $${total.toFixed(
-                2
-            )}`;
-            document.getElementById("totalAmount1").value = total.toFixed(2);
-        }
+                // Update total in the DOM
+                document.getElementById("oneTimeTotal").innerText = total.toFixed(2);
+                document.getElementById("buyButton").innerText = `Buy for $${total.toFixed(2)}`;
+                document.getElementById("totalAmount1").value = total.toFixed(2);
+            }
     </script>
 
 
