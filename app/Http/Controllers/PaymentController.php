@@ -112,15 +112,15 @@ class PaymentController extends Controller
 
             if ($request['payment_type'] === 'one_time') {
                 // Store one-time payment in transactions table
-//                DB::table('transactions')->insert([
-//                    'user_id' => $user->id,
-//                    'type' => 'one_time',
-//                    'amount' => $paymentIntent->amount / 100,
-//                    'stripe_id' => $paymentIntent->id,
-//                    'stripe_status' => $paymentIntent->status,
-//                    'created_at' => now(),
-//                    'updated_at' => now()
-//                ]);
+                DB::table('transactions')->insert([
+                    'user_id' => $user->id,
+                    'type' => 'one_time',
+                    'amount' => $paymentIntent->amount / 100,
+                    'stripe_id' => $paymentIntent->id,
+                    'stripe_status' => $paymentIntent->status,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
 
                 // Update user payment method if needed
                 if ($paymentIntent->payment_method) {
