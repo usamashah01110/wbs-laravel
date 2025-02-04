@@ -112,15 +112,15 @@ class PaymentController extends Controller
 
             if ($request['payment_type'] === 'one_time') {
                 // Store one-time payment in transactions table
-                DB::table('transactions')->insert([
-                    'user_id' => $user->id,
-                    'type' => 'one_time',
-                    'amount' => $paymentIntent->amount / 100,
-                    'stripe_id' => $paymentIntent->id,
-                    'stripe_status' => $paymentIntent->status,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
+//                DB::table('transactions')->insert([
+//                    'user_id' => $user->id,
+//                    'type' => 'one_time',
+//                    'amount' => $paymentIntent->amount / 100,
+//                    'stripe_id' => $paymentIntent->id,
+//                    'stripe_status' => $paymentIntent->status,
+//                    'created_at' => now(),
+//                    'updated_at' => now()
+//                ]);
 
                 // Update user payment method if needed
                 if ($paymentIntent->payment_method) {
@@ -139,20 +139,22 @@ class PaymentController extends Controller
                 $poa = (isset($subscriptions[3]) && $subscriptions[3] == 'poa') ? true : false;
                 $executor = (isset($subscriptions[6]) && $subscriptions[6] == 'executor') ? true : false;
 
-                DB::table('subscriptions')->insert([
-                    'user_id' => $user->id,
-                    'type' => 'monthly',
-                    'stripe_id' => $stripeSubscription->id,
-                    'stripe_status' => $stripeSubscription->status,
-                    'stripe_price' => $stripePriceId,
-                    'quantity' => 1,
-                    'total_amount' => $request['totalAmount'],
-                    'poa' => $poa,
-                    'fullWill' => $fullWill,
-                    'executor' => $executor,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
+                    DB::table('subscriptions')->updateOrInsert(
+                        ['user_id' => $user->id], // Condition to check existing record
+                        [
+                            'type' => 'monthly',
+                            'stripe_id' => $stripeSubscription->id,
+                            'stripe_status' => $stripeSubscription->status,
+                            'stripe_price' => $stripePriceId,
+                            'quantity' => 1,
+                            'total_amount' => $request['totalAmount'],
+                            'poa' => $poa,
+                            'fullWill' => $fullWill,
+                            'executor' => $executor,
+                            'created_at' => now(),
+                            'updated_at' => now()
+                        ]
+                    );
 
                 if ($stripeSubscription->default_payment_method) {
                     $paymentMethod = $stripeSubscription->default_payment_method;
