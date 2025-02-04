@@ -26,7 +26,7 @@
         <main class="flex-1 p-6">
           <section class="bg-white p-6 rounded-lg shadow">
             <!-- Profile Image -->
-            <div class="flex items-center mb-6">
+            {{-- <div class="flex items-center mb-6">
               <div class="relative">
                 <img
                   id="profileImage"
@@ -38,27 +38,45 @@
               <div>
 
               </div>
-            </div>
+            </div> --}}
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center">
+                  <div class="relative">
+                    <img
+                      id="profileImage"
+                      src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/usere.png') }}"
+                      alt="Profile"
+                      class="w-24 h-24 rounded-full object-cover"
+                    />
+                  </div>
+                  <div class="ml-6">
+                    <h2 class="text-xl font-semibold">{{ $user->name }}</h2>
+                    <p class="text-gray-600">{{ $user->email }}</p>
+                  </div>
+                </div>
+
+                <!-- Subscription Details -->
+                <div class="bg-white p-4 rounded-lg shadow w-1/3">
+                  <h3 class="text-lg font-semibold">Subscription Status</h3>
+                  <p class="font-semibold {{ $user->subscription_status == 'active' ? 'text-green-500' : 'text-red-500' }}">
+                    {{ ucfirst($user->subscription_status) }}
+                  </p>
+
+                  @if($user->subscription)
+                    <div class="mt-4">
+                      <p class="text-gray-600"><strong>Plan:</strong> {{ $user->subscription->plan_name }}</p>
+                      <p class="text-gray-600"><strong>Expires on:</strong> {{ $user->subscription->expires_at }}</p>
+                    </div>
+                  @else
+                    <p class="text-gray-500 mt-2">No active subscription</p>
+                  @endif
+                </div>
+              </div>
     <!-- Main Grid Section -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-white p-6 rounded shadow">
             <h2 class="text-lg font-semibold">Will</h2>
             <div class="flex flex-col gap-4 pt-4">
-            {{-- <div
-                    class="border-2 border-dashed border-gray-300 rounded items-center justify-center text-gray-500 cursor-pointer p-4"
-                    onclick="document.getElementById('willUpload').click()"
-                >
-                    <i class="fas fa-plus"></i>
-                    <p>Click to upload.</p>
-                    <p class="text-sm">Must be a Word or PDF document.</p>
-                    <input
-                        type="file"
-                        id="willUpload"
-                        accept=".pdf,.doc,.docx"
-                        class="hidden"
-                        onchange="uploadDocumentAjax(this)"
-                    />
-                </div> --}}
               @forelse ($user->documents->where('documnet_type', 'will') as $doc)
                 <div class="flex items-center justify-between">
                   <p class="truncate w-3/4">{{ $doc->name }}</p>
@@ -89,10 +107,6 @@
         <button class="text-blue-500" onclick="openattPopup('willRecipients', {{ $recipient->id }})">
          <i class="fas fa-edit"></i>
         </button>
-
-        {{-- <button class="text-red-500" onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">
-         <i class="fas fa-trash-alt"></i>
-        </button> --}}
       </div>
     @empty
       <p class="text-gray-500">N/A</p>
@@ -103,21 +117,6 @@
  <div class="bg-white p-6 rounded shadow">
             <h2 class="text-lg font-semibold">Power of Attorney</h2>
             <div class="flex flex-col gap-4 pt-4">
-            {{-- <div
-                    class="border-2 border-dashed border-gray-300 rounded items-center justify-center text-gray-500 cursor-pointer p-4"
-                    onclick="document.getElementById('poaUpload').click()"
-                >
-                    <i class="fas fa-plus"></i>
-                    <p>Click to upload.</p>
-                    <p class="text-sm">Must be a Word or PDF document.</p>
-                    <input
-                        type="file"
-                        id="poaUpload"
-                        accept=".pdf,.doc,.docx"
-                        class="hidden"
-                        onchange="uploadAttornyAjax(this)"
-                    />
-                </div> --}}
               @forelse ($user->documents->where('documnet_type', 'attorny') as $doc)
                 <div class="flex items-center justify-between">
                   <p class="truncate w-3/4">{{ $doc->name }}</p>
