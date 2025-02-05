@@ -24,6 +24,7 @@ class PaymentController extends Controller
 
     public function paymentPage(Request $request){
 
+        dd($request->all());
         $request = $request->all();
 
         return view('payment-checkout', ['request' => $request]);

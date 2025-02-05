@@ -14,6 +14,9 @@ return new class extends Migration {
             $table->decimal('amount', 10, 2);
             $table->string('stripe_id');
             $table->string('stripe_status');
+            $table->string('notarization');
+            $table->string('winterwill');
+            $table->string('layer');
             $table->timestamps();
         });
     }
