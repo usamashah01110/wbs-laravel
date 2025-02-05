@@ -17,6 +17,9 @@
 
         <!-- Dropdown Menu -->
         <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden">
+            <a href="/dashboard" class="block px-4 py-2 hover:bg-gray-200">
+                <i class="fas fa-tachometer-alt text-green-500 mr-4"></i>My Dashboard
+            </a>
             <a href="{{ route('user.profile') }}" id="myAccountLink" class="block px-4 py-2 hover:bg-gray-200">
                 <i class="fas fa-user text-blue-500 mr-4"></i>My Account
             </a>
