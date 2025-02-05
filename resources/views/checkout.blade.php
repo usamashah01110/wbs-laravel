@@ -265,12 +265,7 @@
               <div class="text-right">
                   <h3 class="text-xl font-semibold">
                       Total: $<span id="subscriptionTotal">0</span>
-                  </h3><button
-                  type="submit"
-                  class="mt-4 bg-[#415a77] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"
-              >
-                  Cancel Subscription
-              </button>
+                  </h3>
                   <button
                       type="submit"
                       class="mt-4 bg-[#415a77] text-white py-2 px-6 rounded-lg hover:bg-[#f47d61] transition-all duration-300"

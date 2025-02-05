@@ -132,6 +132,9 @@
                         </ul>
                         <div class="text-right mt-6">
                             <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" href="{{ route('checkout') }}">
+                                Cancel Subscription
+                            </a>
+                            <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" href="{{ route('checkout') }}">
                                 Update Subscription
                             </a>
                         </div>
