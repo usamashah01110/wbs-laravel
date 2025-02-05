@@ -154,6 +154,9 @@
                 const paymentType = billingCycle;
                 const subscriptionId = paymentData.subscriptionId;
                 const subscription = @json($request['subscription'] ?? null);
+                const writerWill = @json($request['writerWill'] ?? null);
+                const lawyerWill = @json($request['lawyerWill'] ?? null);
+                const notarization = @json($request['notarization'] ?? null);
 
 
                 // Confirm the payment
@@ -163,7 +166,7 @@
                         payment_method_data: {
                             type: 'card',
                         },
-                        return_url: `${window.location.origin}/payment/success?payment_type=${encodeURIComponent(paymentType)}&subscription_id=${encodeURIComponent(subscriptionId)}&subscriptions=${encodeURIComponent(subscription)}&totalAmount=${encodeURIComponent(totalAmount)}`,
+                        return_url: `${window.location.origin}/payment/success?payment_type=${encodeURIComponent(paymentType)}&subscription_id=${encodeURIComponent(subscriptionId)}&subscriptions=${encodeURIComponent(subscription)}&totalAmount=${encodeURIComponent(totalAmount)}&writerWill=${encodeURIComponent(writerWill)}&lawyerWill=${encodeURIComponent(lawyerWill)}&notarization=${encodeURIComponent(notarization)}`,
                     },
                 });
 

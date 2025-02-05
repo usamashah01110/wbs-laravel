@@ -59,7 +59,7 @@
                 <div class="bg-white p-4 rounded-lg shadow w-1/3">
                   <h3 class="text-lg font-semibold">Subscription Status</h3>
                   <p class="font-semibold {{ $user->subscription_status == 'active' ? 'text-green-500' : 'text-red-500' }}">
-                    {{ ucfirst($user->subscription_status) }}
+                    {{ ucfirst('Active') }}
                   </p>
                   @if($user->subscriptions)
                     <div class="mt-4">
@@ -72,6 +72,23 @@
                   @else
                     <p class="text-gray-500 mt-2">No active subscription</p>
                   @endif
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow w-1/3">
+                    <h3 class="text-lg font-semibold">Onetime Packages</h3>
+                    <p class="font-semibold {{ $user->transactions->first()->stripe_status == 'succeeded' ? 'text-green-500' : 'text-red-500' }}">
+                        {{ ucfirst('Active') }}
+                    </p>
+                    @if($user->transactions)
+                        <div class="mt-4">
+                            <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
+                                <li class="text-gray-800">You have {{ $user->transactions->first()->notarization == '1' ? 'Notarization Package' : 'no active Notarization Package' }}</li>
+                                <li class="text-gray-800">You have {{ $user->transactions->first()->winterwill == '1' ? 'Writer Will Package.' : 'no active winter Package.' }}</li>
+                                <li class="text-gray-800">You have {{ $user->transactions->first()->layer == '1' ? ' Lawyer Draft Will Package.' : 'no lawyer Package.' }}</li>
+                            </ul>
+                        </div>
+                    @else
+                        <p class="text-gray-500 mt-2">No active subscription</p>
+                    @endif
                 </div>
               </div>
     <!-- Main Grid Section -->

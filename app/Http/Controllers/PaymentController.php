@@ -23,12 +23,9 @@ class PaymentController extends Controller
     }
 
     public function paymentPage(Request $request){
-
-        dd($request->all());
         $request = $request->all();
 
         return view('payment-checkout', ['request' => $request]);
-
     }
 
     public function createPaymentIntent(Request $request)
@@ -113,15 +110,18 @@ class PaymentController extends Controller
 
             if ($request['payment_type'] === 'one_time') {
                 // Store one-time payment in transactions table
-                DB::table('transactions')->insert([
-                    'user_id' => $user->id,
-                    'type' => 'one_time',
-                    'amount' => $paymentIntent->amount / 100,
-                    'stripe_id' => $paymentIntent->id,
-                    'stripe_status' => $paymentIntent->status,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
+                    DB::table('transactions')->insert([
+                        'user_id' => $user->id,
+                        'type' => 'one_time',
+                        'amount' => $paymentIntent->amount / 100,
+                        'stripe_id' => $paymentIntent->id,
+                        'stripe_status' => $paymentIntent->status,
+                        'notarization' => !empty($request->notarization) ? 1 : 0,
+                        'winterwill' => !empty($request->writerWill) ? 1 : 0,
+                        'layer' => !empty($request->lawyerWill) ? 1 : 0,
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ]);
 
                 // Update user payment method if needed
                 if ($paymentIntent->payment_method) {

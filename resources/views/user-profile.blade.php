@@ -117,6 +117,19 @@
                             <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->poa == '1' ? 'a Power of Attorney Subscription.' : 'no active Power of Attorney Subscription.' }}</li>
                             <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->executor == '1' ? 'an Executor Subscription.' : 'no active Executor Subscription.' }}</li>
                         </ul>
+
+                        <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
+                            <p id="subscriptionInfo" class="text-lg font-semibold">
+                                <strong class="text-[#415A77]">
+
+                                  One Time Paid {{Auth::user()->transactions[0]['amount']}} £
+
+                                </strong>
+                            </p>
+                            <li class="text-gray-800">You have {{ Auth::user()->transactions->first()->notarization == '1' ? 'Notarization Package' : 'no active Notarization Package' }}</li>
+                            <li class="text-gray-800">You have {{ Auth::user()->transactions->first()->winterwill == '1' ? 'Writer Will Package.' : 'no active winter Package.' }}</li>
+                            <li class="text-gray-800">You have {{ Auth::user()->transactions->first()->layer == '1' ? ' Lawyer Draft Will Package.' : 'no lawyer Package.' }}</li>
+                        </ul>
                         <div class="text-right mt-6">
                             <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" href="{{ route('checkout') }}">
                                 Update Subscription
