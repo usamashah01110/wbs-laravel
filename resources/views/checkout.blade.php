@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout - WBS</title>
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link href="assets/images/WBS-Logo.png" rel="shortcut icon" />
+    <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-100">
@@ -384,12 +384,6 @@
     </footer>
 
     <script>
-            // Dropdown toggle
-    const dropdownButton = document.getElementById("dropdownButton");
-    const dropdownMenu = document.getElementById("dropdownMenu");
-    dropdownButton.addEventListener("click", () => {
-        dropdownMenu.classList.toggle("hidden");
-    });
 
         const billingCycleRadios = document.querySelectorAll('input[name="billingCycle"]');
         const subscriptionCheckboxes = document.querySelectorAll('input[name="subscription[]"]');

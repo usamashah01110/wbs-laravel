@@ -8,7 +8,7 @@
     <meta name="keywords" content="willbesent" />
     <meta name="author" content="willbesent" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link href="assets/images/WBS-Logo.png" rel="shortcut icon" />
+    <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -131,7 +131,7 @@
                             <li class="text-gray-800">You have {{ Auth::user()->transactions->first()->layer == '1' ? ' Lawyer Draft Will Package.' : 'no lawyer Package.' }}</li>
                         </ul>
                         <div class="text-right mt-6">
-                            <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" href="{{ route('checkout') }}">
+                            <a id="packageButton" class="mr-4 bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" href="{{ route('checkout') }}">
                                 Cancel Subscription
                             </a>
                             <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" href="{{ route('checkout') }}">
