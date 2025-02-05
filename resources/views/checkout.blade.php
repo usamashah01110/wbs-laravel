@@ -6,6 +6,7 @@
     <title>Checkout - WBS</title>
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-100">
