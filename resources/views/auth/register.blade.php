@@ -129,7 +129,7 @@
                     type="time"
                     name="message_time"
                     class="w-full p-2 border border-gray-300 rounded-lg"
-                    value="{{ Auth::user()->message_time ? \Carbon\Carbon::parse(Auth::user()->message_time)->format('H:i') : '' }}"
+                    {{-- value="{{ Auth::user()->message_time ? \Carbon\Carbon::parse(Auth::user()->message_time)->format('H:i') : '' }}" --}}
                     required
                 />
             </div>
