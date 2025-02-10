@@ -113,7 +113,7 @@
                             </p>
                         </div>
                         <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
-                            <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->fullWill == '1' ? 'a full will Subscription.' : 'no active full will.' }}</li>
+                            <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->fullWill !== '1' ? 'a full will Subscription.' : 'no active full will.' }}</li>
                             <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->poa == '1' ? 'a Power of Attorney Subscription.' : 'no active Power of Attorney Subscription.' }}</li>
                             <li class="text-gray-800">You have {{ Auth::user()->subscriptions->first()->executor == '1' ? 'an Executor Subscription.' : 'no active Executor Subscription.' }}</li>
                         </ul>
