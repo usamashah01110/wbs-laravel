@@ -41,7 +41,7 @@ class PaymentController extends Controller
             if ($validatedData['billingCycle'] === 'one_time') {
                 // Create one-time payment intent
                 $paymentIntent = PaymentIntent::create([
-                    'currency' => 'gbp',
+                    'currency' => 'usd',
                     'amount' => $validatedData['totalAmount'] * 100,
                     'automatic_payment_methods' => ['enabled' => true],
                 ]);
