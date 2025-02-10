@@ -62,12 +62,6 @@
 <!-- Stripe JS -->
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-        // Dropdown toggle
-        const dropdownButton = document.getElementById("dropdownButton");
-    const dropdownMenu = document.getElementById("dropdownMenu");
-    dropdownButton.addEventListener("click", () => {
-        dropdownMenu.classList.toggle("hidden");
-    });
 
     document.addEventListener('DOMContentLoaded', () => {
         const stripe = Stripe("{{ env('STRIPE_KEY') }}");
