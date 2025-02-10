@@ -62,11 +62,8 @@
           </section>
         </main>
       </div>
-
-      <!-- Toast Notifications -->
-
-      @include('toast')
     </div>
+    @include('toast')
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
