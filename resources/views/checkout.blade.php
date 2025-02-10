@@ -194,7 +194,9 @@
                           name="subscription[]"
                           value="fullWill,10,100"
                           class="hidden peer"
-                          @if(isset(Auth::user()->subscriptions->first()->fullWill) && Auth::user()->subscriptions->first()->fullWill == '1') checked @endif
+                          @if(!isset(Auth::user()->subscriptions->first()->fullWill) || Auth::user()->subscriptions->first()->fullWill != '1') 
+                            checked disabled 
+                        @endif
                       />
                       <div
                           class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"

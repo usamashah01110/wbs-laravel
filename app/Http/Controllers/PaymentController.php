@@ -173,4 +173,33 @@ class PaymentController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
+    
+    public function cancelSubscription()
+    {
+        $user = auth()->user();
+    
+        // Check if the user has an active subscription
+        $subscription = $user->subscriptions()->first();
+    
+        if (!$subscription) {
+            return redirect()->back()->with('error', 'No active subscription found.');
+        }
+        
+  
+    
+        // Set Stripe API key
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        try {
+            $stripeSubscription = Subscription::retrieve($subscription->stripe_id);
+         
+            $stripeSubscription->cancel();
+    
+            $subscription->delete();
+    
+            return redirect()->route('dashboard')->with('success', 'Subscription canceled successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error canceling subscription: ' . $e->getMessage());
+        }
+    }
 }

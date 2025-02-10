@@ -35,7 +35,8 @@ class RecipientController extends Controller
                 'message' => 'You cannot upload more than two "attorney" recipients',
             ], 400);
         }
-
+        
+        
         // Create the new recipient if validation passes
         $recipient = Recipient::create([
             'user_id' => Auth::id(),
@@ -43,6 +44,9 @@ class RecipientController extends Controller
             'mobile' => $request->mobile,
             'email' => $request->email,
             'type' => $request->type,
+            'state' => $request->state,
+            'zip' => $request->zip,
+            'city' => $request->city,
         ]);
 
 

@@ -133,16 +133,16 @@
                     required
                 />
             </div>
-            <div>
-                <label class="block text-gray-600">Time Zone</label>
-                <input
-                type="text"
-                name="zip"
-                placeholder="Zip"
-                class="px-4 py-3 border border-gray-300 rounded-lg w-full md:w-1/3 focus:outline-none focus:border-black mt-4 md:mt-0"
-                required
-              />
-            </div>
+            <!--<div>-->
+            <!--    <label class="block text-gray-600">Time Zone</label>-->
+            <!--    <input-->
+            <!--    type="text"-->
+            <!--    name="zip"-->
+            <!--    placeholder="Zip"-->
+            <!--    class="px-4 py-3 border border-gray-300 rounded-lg w-full md:w-1/3 focus:outline-none focus:border-black mt-4 md:mt-0"-->
+            <!--    required-->
+            <!--  />-->
+            <!--</div>-->
             <button
               type="submit"
               class="w-full bg-[#415a77] text-white font-medium py-3 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out"

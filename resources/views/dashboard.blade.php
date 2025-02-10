@@ -372,49 +372,55 @@
         editingIndex = null;  // Reset editing index
     }
 
-    document
-        .getElementById("popupAttornyForm")
-        .addEventListener("submit", function (e) {
-            e.preventDefault();
+ document.getElementById("popupAttornyForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-            const name = this.attRecipientFirstName.value;
-            const mobile = this.attRecipientMobile.value;
-            const email = this.attRecipientEmail.value;
+    const firstName = this.attRecipientFirstName.value;
+    const lastName = this.attRecipientLastName.value;
+    const mobile = this.attRecipientMobile.value;
+    const email = this.attRecipientEmail.value;
+    const state = this.attRecipientState.value;
+    const zip = this.attRecipientZip.value;
+    const city = this.attRecipientCity.value;
 
-            const list = document.getElementById(currentListId);
-            const recipientData = {
-                name: name,
-                mobile: mobile,
-                email: email,
-                type: 'attorny'
-            };
+    const recipientData = {
+        first_name: firstName,
+        last_name: lastName,
+        mobile: mobile,
+        email: email,
+        state: state,
+        zip: zip,
+        city: city,
+        type: 'attorny'
+    };
 
-            // Check if we're editing an existing item
-            const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
-            const method = editingIndex !== null ? 'PUT' : 'POST';
-            console.log(url);
-            fetch(url, {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF protection
-                },
-                body: JSON.stringify(recipientData)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success === true) {
-                        closePopupPOA();
-                        window.location.reload();
-                    } else {
-                        showToast(data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showToast('An error occurred while saving recipient data!');
-                });
-        });
+    // Check if we're editing an existing item
+    const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
+    const method = editingIndex !== null ? 'PUT' : 'POST';
+
+    fetch(url, {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(recipientData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success === true) {
+            closePopupPOA();
+            window.location.reload();
+        } else {
+            showToast(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showToast('An error occurred while saving recipient data!');
+    });
+});
+
 
     function fetchAttornyRecipients() {
         const list = document.getElementById('poaRecipients');
@@ -522,49 +528,48 @@
         editingIndex = null;  // Reset editing index
     }
 
-    document
-        .getElementById("popupForm")
-        .addEventListener("submit", function (e) {
-            e.preventDefault();
+   document
+    .getElementById("popupForm")
+    .addEventListener("submit", function (e) {
+        e.preventDefault();
 
-            const name = this.recipientFirstName.value;
-            const mobile = this.recipientMobile.value;
-            const email = this.recipientEmail.value;
+        const recipientData = {
+            name: this.recipientFirstName.value + " " + this.recipientLastName.value,
+            mobile: this.recipientMobile.value,
+            email: this.recipientEmail.value,
+            state: this.recipientState.value,
+            zip: this.recipientZip.value,
+            city: this.recipientCity.value,
+            type: 'will'
+        };
 
-            const list = document.getElementById(currentListId);
-            const recipientData = {
-                name: name,
-                mobile: mobile,
-                email: email,
-                type: 'will'
-            };
+        // Check if we're editing an existing item
+        const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
+        const method = editingIndex !== null ? 'PUT' : 'POST';
 
-            // Check if we're editing an existing item
-            const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
-            const method = editingIndex !== null ? 'PUT' : 'POST';
-
-            fetch(url, {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Ensure CSRF protection
-                },
-                body: JSON.stringify(recipientData)
+        fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
+            },
+            body: JSON.stringify(recipientData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === true) {
+                    closePopup();
+                    window.location.reload();
+                } else {
+                    showToast(data.message);
+                }
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success === true) {
-                        closePopup();
-                        window.location.reload();
-                    } else {
-                        showToast(data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showToast('An error occurred while saving recipient data!');
-                });
-        });
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('An error occurred while saving recipient data!');
+            });
+    });
+
 
     function fetchRecipients() {
         const list = document.getElementById('willRecipients');

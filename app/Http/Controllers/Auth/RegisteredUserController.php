@@ -50,6 +50,7 @@ class RegisteredUserController extends Controller
             'city' => $request->city,  // Added city field
             'frequency' => $request->frequency,  // Added frequency field
             'email' => $request->email,
+            'message_time' => $request->message_time,
             'password' => Hash::make($request->password),  // Hashing the password
         ]);
 

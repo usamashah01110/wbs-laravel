@@ -14,7 +14,10 @@ class Recipient extends Model
         'mobile',
         'email',
         'user_id',
-        'type'
+        'type',
+        'state',
+        'zip',
+        'city'
     ];
 
     public function user()

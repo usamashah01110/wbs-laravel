@@ -122,18 +122,34 @@
                             <p id="subscriptionInfo" class="text-lg font-semibold">
                                 <strong class="text-[#415A77]">
 
-                                  One Time Paid {{Auth::user()->transactions[0]['amount']}} £
+                                  One Time Paid {{ Auth::user()->transactions->isNotEmpty() ? Auth::user()->transactions[0]['amount'] . ' £' : 'No payment made yet' }}
 
                                 </strong>
                             </p>
-                            <li class="text-gray-800">You have {{ Auth::user()->transactions->first()->notarization == '1' ? 'Notarization Package' : 'no active Notarization Package' }}</li>
-                            <li class="text-gray-800">You have {{ Auth::user()->transactions->first()->winterwill == '1' ? 'Writer Will Package.' : 'no active winter Package.' }}</li>
-                            <li class="text-gray-800">You have {{ Auth::user()->transactions->first()->layer == '1' ? ' Lawyer Draft Will Package.' : 'no lawyer Package.' }}</li>
+                            <li class="text-gray-800">
+                                You have 
+                                {{ Auth::user()->transactions->isNotEmpty() && Auth::user()->transactions->first()->notarization == '1' 
+                                    ? 'Notarization Package' 
+                                    : 'no active Notarization Package' }}
+                            </li>
+                            <li class="text-gray-800">
+                                You have 
+                                {{ Auth::user()->transactions->isNotEmpty() && Auth::user()->transactions->first()->winterwill == '1' 
+                                    ? 'Writer Will Package.' 
+                                    : 'no active winter Package.' }}
+                            </li>
+                            <li class="text-gray-800">
+                                You have 
+                                {{ Auth::user()->transactions->isNotEmpty() && Auth::user()->transactions->first()->layer == '1' 
+                                    ? 'Lawyer Draft Will Package.' 
+                                    : 'no lawyer Package.' }}
+                            </li>
                         </ul>
                         <div class="text-right mt-6">
-                            <a id="packageButton" class="mr-4 bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" href="{{ route('checkout') }}">
-                                Cancel Subscription
-                            </a>
+                           <a  class="mr-4 bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" 
+                                   href="{{ route('cancel.subscription') }}">
+                                   Cancel Subscription
+                                </a>
                             <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" href="{{ route('checkout') }}">
                                 Update Subscription
                             </a>
