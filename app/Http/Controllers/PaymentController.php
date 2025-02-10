@@ -42,7 +42,7 @@ class PaymentController extends Controller
                 // Create one-time payment intent
                 $paymentIntent = PaymentIntent::create([
                     'amount' => $validatedData['totalAmount'] * 100,
-                    'currency' => 'usd',
+                    'currency' => 'gbp',
                     'automatic_payment_methods' => ['enabled' => true],
                 ]);
 
@@ -74,7 +74,7 @@ class PaymentController extends Controller
                 $price = Price::create([
                     'product' => $product->id,
                     'unit_amount' => $validatedData['totalAmount'] * 100,
-                    'currency' => 'usd',
+                    'currency' => 'gbp',
                     'recurring' => [
                         'interval' => $interval, // dynamically set the interval
                     ]
