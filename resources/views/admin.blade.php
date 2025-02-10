@@ -64,10 +64,8 @@
       </div>
 
       <!-- Toast Notifications -->
-      <div
-        id="toastContainer"
-        class="fixed top-4 left-1/2 transform -translate-x-1/2 space-y-2 z-50"
-      ></div>
+
+      @include('toast')
     </div>
 
     <script>
@@ -164,10 +162,10 @@ function deleteUser(clientId) {
     })
       .then((response) => {
         if (response.ok) {
-          alert("User deleted successfully.");
+          showToast("User deleted successfully.");
           fetchUsers(); // Refresh user table
         } else {
-          alert("Failed to delete user.");
+          ShowToast("Failed to delete user.");
         }
       })
       .catch((error) => console.error("Error deleting user:", error));
