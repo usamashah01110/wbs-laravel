@@ -110,7 +110,7 @@ class UserController extends Controller
 
         public function adminProfile()
     {
-        return view('admin-profile');
+        return view('admin.admin-profile');
     }
 }
 
