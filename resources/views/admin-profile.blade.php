@@ -5,17 +5,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin - User Details</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon" />
 </head>
 
 <body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
+    <!-- Header -->
     @include('header')
 
     <div class="flex h-screen">
+        <!-- Sidebar -->
         @include('side-bar')
 
         <!-- Main Content -->
@@ -27,7 +31,8 @@
                         <div class="relative">
                             <img id="adminProfileImage"
                                 src="{{ auth()->user() && auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
-                                alt="Admin Profile" class="w-24 h-24 rounded-full object-cover" />
+                                alt="Profile"
+                                class="w-24 h-24 rounded-full object-cover border" />
                             <button id="editAdminProfileImage"
                                 class="absolute top-0 left-0 bg-gray-800 text-white text-sm px-2 py-1 rounded-full">
                                 Edit
@@ -37,7 +42,7 @@
                     </div>
 
                     <!-- User Details Form -->
-                    <form id="editUserProfile">
+                    <form id="editAdminProfile">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-gray-600">First Name</label>
@@ -72,82 +77,71 @@
     </div>
 
     <!-- Toast Container -->
-    @include('toast')
+    <div id="toastContainer" class="fixed bottom-5 right-5 space-y-2 z-50"></div>
+
     <script>
-        // Sidebar Toggle Functionality
-        const sidebar = document.getElementById("sidebar");
-        const sidebarToggle = document.getElementById("sidebarToggle");
-        const toggleArrow = document.getElementById("toggleArrow");
-        const sidebarText = document.querySelectorAll(".sidebar-text");
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchLoggedInAdmin();
 
-        sidebarToggle?.addEventListener("click", () => {
-            sidebar.classList.toggle("w-64");
-            sidebar.classList.toggle("w-16");
-            toggleArrow.classList.toggle("rotate-180");
+            const adminFileInput = document.getElementById("adminFileInput");
+            const adminProfileImage = document.getElementById("adminProfileImage");
+            const editAdminProfileImage = document.getElementById("editAdminProfileImage");
 
-            sidebarText.forEach((text) => text.classList.toggle("hidden"));
+            editAdminProfileImage.addEventListener("click", () => adminFileInput.click());
+
+            adminFileInput.addEventListener("change", (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        adminProfileImage.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+
+                    const formData = new FormData();
+                    formData.append("profile_image", file);
+
+                    adminProfileImage.classList.add("opacity-50");
+
+                    fetch("/admin/update-profile-image", {
+                            method: "POST",
+                            headers: {
+                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                            },
+                            body: formData,
+                        })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            adminProfileImage.classList.remove("opacity-50");
+                            adminProfileImage.src = data.profile_image;
+                            showToast("Profile image updated successfully!", "success");
+                            setTimeout(() => location.reload(), 1000);
+                        })
+                        .catch(() => showToast("Failed to update profile image.", "error"));
+                }
+            });
         });
 
-        // Fetch Logged-In User Data
-        function fetchLoggedInUser() {
-            fetch("/api/logged-in-user")
-                .then((response) => response.json())
-                .then((data) => {
+        function fetchLoggedInAdmin() {
+            fetch("/api/logged-in-admin")
+                .then(response => response.json())
+                .then(data => {
                     document.getElementById("firstName").value = data.firstname;
                     document.getElementById("lastName").value = data.lastname;
                     document.getElementById("email").value = data.email;
                     document.getElementById("phoneNumber").value = data.phone;
                 })
-                .catch((error) => console.error("Error fetching user data:", error));
+                .catch(error => console.error("Error fetching admin data:", error));
         }
 
-        // Handle Profile Image Upload
-        document.addEventListener("DOMContentLoaded", () => {
-                    const adminFileInput = document.getElementById("adminFileInput");
-                    const adminProfileImage = document.getElementById("adminProfileImage");
-                    const editAdminProfileImage = document.getElementById("editAdminProfileImage");
-
-                    editAdminProfileImage.addEventListener("click", () => adminFileInput.click());
-
-                    adminFileInput.addEventListener("change", (event) => {
-                        const file = event.target.files[0];
-                        if (file) {
-                            const reader = new FileReader();
-                            reader.onload = function(e) {
-                                adminProfileImage.src = e.target.result;
-                            };
-                            reader.readAsDataURL(file);
-
-                            const formData = new FormData();
-                            formData.append("profile_image", file);
-
-                            adminProfileImage.classList.add("opacity-50");
-
-                            fetch("/admin/update-profile-image", {
-                                    method: "POST",
-                                    headers: {
-                                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
-                                            .getAttribute("content"),
-                                    },
-                                    body: formData,
-                                })
-                                .then((response) => response.json())
-                                .then((data) => {
-                                    adminProfileImage.classList.remove("opacity-50");
-                                    adminProfileImage.src = data.profile_image;
-                                    showToast("Profile image updated successfully!", "success");
-                                    setTimeout(() => location.reload(), 1000);
-                                })
-                                .catch((error) => {
-                                    showToast("Failed to update profile image.", "error");
-                                });
-                        }
-                    });
-
-                    // Initialize Page
-                    document.addEventListener("DOMContentLoaded", () => {
-                        fetchLoggedInUser();
-                    });
+        function showToast(message, type = "success") {
+            const toastContainer = document.getElementById("toastContainer");
+            const toast = document.createElement("div");
+            toast.classList.add("toast", type, "bg-gray-800", "text-white", "p-3", "rounded-md", "shadow-md");
+            toast.textContent = message;
+            toastContainer.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
     </script>
 </body>
 
