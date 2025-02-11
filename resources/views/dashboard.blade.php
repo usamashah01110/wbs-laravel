@@ -299,9 +299,9 @@
                     try {
                         const data = JSON.parse(text);
                         if (data.success) {
-                            window.location.reload();
                             showToast(data.message || "Document upload Succesfully.");
                             loader.classList.add("hidden");
+                            window.location.reload();
                         } else {
                             showToast(data.message || "Document upload failed.");
                             loader.classList.add("hidden");
@@ -385,7 +385,7 @@
             currentListId = listId;
             editingIndex = id;
             updateId = id;
-            const popupModal = document.getElementById("popattoronyModal");
+            const POApopupModal = document.getElementById("popattoronyModal");
             const form = document.getElementById("popupAttornyForm");
 
             if (index !== null) {
@@ -402,7 +402,7 @@
             } else {
                 form.reset();
             }
-            popupModal.classList.remove("hidden");
+            POApopupModal.classList.remove("hidden");
         }
 
         function closePopupPOA() {
