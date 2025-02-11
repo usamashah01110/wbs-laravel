@@ -359,6 +359,7 @@
         }
 
         async function deleteDocument(id) {
+            loader.classList.remove("hidden");
             await fetch(`/documents/${id}`, {
                 method: 'DELETE',
                 headers: {
@@ -367,6 +368,7 @@
             });
             fetchDocuments();
             fetchAttorny();
+            loader.classList.add("hidden");
         }
 
         let currentListId = "";
