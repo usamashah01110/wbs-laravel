@@ -71,7 +71,6 @@
                             <button type="submit" class="bg-[#415a77] text-white px-4 py-2 rounded-lg">Save</button>
                         </div>
                     </form>
-                    <button class="bg-[#415a77] text-white px-4 py-2 rounded-lg" id="myButton">Yes</button>
                 </section>
             </main>
         </div>
@@ -80,13 +79,9 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        document.getElementById("myButton").addEventListener("click", function() {
-            showToast("Button clicked!");
-        });
         document.addEventListener("DOMContentLoaded", () => {
             fetchLoggedInUser();
             setupProfileImageUpload();
-            handleFormSubmission();
         });
 
         function fetchLoggedInUser() {
