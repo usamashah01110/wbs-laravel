@@ -222,9 +222,6 @@
     @include('popup')
 
     <script>
-        document.getElementById("press").addEventListener("click", function() {
-            showToast("Button clicked!");
-        });
         fetchDocuments();
         fetchAttorny();
 
@@ -375,6 +372,7 @@
             fetchDocuments();
             fetchAttorny();
             loader.classList.add("hidden");
+            showToast("Deleted successfully");
         }
 
         let currentListId = "";
@@ -525,6 +523,7 @@
                     .then(data => {
                         if (data.success) {
                             window.location.reload();
+                            showToast('Delete Successfully');
                         } else {
                             showToast('Failed to delete recipient.');
                         }
@@ -679,6 +678,7 @@
                     .then(data => {
                         if (data.success) {
                             window.location.reload();
+                            showToast('Deleted successfully');
                         } else {
                             showToast('Failed to delete recipient.');
                         }
