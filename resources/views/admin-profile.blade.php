@@ -12,7 +12,7 @@
     <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon">
 </head>
 
-<body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
+<body class="bg-gray-100 min-h-screen font-sans">
     @include('header')
     <div class="flex h-screen">
         @include('side-bar')
@@ -75,9 +75,8 @@
                 </section>
             </main>
         </div>
-        @include('toast')
     </div>
-
+    @include('toast')
 
     <script>
         document.getElementById("myButton").addEventListener("click", function() {
