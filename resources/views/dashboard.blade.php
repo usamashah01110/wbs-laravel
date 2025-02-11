@@ -223,7 +223,7 @@
 
     <script>
         document.getElementById("press").addEventListener("click", function() {
-            alert("Button clicked!");
+            showToast("Button clicked!");
         });
         fetchDocuments();
         fetchAttorny();
