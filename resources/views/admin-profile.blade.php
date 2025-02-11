@@ -31,8 +31,11 @@
                             <img id="profileImage"
                                 src="{{ auth()->user() && auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
                                 alt="Profile" class="w-full h-full rounded-full object-cover">
-                            <div id="loader" class="hidden absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 rounded-full">
-                                <div class="w-12 h-12 border-4 border-white border-t-blue-500 rounded-full animate-spin"></div>
+                            <div id="loader"
+                                class="hidden absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 rounded-full">
+                                <div
+                                    class="w-12 h-12 border-4 border-white border-t-blue-500 rounded-full animate-spin">
+                                </div>
                             </div>
                         </div>
                         <button id="editProfileImage"
@@ -77,9 +80,9 @@
     @include('toast')
 
     <script>
-          document.getElementById("myButton").addEventListener("click", function() {
-    alert("Button clicked!");
-  });
+        document.getElementById("myButton").addEventListener("click", function() {
+            showToast("Button clicked!");
+        });
         document.addEventListener("DOMContentLoaded", () => {
             fetchLoggedInUser();
             setupProfileImageUpload();
@@ -138,7 +141,6 @@
                 }
             });
         }
-
     </script>
 </body>
 
