@@ -25,22 +25,8 @@
       <div class="w-full">
         <main class="flex-1 p-6">
           <section class="bg-white p-6 rounded-lg shadow">
-            <!-- Profile Image -->
-            {{-- <div class="flex items-center mb-6">
-              <div class="relative">
-                <img
-                  id="profileImage"
-                  src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/usere.png') }}"
-                  alt="Profile"
-                  class="w-24 h-24 rounded-full object-cover"
-                />
-              </div>
-              <div>
-
-              </div>
-            </div> --}}
             <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center">
+                <div class="flex flex-col items-center">
                   <div class="relative">
                     <img
                       id="profileImage"
@@ -50,8 +36,9 @@
                     />
                   </div>
                   <div class="ml-6">
-                    <h2 class="text-xl font-semibold">{{ $user->name }}</h2>
+                    <h2 class="text-xl font-semibold">{{ $user->firstname }}</h2>
                     <p class="text-gray-600">{{ $user->email }}</p>
+                    <p class="text-gray-600">{{ $user->phone }}</p>
                   </div>
                 </div>
 
