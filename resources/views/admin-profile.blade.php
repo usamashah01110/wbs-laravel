@@ -75,9 +75,9 @@
                 </section>
             </main>
         </div>
+        @include('toast')
     </div>
 
-    @include('toast')
 
     <script>
         document.getElementById("myButton").addEventListener("click", function() {
