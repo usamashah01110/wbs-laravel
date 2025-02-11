@@ -20,7 +20,7 @@
                 </li>
             </a>
             <form method="POST" action="{{ route('logout') }}">
-                <button type="submit">
+                <button type="submit" class="w-full">
                     <li id="logoutLink"
                         class="hover:bg-gray-700 px-4 flex items-center gap-4 cursor-pointer transition-all duration-300">
                         <i class="fas fa-sign-out-alt text-red-500 text-lg py-2"></i>
