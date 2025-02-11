@@ -120,7 +120,7 @@
 
                         <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
                             <p id="subscriptionInfo" class="text-lg font-semibold">
-                                <strong class="text-[#415A77]">One Time Paid {{ isset(Auth::user()->transactions[0]) ? '$ ' . Auth::user()->transactions[0]['amount'] : 'N/A' }}
+                                <strong class="text-[#415A77]">One Time Paid {{ isset(Auth::user()->transactions[0]) ? '$' . Auth::user()->transactions[0]['amount'] : 'N/A' }}
 
                                 </strong>
                             </p>
