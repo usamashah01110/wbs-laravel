@@ -24,12 +24,12 @@
         <div class="text-center bg-[#415a77] text-white py-2 rounded mb-6">
             <h1 class="text-xl font-semibold">Welcome back, {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
             </h1>
+            <button id="press">click</button>
         </div>
         <!-- Main Grid Section -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Loader -->
-            <div id="loader"
-                class="hidden fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
+            <div id="loader" class="hidden fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
                 <div class="w-16 h-16 border-4 border-white border-t-blue-500 rounded-full animate-spin"></div>
             </div>
             <!-- First Row -->
@@ -222,6 +222,9 @@
     @include('popup')
 
     <script>
+        document.getElementById('press') {
+            showToast("");
+        }
         fetchDocuments();
         fetchAttorny();
 
@@ -286,7 +289,7 @@
             const formData = new FormData();
             formData.append("document", file);
             formData.append("document_type", 'attorny');
-
+            loader.classList.remove("hidden");
             // Send AJAX request
             fetch("/documents", {
                     method: "POST",
@@ -300,11 +303,14 @@
                         const data = JSON.parse(text);
                         if (data.success) {
                             window.location.reload();
+                            loader.classList.add("hidden");
                         } else {
                             showToast(data.message || "Document upload failed.");
+                            loader.classList.add("hidden");
                         }
                     } catch {
                         showToast("Unexpected response format.");
+                        loader.classList.add("hidden");
                     }
                 })
         }
