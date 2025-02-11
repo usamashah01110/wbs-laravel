@@ -104,7 +104,7 @@ class UserController extends Controller
             return redirect()->route('admin.dashboard')->with('error', 'User not found.');
         }
 
-        return view('user-details', ['user' => $user]);
+        return view('admin.user-details', ['user' => $user]);
     }
 
 
