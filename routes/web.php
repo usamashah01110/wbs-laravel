@@ -17,6 +17,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin/dashboard', function () {
+    dd(view()->exists('admin.admin'));
     return view('admin.admin');
 })->middleware(['auth', 'verified'])->name('admin.admin');
 
