@@ -8,17 +8,6 @@ use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('index');
 });
@@ -29,7 +18,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/admin/dashboard', function () {
     return view('admin.admin');
-})->middleware(['auth', 'verified'])->name('admin.admin.dashboard');
+})->middleware(['auth', 'verified'])->name('admin.admin');
 
 Route::get('/api/users', [UserController::class, 'getAllUsers']);
 Route::get('/user/profile', [UserController::class, 'userProfile'])->name('user.profile')
