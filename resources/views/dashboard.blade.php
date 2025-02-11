@@ -222,9 +222,9 @@
     @include('popup')
 
     <script>
-        document.getElementById('press') {
-            showToast("");
-        }
+        document.getElementById("press").addEventListener("click", function() {
+            alert("Button clicked!");
+        });
         fetchDocuments();
         fetchAttorny();
 
