@@ -42,7 +42,7 @@ class PaymentController extends Controller
                 // Create one-time payment intent
                 $paymentIntent = PaymentIntent::create([
                     'amount' => $validatedData['totalAmount'] * 100,
-                    'currency' => 'gbp',
+                    'currency' => 'usd',
                     'automatic_payment_methods' => ['enabled' => true],
                 ]);
 
@@ -55,11 +55,11 @@ class PaymentController extends Controller
                 $user = auth()->user();
                 $customerData = [
                     'email' => $user->email,
-                    'name' => $user->name,
+                    'name' => $user->firstname.' '.$user->lastname,
                 ];
-
                 if (!$user->stripe_id) {
                     $customer = Customer::create($customerData);
+                    // dd($customer);
                     $user->stripe_id = $customer->id;
                     $user->save();
                 }
@@ -74,7 +74,7 @@ class PaymentController extends Controller
                 $price = Price::create([
                     'product' => $product->id,
                     'unit_amount' => $validatedData['totalAmount'] * 100,
-                    'currency' => 'gbp',
+                    'currency' => 'usd',
                     'recurring' => [
                         'interval' => $interval, // dynamically set the interval
                     ]
@@ -87,7 +87,7 @@ class PaymentController extends Controller
                     'payment_behavior' => 'default_incomplete',
                     'expand' => ['latest_invoice.payment_intent'],
                 ]);
-
+// dd($subscription);
                 return response()->json([
                     'clientSecret' => $subscription->latest_invoice->payment_intent->client_secret,
                     'type' => 'subscription',
@@ -109,6 +109,7 @@ class PaymentController extends Controller
             $paymentIntent = PaymentIntent::retrieve($request['payment_intent']);
 
             if ($request['payment_type'] === 'one_time') {
+                // dd($request->all());
                 // Store one-time payment in transactions table
                     DB::table('transactions')->insert([
                         'user_id' => $user->id,
@@ -116,9 +117,9 @@ class PaymentController extends Controller
                         'amount' => $paymentIntent->amount / 100,
                         'stripe_id' => $paymentIntent->id,
                         'stripe_status' => $paymentIntent->status,
-                        'notarization' => !empty($request->notarization) ? 1 : 0,
-                        'winterwill' => !empty($request->writerWill) ? 1 : 0,
-                        'layer' => !empty($request->lawyerWill) ? 1 : 0,
+'notarization' => $request->input('notarization') !== "null" ? 1 : 0,
+'winterwill'   => $request->input('writerWill') !== "null" ? 1 : 0,
+'layer'        => $request->input('lawyerWill') !== "null" ? 1 : 0,
                         'created_at' => now(),
                         'updated_at' => now()
                     ]);
@@ -140,7 +141,7 @@ class PaymentController extends Controller
                 $executor = (isset($subscriptions[6]) && $subscriptions[6] == 'executor') ? true : false;
 
                     DB::table('subscriptions')->updateOrInsert(
-                        ['user_id' => $user->id], // Condition to check existing record
+                        ['user_id' => $user->id],
                         [
                             'type' => 'monthly',
                             'stripe_id' => $stripeSubscription->id,

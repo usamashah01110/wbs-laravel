@@ -105,7 +105,7 @@
                                 Your current plan:
                                 <strong class="text-[#415A77]">
                                     @if(Auth::user()->subscriptions->first()->type == 'monthly')
-                                        Monthly {{Auth::user()->subscriptions[0]['total_amount']}} £
+                                        Monthly ${{Auth::user()->subscriptions[0]['total_amount']}}
                                     @else
                                         Yearly
                                     @endif
@@ -120,18 +120,23 @@
 
                         <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
                             <p id="subscriptionInfo" class="text-lg font-semibold">
-                                <strong class="text-[#415A77]">
-
-                                  One Time Paid {{Auth::user()->transactions[0]['amount']}} £
+                                <strong class="text-[#415A77]">One Time Paid {{ isset(Auth::user()->transactions[0]) ? '$ ' . Auth::user()->transactions[0]['amount'] : 'N/A' }}
 
                                 </strong>
                             </p>
-                            <li class="text-gray-800">You have {{ Auth::user()->transactions->first()->notarization == '1' ? 'Notarization Package' : 'no active Notarization Package' }}</li>
-                            <li class="text-gray-800">You have {{ Auth::user()->transactions->first()->winterwill == '1' ? 'Writer Will Package.' : 'no active winter Package.' }}</li>
-                            <li class="text-gray-800">You have {{ Auth::user()->transactions->first()->layer == '1' ? ' Lawyer Draft Will Package.' : 'no lawyer Package.' }}</li>
+                            <li class="text-gray-800">
+                                You have {{ isset(Auth::user()->transactions[0]) && Auth::user()->transactions[0]['notarization'] == '1' ? 'Notarization Package' : 'no active Notarization Package' }}
+                            </li>
+                            <li class="text-gray-800">
+                                You have {{ isset(Auth::user()->transactions[0]) && Auth::user()->transactions[0]['winterwill'] == '1' ? 'Writer Will Package.' : 'no active winter Package.' }}
+                            </li>
+                            <li class="text-gray-800">
+                                You have {{ isset(Auth::user()->transactions[0]) && Auth::user()->transactions[0]['layer'] == '1' ? 'Lawyer Draft Will Package.' : 'no lawyer Package.' }}
+                            </li>
                         </ul>
+
                         <div class="text-right mt-6">
-                            <a id="packageButton" class="mr-4 bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" href="{{ route('checkout') }}">
+                            <a href="{{route('cancel.subscription')}}" id="packageButton" class="mr-4 bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300">
                                 Cancel Subscription
                             </a>
                             <a id="packageButton" class="bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300" href="{{ route('checkout') }}">

@@ -144,10 +144,11 @@
 {{--        </form>--}}
 
           <form
+                  id="subscriptionSubmit"
               class="space-y-6"
               method="GET"
               action="{{ route('paymentPage') }}"
-          >
+            >
               <!-- Billing Cycle Selection -->
               <div>
                   <h3 class="text-lg font-semibold text-gray-800">
@@ -190,13 +191,13 @@
                       class="flex items-start gap-4 border p-4 rounded-lg hover:shadow-lg transition"
                   >
                       <input
+                      id="fullWill"
                           type="checkbox"
                           name="subscription[]"
                           value="fullWill,10,100"
                           class="hidden peer"
-                          @if(!isset(Auth::user()->subscriptions->first()->fullWill) || Auth::user()->subscriptions->first()->fullWill != '1') 
-                            checked disabled 
-                        @endif
+                           {{-- @if(isset(Auth::user()->subscriptions->first()->fullWill) && Auth::user()->subscriptions->first()->fullWill == '1') checked @endif --}}
+
                       />
                       <div
                           class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"
@@ -220,7 +221,7 @@
                           name="subscription[]"
                           value="poa,1,10"
                           class="hidden peer"
-                          @if(isset(Auth::user()->subscriptions->first()->poa) && Auth::user()->subscriptions->first()->poa == '1') checked @endif
+                          {{-- @if(isset(Auth::user()->subscriptions->first()->poa) && Auth::user()->subscriptions->first()->poa == '1') checked @endif --}}
                       />
                       <div
                           class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"
@@ -244,7 +245,7 @@
                           name="subscription[]"
                           value="executor,1,10"
                           class="hidden peer"
-                          @if(isset(Auth::user()->subscriptions->first()->executor) && Auth::user()->subscriptions->first()->executor == '1') checked @endif
+                          {{-- @if(isset(Auth::user()->subscriptions->first()->executor) && Auth::user()->subscriptions->first()->executor == '1') checked @endif --}}
                       />
                       <div
                           class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300"
@@ -386,13 +387,14 @@
       </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
 
         const billingCycleRadios = document.querySelectorAll('input[name="billingCycle"]');
         const subscriptionCheckboxes = document.querySelectorAll('input[name="subscription[]"]');
         const totalAmountInput = document.getElementById('totalAmount');
         const totalAmountDisplay = document.getElementById('subscriptionTotal');
-
+        // const fullWillCheckbox = document.getElementById('fullWill');
         function calculateTotal() {
             let total = 0;
             const billingCycle = document.querySelector('input[name="billingCycle"]:checked').value;
@@ -403,7 +405,10 @@
                     total += billingCycle === 'monthly' ? parseFloat(monthlyPrice) : parseFloat(yearlyPrice);
                 }
             });
-
+    //         if (!fullWillCheckbox.checked) {
+    //     alert('Please check the Full Will option.');
+    //     return; // Stop further execution
+    // }
             totalAmountInput.value = total.toFixed(2);
             totalAmountDisplay.textContent = total.toFixed(2);
         }
@@ -411,6 +416,13 @@
         billingCycleRadios.forEach((radio) => radio.addEventListener('change', calculateTotal));
         subscriptionCheckboxes.forEach((checkbox) => checkbox.addEventListener('change', calculateTotal));
 
+
+        $('#subscriptionSubmit').submit(function (event) {
+        if (!$('#fullWill').prop('checked')) {
+            alert('Please check the Full Will option before proceeding.');
+            event.preventDefault(); // Prevent form submission
+        }
+    });
         // Initial calculation
         calculateTotal();
 
