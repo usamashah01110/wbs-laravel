@@ -48,7 +48,7 @@
                 </a>
               </div>
             </div>
-            <button type="submit" class="w-full bg-[#415a77] text-white font-medium py-3 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out">
+            <button type="submit" class="w-full bg-success text-white font-medium py-3 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out">
               Login
             </button>
             <p class="text-sm text-center text-gray-900 mt-4">
