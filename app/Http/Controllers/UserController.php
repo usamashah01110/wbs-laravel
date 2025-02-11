@@ -96,16 +96,6 @@ class UserController extends Controller
             return response()->json(['error' => 'Failed to delete user'], 500);
         }
     }
-
-    // public function userDetails($id){
-    //     $user = User::with(['documents', 'recipients'])->find($id);
-
-    //     if (!$user) {
-    //         return response()->json(['error' => 'User not found'], 404);
-    //     }
-
-    //     return response()->json(['user' => $user]);
-    // }
     public function userDetails($id)
     {
         $user = User::with(['documents', 'recipients','subscriptions','transactions'])->find($id);
