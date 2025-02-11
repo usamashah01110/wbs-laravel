@@ -67,6 +67,7 @@
                         <div class="text-right mt-6">
                             <button type="submit" class="bg-[#415a77] text-white px-4 py-2 rounded-lg">Save</button>
                         </div>
+                        <button class="bg-[#415a77] text-white px-4 py-2 rounded-lg" id="myButton">Yes</button>
                     </form>
                 </section>
             </main>
@@ -76,6 +77,9 @@
     @include('toast')
 
     <script>
+          document.getElementById("myButton").addEventListener("click", function() {
+    alert("Button clicked!");
+  });
         document.addEventListener("DOMContentLoaded", () => {
             fetchLoggedInUser();
             setupProfileImageUpload();
