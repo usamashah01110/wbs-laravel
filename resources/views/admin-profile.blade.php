@@ -26,7 +26,7 @@
                     </div> --}}
 
                     <!-- Profile Image -->
-                    <div class="relative w-24 h-24 mx-auto">
+                    <div class="relative w-24 h-24">
                         <div class="relative">
                             <img id="profileImage"
                                 src="{{ auth()->user() && auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
@@ -77,7 +77,6 @@
     </div>
     @include('toast')
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             fetchLoggedInUser();
