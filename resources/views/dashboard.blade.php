@@ -447,8 +447,8 @@
                 body: JSON.stringify(recipientData)
             })
             .then(response => response.json())
-            console.log("RRRRR",response.json())
-                .then(data => {
+            .then(data => {
+                    console.log("RRRRR",data)
                     if (data.success === true) {
                         closePopupPOA();
                         window.location.reload();
