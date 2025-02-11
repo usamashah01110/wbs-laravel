@@ -5,11 +5,8 @@
 
     <div class="relative">
         <button id="dropdownButton" class="flex items-center gap-2 transition">
-            <img
-                src="{{ optional(auth()->user())->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
-                alt="Profile"
-                class="w-8 h-8 rounded-full"
-            />
+            <img src="{{ optional(auth()->user())->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
+                alt="Profile" class="w-8 h-8 rounded-full" />
             <span class="font-medium text-gray-100">
                 {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
             </span>
@@ -26,13 +23,11 @@
 
             <form method="POST" action="{{ route('logout') }}" class="block">
                 @csrf
-                <x-responsive-nav-link
-                    :href="route('logout')"
+                <a href="route('logout')"
                     class="block px-4 py-2 hover:bg-gray-200 text-red-500 transition-all duration-300"
-                    onclick="event.preventDefault(); this.closest('form').submit();"
-                >
+                    onclick="event.preventDefault(); this.closest('form').submit();">
                     <i class="fas fa-sign-out-alt text-red-500 mr-4"></i>{{ __('Log Out') }}
-                </x-responsive-nav-link>
+                </a>
             </form>
         </div>
     </div>
