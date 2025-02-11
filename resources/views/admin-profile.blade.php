@@ -12,7 +12,7 @@
     <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon">
 </head>
 
-<body class="bg-gray-100 min-h-screen font-sans">
+<body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
     @include('header')
     <div class="flex h-screen">
         @include('side-bar')
@@ -70,8 +70,8 @@
                         <div class="text-right mt-6">
                             <button type="submit" class="bg-[#415a77] text-white px-4 py-2 rounded-lg">Save</button>
                         </div>
-                        <button class="bg-[#415a77] text-white px-4 py-2 rounded-lg" id="myButton">Yes</button>
                     </form>
+                    <button class="bg-[#415a77] text-white px-4 py-2 rounded-lg" id="myButton">Yes</button>
                 </section>
             </main>
         </div>
