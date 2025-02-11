@@ -394,7 +394,7 @@
                 const name = item.querySelector(".recipient-name").innerText;
                 const mobile = item.querySelector(".recipient-mobile").innerText;
                 const email = item.querySelector(".recipient-email").innerText;
-                const id = item.querySelector(".recipient-email").innerText;
+                const id = item.querySelector(".recipient-id").innerText;
 
                 form.recipientFirstName.value = name;
                 form.recipientMobile.value = mobile;
@@ -437,16 +437,17 @@
             const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
             const method = editingIndex !== null ? 'PUT' : 'POST';
 
+            console.log("RRRR", recipientData);
             fetch(url, {
-                    method: method,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                            'content')
-                    },
-                    body: JSON.stringify(recipientData)
-                })
-                .then(response => response.json())
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                        'content')
+                },
+                body: JSON.stringify(recipientData)
+            })
+            .then(response => response.json())
                 .then(data => {
                     if (data.success === true) {
                         closePopupPOA();
@@ -456,7 +457,6 @@
                     }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
                     showToast('An error occurred while saving recipient data!');
                 });
         });
@@ -554,8 +554,8 @@
                 const name = item.querySelector(".recipient-name").innerText;
                 const mobile = item.querySelector(".recipient-mobile").innerText;
                 const email = item.querySelector(".recipient-email").innerText;
-                const state = item.querySelector(".recipient-email").innerText;
-                const id = item.querySelector(".recipient-email").innerText;
+                const state = item.querySelector(".recipient-state").innerText;
+                const id = item.querySelector(".recipient-id").innerText;
 
                 form.recipientFirstName.value = name;
                 form.recipientMobile.value = mobile;
