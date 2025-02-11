@@ -29,7 +29,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/admin/dashboard', function () {
     return view('admin.admin');
-})->middleware(['auth', 'verified'])->name('admin.dashboard');
+})->middleware(['auth', 'verified'])->name('admin.admin.dashboard');
 
 Route::get('/api/users', [UserController::class, 'getAllUsers']);
 Route::get('/user/profile', [UserController::class, 'userProfile'])->name('user.profile')
