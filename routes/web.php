@@ -17,7 +17,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin/dashboard', function () {
-    return view('admin.admin');
+    return view('admin');
 })->middleware(['auth', 'verified'])->name('admin.dashboard');
 
 Route::get('/api/users', [UserController::class, 'getAllUsers']);
