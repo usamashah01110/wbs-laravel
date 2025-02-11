@@ -300,6 +300,7 @@
                         const data = JSON.parse(text);
                         if (data.success) {
                             window.location.reload();
+                            showToast(data.message || "Document upload Succesfully.");
                             loader.classList.add("hidden");
                         } else {
                             showToast(data.message || "Document upload failed.");
@@ -371,8 +372,8 @@
             });
             fetchDocuments();
             fetchAttorny();
-            loader.classList.add("hidden");
             showToast("Deleted successfully");
+            loader.classList.add("hidden");
         }
 
         let currentListId = "";
