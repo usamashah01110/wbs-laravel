@@ -17,9 +17,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin/dashboard', function () {
-    dd(view()->exists('admin.admin'));
     return view('admin.admin');
-})->middleware(['auth', 'verified'])->name('admin.admin');
+})->middleware(['auth', 'verified'])->name('admin.dashboard');
 
 Route::get('/api/users', [UserController::class, 'getAllUsers']);
 Route::get('/user/profile', [UserController::class, 'userProfile'])->name('user.profile')
