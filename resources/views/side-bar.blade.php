@@ -1,7 +1,5 @@
-<nav
-    id="sidebar"
-    class="bg-[#415a77] text-gray-100 w-64 h-full flex-shrink-0 transition-all duration-300 flex flex-col justify-between"
->
+<nav id="sidebar"
+    class="bg-[#415a77] text-gray-100 w-64 h-full flex-shrink-0 transition-all duration-300 flex flex-col justify-between">
     <div>
         <div class="p-4">
             <button id="sidebarToggle" class="text-gray-400 hover:text-white">
@@ -10,37 +8,25 @@
         </div>
         <ul>
             <a href="{{ route('admin.dashboard') }}">
-                <li
-                    id="dashboardLink"
-                    class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer"
-                >
+                <li id="dashboardLink" class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer">
                     <i class="fas fa-tachometer-alt h-6 w-6"></i>
                     <span class="sidebar-text">Dashboard</span>
                 </li>
             </a>
             <a href="{{ route('admin.profile') }}">
-                <li
-                    id="myAccountLink"
-                    class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer"
-                >
+                <li id="myAccountLink" class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer">
                     <i class="fas fa-user-circle h-6 w-6"></i>
                     <span class="sidebar-text">My Account</span>
                 </li>
             </a>
-            <li
-                id="logoutLink"
-                class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer"
-            >
+            <li id="logoutLink" class="hover:bg-gray-700 px-4 py-2 flex items-center gap-4 cursor-pointer">
                 <i class="fas fa-sign-out-alt h-6 w-6"></i>
                 <span class="sidebar-text">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <x-responsive-nav-link :href="route('logout')"
-                        class="p-0 text-white"
-                            onclick="event.preventDefault();
-                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
+                        <button type="submit">
+                            Logout
+                        </button>
                     </form>
                 </span>
             </li>
