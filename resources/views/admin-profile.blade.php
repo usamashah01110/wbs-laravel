@@ -20,16 +20,21 @@
             <main class="flex-1 p-6">
                 <section class="bg-white p-6 rounded-lg shadow-lg relative">
                     <!-- Loader -->
-                    <div id="loader"
+                    {{-- <div id="loader"
                         class="hidden fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
                         <div class="w-16 h-16 border-4 border-white border-t-blue-500 rounded-full animate-spin"></div>
-                    </div>
+                    </div> --}}
 
                     <!-- Profile Image -->
                     <div class="relative w-24 h-24 mx-auto">
-                        <img id="profileImage"
-                            src="{{ auth()->user() && auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
-                            alt="Profile" class="w-full h-full rounded-full object-cover">
+                        <div class="relative">
+                            <img id="profileImage"
+                                src="{{ auth()->user() && auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
+                                alt="Profile" class="w-full h-full rounded-full object-cover">
+                            <div id="loader" class="hidden absolute inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 rounded-full">
+                                <div class="w-12 h-12 border-4 border-white border-t-blue-500 rounded-full animate-spin"></div>
+                            </div>
+                        </div>
                         <button id="editProfileImage"
                             class="absolute bottom-0 right-0 bg-gray-800 text-white text-xs px-2 py-1 rounded-full">Edit</button>
                         <input id="fileInput" type="file" class="hidden">
@@ -116,8 +121,8 @@
                         .then(data => {
                             loader.classList.add("hidden");
                             if (data.profile_image) {
-                                profileImage.src = data.profile_image;
                                 showToast("Profile image updated successfully.", "success");
+                                profileImage.src = data.profile_image;
                             } else {
                                 showToast("Failed to update profile image.", "error");
                             }
