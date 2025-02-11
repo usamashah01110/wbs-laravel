@@ -437,7 +437,6 @@
             const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
             const method = editingIndex !== null ? 'PUT' : 'POST';
 
-            console.log("RRRR", recipientData);
             fetch(url, {
                 method: method,
                 headers: {
@@ -448,6 +447,7 @@
                 body: JSON.stringify(recipientData)
             })
             .then(response => response.json())
+            console.log("RRRRR",response.json())
                 .then(data => {
                     if (data.success === true) {
                         closePopupPOA();
