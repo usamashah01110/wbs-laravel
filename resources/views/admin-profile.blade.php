@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="text-right mt-6">
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Save</button>
+                            <button type="submit" class="bg-[#415a77] text-white px-4 py-2 rounded-lg">Save</button>
                         </div>
                     </form>
                 </section>
@@ -130,26 +130,6 @@
             });
         }
 
-        function handleFormSubmission() {
-            document.getElementById("editUserProfile").addEventListener("submit", (event) => {
-                event.preventDefault();
-                const formData = new FormData(event.target);
-
-                fetch("/update-profile", {
-                        method: "POST",
-                        headers: {
-                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute(
-                                "content")
-                        },
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        showToast(data.message, data.success ? "success" : "error");
-                    })
-                    .catch(() => showToast("Error updating profile.", "error"));
-            });
-        }
     </script>
 </body>
 
