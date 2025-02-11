@@ -16,9 +16,9 @@ class UserController extends Controller
     public function getAllUsers()
     {
         try {
-            $users = User::all();
-            $documents = Document::count();
-            $recipients = Recipient::count();
+            $users = User::where('id', '!=', Auth::id())->get(); // Exclude logged-in user
+            $documents = Document::count(); // Count all documents
+            $recipients = Recipient::count(); // Count all recipients
 
             return response()->json([
                 'users' => $users,

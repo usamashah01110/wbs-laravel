@@ -108,7 +108,7 @@ class PaymentController extends Controller
             // Retrieve payment intent to get amount and status
             $paymentIntent = PaymentIntent::retrieve($request['payment_intent']);
 
-            if ($request['payment_type'] === 'one_time') {
+            if ($request['payment_type'] === 'one_time') {  
                 // dd($request->all());
                 // Store one-time payment in transactions table
                     DB::table('transactions')->insert([

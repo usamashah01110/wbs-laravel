@@ -511,6 +511,7 @@
             const name = item.querySelector(".recipient-name").innerText;
             const mobile = item.querySelector(".recipient-mobile").innerText;
             const email = item.querySelector(".recipient-email").innerText;
+            const state = item.querySelector(".recipient-email").innerText;
             const id = item.querySelector(".recipient-email").innerText;
 
             form.recipientFirstName.value = name;
@@ -551,7 +552,7 @@
             method: method,
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
             body: JSON.stringify(recipientData)
         })
@@ -683,15 +684,6 @@
             });
     });
 
-    function showToast(message, type = 'success') {
-            const toast = document.createElement('div');
-            toast.className = `p-3 rounded shadow-md text-white ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
-            toast.innerText = message;
-            document.getElementById('toastContainer').appendChild(toast);
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
-        }
 
 </script>
 </body>
