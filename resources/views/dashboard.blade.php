@@ -251,10 +251,13 @@
                     openPopupSub("You don't have a subssssssscription plan.", 'error');
                     return;
                 }
+                console.log("attorny click")
             } else {
+                console.log("will before click")
                 if (fullWill !== 1)
                     openPopupSub("You don't have a subscription plan.", 'error');
                 return;
+                console.log("will after click")
             }
             console.log(document.getElementById("will-recipient").value);
             let formData = new FormData(this);
