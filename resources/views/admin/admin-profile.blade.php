@@ -19,11 +19,6 @@
         <div class="w-full">
             <main class="flex-1 p-6">
                 <section class="bg-white p-6 rounded-lg shadow-lg relative">
-                    <!-- Loader -->
-                    {{-- <div id="loader"
-                        class="hidden fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
-                        <div class="w-16 h-16 border-4 border-white border-t-blue-500 rounded-full animate-spin"></div>
-                    </div> --}}
 
                     <!-- Profile Image -->
                     <div class="relative w-24 h-24">

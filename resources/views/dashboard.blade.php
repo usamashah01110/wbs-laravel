@@ -53,24 +53,32 @@
                         <p>Click here to add recipient</p>
                     </li>
                     <!-- Recipients will be added here -->
-                    @foreach ($recipients as $recipient)
-                        <li id="will-recipient" class="space-y-2 flex justify-between ">
-                            @if ($recipient->type == 'will')
-                                <div>
-                                    <p class="recipient-name font-semibold">{{ $recipient->name }}</p>
-                                    <p class="recipient-mobile text-sm text-gray-600">{{ $recipient->mobile }}</p>
-                                    <p class="recipient-email text-sm text-gray-600">{{ $recipient->email }}</p>
-                                </div>
-                                <div class="space-x-2">
-                                    <a href="javascript:void(0);" class="text-blue-500 editRecipient"
-                                        data-id="{{ $recipient->id }}">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="{{ route('recipients.delete', $recipient->id) }}">Delete</a>
-                                </div>
+                    @if (isset($recipients) && !empty($recipients))
+                        @foreach ($recipients as $recipient)
+                            @if (isset($recipient->type) && $recipient->type == 'will')
+                                <li id="will-recipient" class="space-y-2 flex justify-between">
+                                    <div>
+                                        <p class="recipient-name font-semibold">{{ $recipient->name ?? 'N/A' }}</p>
+                                        <p class="recipient-mobile text-sm text-gray-600">
+                                            {{ $recipient->mobile ?? 'N/A' }}</p>
+                                        <p class="recipient-email text-sm text-gray-600">
+                                            {{ $recipient->email ?? 'N/A' }}</p>
+                                    </div>
+                                    <div class="space-x-2">
+                                        <a href="javascript:void(0);" class="text-blue-500 editRecipient"
+                                            data-id="{{ $recipient->id ?? '' }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a
+                                            href="{{ isset($recipient->id) ? route('recipients.delete', $recipient->id) : '#' }}">Delete</a>
+                                    </div>
+                                </li>
                             @endif
-                        </li>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <p class="text-gray-500">No recipients found.</p>
+                    @endif
+
                 </ul>
             </div>
 
@@ -101,26 +109,35 @@
                         </button>
                         <p>Click here to add recipient</p>
                     </li>
-                    @foreach ($recipients as $recipient)
-                        <li id="will-recipient" class="space-y-2 flex justify-between ">
-                            @if ($recipient->type == 'attorny')
-                                <div>
-                                    <p class="recipient-name font-semibold">{{ $recipient->name }}</p>
-                                    <p class="recipient-mobile text-sm text-gray-600">{{ $recipient->mobile }}</p>
-                                    <p class="recipient-email text-sm text-gray-600">{{ $recipient->email }}</p>
-                                </div>
-                                <div class="space-x-2 flex items-center ">
-                                    <a href="javascript:void(0);" class="text-blue-500 editRecipient"
-                                        data-id="{{ $recipient->id }}">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
+                    @if (isset($recipients) && !empty($recipients))
+                        @foreach ($recipients as $recipient)
+                            @if (isset($recipient->type) && $recipient->type == 'attorny')
+                                <li id="will-recipient" class="space-y-2 flex justify-between">
+                                    <div>
+                                        <p class="recipient-name font-semibold">{{ $recipient->name ?? 'N/A' }}</p>
+                                        <p class="recipient-mobile text-sm text-gray-600">
+                                            {{ $recipient->mobile ?? 'N/A' }}</p>
+                                        <p class="recipient-email text-sm text-gray-600">
+                                            {{ $recipient->email ?? 'N/A' }}</p>
+                                    </div>
+                                    <div class="space-x-2 flex items-center">
+                                        <a href="javascript:void(0);" class="text-blue-500 editRecipient"
+                                            data-id="{{ $recipient->id ?? '' }}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
 
-                                    <a href="{{ route('recipients.delete', $recipient->id) }}"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                </div>
+                                        <a
+                                            href="{{ isset($recipient->id) ? route('recipients.delete', $recipient->id) : '#' }}">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </li>
                             @endif
-                        </li>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <p class="text-gray-500">No recipients found.</p>
+                    @endif
+
                 </ul>
             </div>
         </div>
