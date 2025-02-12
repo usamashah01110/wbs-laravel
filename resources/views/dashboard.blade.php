@@ -247,7 +247,7 @@
             const POA = {{ Auth::user()->subscriptions[0]['poa'] ?? 0 }};
             if (document.getElementById("will-recipient").value === 0) {
                 if (fullWill !== 1) {
-                    openPopupSub("You don't have a subscription plan.", 'error');
+                    openPopupSub("You don't have a subssssssscription plan.", 'error');
                     return;
                 } else
                     return;
