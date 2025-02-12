@@ -286,8 +286,8 @@
                             console.log(recipient);
                             // Populate modal fields with recipient data
                             $("#recipientId").val(recipient.id);
-                            $("#recipientFirstName").val(recipient.name);
-                            $("#recipientLastName").val(recipient.name);
+                            $("#recipientFirstName").val(recipient.name[0]);
+                            $("#recipientLastName").val(recipient.name.slice(1).join(" "););
                             $("#recipientMobile").val(recipient.mobile);
                             $("#recipientEmail").val(recipient.email);
                             $("#recipientState").val(recipient.state);
