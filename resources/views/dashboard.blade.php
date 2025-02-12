@@ -70,7 +70,8 @@
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <a
-                                            href="{{ isset($recipient->id) ? route('recipients.delete', $recipient->id) : '#' }}">Delete</a>
+                                            href="{{ isset($recipient->id) ? route('recipients.delete', $recipient->id) : '#' }}"><i
+                                                class="fas fa-trash-alt text-red-500"></i></a>
                                     </div>
                                 </li>
                             @endif
@@ -128,7 +129,7 @@
 
                                         <a
                                             href="{{ isset($recipient->id) ? route('recipients.delete', $recipient->id) : '#' }}">
-                                            <i class="fas fa-trash-alt"></i>
+                                            <i class="fas fa-trash-alt text-red-500"></i>
                                         </a>
                                     </div>
                                 </li>
@@ -201,7 +202,7 @@
                             class="bg-gray-300 px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-400"
                             onclick="closePopup()">Cancel</button>
                         <button type="submit" id="recipientformsubmit"
-                            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Save</button>
+                            class="bg-[#415a77] text-white px-4 py-2 rounded-lg hover:bg-[#f47d61]">Save</button>
                     </div>
                 </form>
             </div>
