@@ -137,7 +137,7 @@
                                     <p class="recipient-email text-sm text-gray-600">{{ $recipient->email ?? 'N/A' }}
                                     </p>
                                     <p class="recipient-address text-sm text-gray-600">
-                                        {{ $recipient->address ?? 'N/A' }}, {{ $recipient->city ?? 'N/A' }},
+                                        {{ $recipient->city ?? 'N/A' }},
                                         {{ $recipient->state ?? 'N/A' }}, {{ $recipient->zip ?? 'N/A' }}
                                     </p>
                                 </div>
