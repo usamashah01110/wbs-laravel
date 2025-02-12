@@ -250,8 +250,7 @@
                 if (fullWill !== 1) {
                     openPopupSub("You don't have a subssssssscription plan.", 'error');
                     return;
-                } else
-                    return;
+                }
             } else {
                 if (POA !== 1)
                     openPopupSub("You don't have a subscription plan.", 'error');
