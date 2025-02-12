@@ -83,15 +83,15 @@
                                 <div class="mt-4">
                                     <ul id="packageFeatures" class="list-disc pl-6 space-y-2">
                                         <li class="text-gray-800">
-                                            You have
+                                            User have
                                             {{ isset($user->transactions->first()->notarization) && $user->transactions->first()->notarization == '1' ? 'Notarization Package' : 'no active Notarization Package' }}
                                         </li>
                                         <li class="text-gray-800">
-                                            You have
+                                            User have
                                             {{ isset($user->transactions->first()->winterwill) && $user->transactions->first()->winterwill == '1' ? 'Writer Will Package.' : 'no active winter Package.' }}
                                         </li>
                                         <li class="text-gray-800">
-                                            You have
+                                            User have
                                             {{ isset($user->transactions->first()->layer) && $user->transactions->first()->layer == '1' ? 'Lawyer Draft Will Package.' : 'no lawyer Package.' }}
                                         </li>
                                     </ul>
