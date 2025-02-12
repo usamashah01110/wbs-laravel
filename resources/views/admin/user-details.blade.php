@@ -12,7 +12,7 @@
     <link href="{{ asset('images/WBS-Logo.png') }}" rel="shortcut icon" />
 </head>
 
-<body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
+<body class="bg-gray-100 min-h-screen font-sans">
     <!-- Header -->
     @include('components.header')
 
@@ -136,7 +136,9 @@
                                     </p>
                                     <p class="recipient-email text-sm text-gray-600">{{ $recipient->email ?? 'N/A' }}
                                     </p>
-                                    <p class="recipient-email text-sm text-gray-600">{{ $recipient->address, $recipient->city, $recipient->state, $recipient->zip  }}
+                                    <p class="recipient-address text-sm text-gray-600">
+                                        {{ $recipient->address ?? 'N/A' }}, {{ $recipient->city ?? 'N/A' }},
+                                        {{ $recipient->state ?? 'N/A' }}, {{ $recipient->zip ?? 'N/A' }}
                                     </p>
                                 </div>
                             @empty
@@ -204,7 +206,7 @@
         // Sidebar Toggle Functionality
         document.getElementById("sidebarToggle").addEventListener("click", () => {
             const sidebar = document.getElementById("sidebar");
-            sidebar.classList.toggle("w-64");
+            sidebar.classList.toggle("w-48");
             sidebar.classList.toggle("w-16");
 
             document
