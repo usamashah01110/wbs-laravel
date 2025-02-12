@@ -136,6 +136,8 @@
                                     </p>
                                     <p class="recipient-email text-sm text-gray-600">{{ $recipient->email ?? 'N/A' }}
                                     </p>
+                                    <p class="recipient-email text-sm text-gray-600">{{ $recipient->address, $recipient->city, $recipient->state, $recipient->zip  }}
+                                    </p>
                                 </div>
                             @empty
                                 <p class="text-gray-500">N/A</p>
