@@ -283,7 +283,7 @@
                     success: function(response) {
                         if (response.success) {
                             let recipient = response.recipient;
-                            console.log(recipient);
+                            let nameParts = recipient.name.split(" ");
                             // Populate modal fields with recipient data
                             $("#recipientId").val(recipient.id);
                             $("#recipientFirstName").val(nameParts[0]); // First name
