@@ -250,7 +250,8 @@
                     openPopupSub("You don't have a subscription plan.", 'error');
                     return;
                 }
-            } else(POA !== 1) {
+            } else {
+                if(POA !== 1)
                 openPopupSub("You don't have a subscription plan.", 'error');
                 return;
             }
