@@ -249,10 +249,11 @@
                 if (fullWill !== 1) {
                     openPopupSub("You don't have a subscription plan.", 'error');
                     return;
-                }
+                } else
+                    return;
             } else {
-                if(POA !== 1)
-                openPopupSub("You don't have a subscription plan.", 'error');
+                if (POA !== 1)
+                    openPopupSub("You don't have a subscription plan.", 'error');
                 return;
             }
             console.log(document.getElementById("will-recipient").value);
