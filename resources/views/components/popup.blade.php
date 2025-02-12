@@ -8,7 +8,7 @@
             <button onclick="closeModalSub()" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
                 Cancel
             </button>
-            <button onclick="redirectToPage()" class="px-4 py-2 bg-[#415a77] text-white rounded-lg hover:bg-[#f47d61]">
+            <button onclick="redirectToPage()" class="px-4 py-2 bg-[#415a77] text-white rounded-lg hover:bg-blue-700">
                 Go
             </button>
         </div>

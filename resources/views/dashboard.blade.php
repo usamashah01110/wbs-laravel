@@ -249,10 +249,10 @@
                 openPopupSub("You don't have a subscription plan.", 'error');
                 return;
             }
+            console.log(document.getElementById("will-recipient").value);
             let formData = new FormData(this);
             formData.append("will-recipient", document.getElementById("will-recipient").value);
             formData.append("poa-recipient", document.getElementById("poa-recipient").value);
-
             fetch("{{ route('recipients.store') }}", {
                     method: "POST",
                     body: formData
