@@ -12,9 +12,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin/dashboard', function () {
     return view('admin');
@@ -41,8 +42,9 @@ Route::delete('/documents/{id}', [DocumentController::class, 'destroy']);
 Route::get('/recipients/list', [RecipientController::class, 'willlist'])->name('recipients.list');
 Route::get('/recipients/att/list', [RecipientController::class, 'list'])->name('recipients..att.list');
 Route::post('/recipients/store', [RecipientController::class, 'store'])->name('recipients.store');
-Route::put('/recipients/update/{id}', [RecipientController::class, 'update'])->name('recipients.update');
-Route::delete('/recipients/delete/{id}', [RecipientController::class, 'delete'])->name('recipients.delete');
+Route::get('/recipients/edit', [RecipientController::class, 'show'])->name('recipients.edit');
+Route::put('/recipients/update', [RecipientController::class, 'update'])->name('recipients.update');
+Route::get('/recipients/delete/{id}', [RecipientController::class, 'delete'])->name('recipients.delete');
 
 Route::get('/checkout', [PaymentController::class, 'index'])->name('checkout');
 Route::get('/payment/checkout', [PaymentController::class, 'paymentPage'])->name('paymentPage');

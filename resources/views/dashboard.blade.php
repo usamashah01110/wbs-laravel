@@ -17,14 +17,8 @@
 
 <body>
     @include('components.user-header')
-
     <!-- Dasboard Start -->
     <section class="bg-[#E2E8F0] p-6">
-        <!-- Welcome Section -->
-        <div class="text-center bg-[#415a77] text-white py-2 rounded mb-6">
-            <h1 class="text-xl font-semibold">Welcome back, {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
-            </h1>
-        </div>
         <!-- Main Grid Section -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Loader -->
@@ -53,11 +47,30 @@
                     <li class="flex items-center space-x-2">
                         <button
                             class="bg-[#415a77] text-white px-3 py-1 rounded hover:bg-[#f47d61] transition-all duration-300"
-                            onclick="openPopup('willRecipients')">
+                            onclick="openPopup('will-popup', 'will')">
                             +
                         </button>
                         <p>Click here to add recipient</p>
                     </li>
+                    <!-- Recipients will be added here -->
+                    @foreach ($recipients as $recipient)
+                        <li id="will-recipient" class="space-y-2 flex justify-between ">
+                            @if ($recipient->type == 'will')
+                                <div>
+                                    <p class="recipient-name font-semibold">{{ $recipient->name }}</p>
+                                    <p class="recipient-mobile text-sm text-gray-600">{{ $recipient->mobile }}</p>
+                                    <p class="recipient-email text-sm text-gray-600">{{ $recipient->email }}</p>
+                                </div>
+                                <div class="space-x-2">
+                                    <a href="javascript:void(0);" class="text-blue-500 editRecipient"
+                                        data-id="{{ $recipient->id }}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{{ route('recipients.delete', $recipient->id) }}">Delete</a>
+                                </div>
+                            @endif
+                        </li>
+                    @endforeach
                 </ul>
             </div>
 
@@ -83,11 +96,31 @@
                     <li class="flex items-center space-x-2">
                         <button
                             class="bg-[#415a77] text-white px-3 py-1 rounded hover:bg-[#f47d61] transition-all duration-300"
-                            onclick="openattPopup('poaRecipients')">
+                            onclick="openPopup('poa-popup', 'attorny')">
                             +
                         </button>
                         <p>Click here to add recipient</p>
                     </li>
+                    @foreach ($recipients as $recipient)
+                        <li id="will-recipient" class="space-y-2 flex justify-between ">
+                            @if ($recipient->type == 'attorny')
+                                <div>
+                                    <p class="recipient-name font-semibold">{{ $recipient->name }}</p>
+                                    <p class="recipient-mobile text-sm text-gray-600">{{ $recipient->mobile }}</p>
+                                    <p class="recipient-email text-sm text-gray-600">{{ $recipient->email }}</p>
+                                </div>
+                                <div class="space-x-2 flex items-center ">
+                                    <a href="javascript:void(0);" class="text-blue-500 editRecipient"
+                                        data-id="{{ $recipient->id }}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+
+                                    <a href="{{ route('recipients.delete', $recipient->id) }}"><i
+                                            class="fas fa-trash-alt"></i></a>
+                                </div>
+                            @endif
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -96,48 +129,53 @@
         <div id="popupModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
             <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Add Recipient</h3>
-                <form id="popupForm" class="grid grid-cols-2 gap-4">
+                <form id="recipientForm" class="grid grid-cols-2 gap-4">
+                    @csrf
+                    <input id="will-recipient" type="hidden" name="will-recipient">
+                    <input id="poa-recipient" type="hidden" name="poa-recipient">
+                    <input type="hidden" name="id" id="recipientId">
                     <div>
                         <label for="recipientFirstName" class="block text-sm font-medium text-gray-700">First
                             Name</label>
-                        <input type="text" id="recipientFirstName"
+                        <input name="firstname" type="text" id="recipientFirstName"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             required />
                     </div>
                     <div>
-                        <label for="recipientLastName" class="block text-sm font-medium text-gray-700">Last Name</label>
-                        <input type="text" id="recipientLastName"
+                        <label for="recipientLastName" class="block text-sm font-medium text-gray-700">Last
+                            Name</label>
+                        <input name="lastname" type="text" id="recipientLastName"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             required />
                     </div>
                     <div>
                         <label for="recipientMobile" class="block text-sm font-medium text-gray-700">Mobile
                             Number</label>
-                        <input type="text" id="recipientMobile"
+                        <input name="phone" type="text" id="recipientMobile"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             required />
                     </div>
                     <div>
                         <label for="recipientEmail" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="recipientEmail"
+                        <input name="email" type="email" id="recipientEmail"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             required />
                     </div>
                     <div>
                         <label for="recipientState" class="block text-sm font-medium text-gray-700">State</label>
-                        <input type="text" id="recipientState"
+                        <input name="state" type="text" id="recipientState"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             required />
                     </div>
                     <div>
                         <label for="recipientZip" class="block text-sm font-medium text-gray-700">Zip</label>
-                        <input type="text" id="recipientZip"
+                        <input name="zip" type="text" id="recipientZip"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             required />
                     </div>
                     <div class="col-span-2">
                         <label for="recipientCity" class="block text-sm font-medium text-gray-700">City</label>
-                        <input type="text" id="recipientCity"
+                        <input name="city" type="text" id="recipientCity"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             required />
                     </div>
@@ -145,68 +183,7 @@
                         <button type="button"
                             class="bg-gray-300 px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-400"
                             onclick="closePopup()">Cancel</button>
-                        <button type="submit"
-                            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div id="popattoronyModal"
-            class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
-            <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Add Power of Attorney Recipient</h3>
-                <form id="popupAttornyForm" class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label for="attRecipientFirstName" class="block text-sm font-medium text-gray-700">First
-                            Name</label>
-                        <input type="text" id="attRecipientFirstName"
-                            class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required />
-                    </div>
-                    <div>
-                        <label for="attRecipientLastName" class="block text-sm font-medium text-gray-700">Last
-                            Name</label>
-                        <input type="text" id="attRecipientLastName"
-                            class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required />
-                    </div>
-                    <div>
-                        <label for="attRecipientMobile" class="block text-sm font-medium text-gray-700">Mobile
-                            Number</label>
-                        <input type="text" id="attRecipientMobile"
-                            class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required />
-                    </div>
-                    <div>
-                        <label for="attRecipientEmail" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="attRecipientEmail"
-                            class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required />
-                    </div>
-                    <div>
-                        <label for="attRecipientState" class="block text-sm font-medium text-gray-700">State</label>
-                        <input type="text" id="attRecipientState"
-                            class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required />
-                    </div>
-                    <div>
-                        <label for="attRecipientZip" class="block text-sm font-medium text-gray-700">Zip</label>
-                        <input type="text" id="attRecipientZip"
-                            class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required />
-                    </div>
-                    <div class="col-span-2">
-                        <label for="attRecipientCity" class="block text-sm font-medium text-gray-700">City</label>
-                        <input type="text" id="attRecipientCity"
-                            class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required />
-                    </div>
-                    <div class="col-span-2 flex justify-end space-x-4 mt-4">
-                        <button type="button"
-                            class="bg-gray-300 px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-400"
-                            onclick="closePopupPOA()">Cancel</button>
-                        <button type="submit"
+                        <button type="submit" id="recipientformsubmit"
                             class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Save</button>
                     </div>
                 </form>
@@ -219,10 +196,132 @@
     @include('components.footer')
     @include('components.toast')
     @include('components.popup')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
         fetchDocuments();
         fetchAttorny();
+
+        function openPopup(popupType, recipientType) {
+            // Update the hidden input value
+            if (recipientType === 'attorny') {
+                document.getElementById('poa-recipient').value = 'attorny';
+                document.getElementById('will-recipient').value = null;
+            } else {
+                document.getElementById('will-recipient').value = 'will';
+                document.getElementById('poa-recipient').value = null;
+            }
+
+            // Show the modal
+            document.getElementById('popupModal').classList.remove('hidden');
+        }
+
+        function closePopup() {
+            document.getElementById('popupModal').classList.add('hidden');
+            currentListId = "";
+            editingIndex = null;
+        }
+
+        document.getElementById("recipientForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let formData = new FormData(this);
+            formData.append("will-recipient", document.getElementById("will-recipient").value);
+            formData.append("poa-recipient", document.getElementById("poa-recipient").value);
+
+            fetch("{{ route('recipients.store') }}", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast("Recipient added successfully!");
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 500);
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Something went wrong. Please try again.");
+                });
+        });
+
+        $(document).ready(function() {
+            $(".editRecipient").click(function() {
+                let recipientId = $(this).data("id");
+
+                // Make AJAX request to get recipient data
+                $.ajax({
+                    url: "{{ route('recipients.edit') }}",
+                    type: "GET",
+                    data: {
+                        id: recipientId
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            let recipient = response.recipient;
+                            console.log(recipient);
+                            // Populate modal fields with recipient data
+                            $("#recipientId").val(recipient.id);
+                            $("#recipientFirstName").val(recipient.name);
+                            $("#recipientLastName").val(recipient.name);
+                            $("#recipientMobile").val(recipient.mobile);
+                            $("#recipientEmail").val(recipient.email);
+                            $("#recipientState").val(recipient.state);
+                            $("#recipientZip").val(recipient.zip);
+                            $("#recipientCity").val(recipient.city);
+                            // Show the modal
+                            document.getElementById('popupModal').classList.remove('hidden');
+                        } else {
+                            alert("Error fetching recipient data.");
+                        }
+                    },
+                    error: function() {
+                        alert("Something went wrong.");
+                    }
+                });
+            });
+
+            // Function to close modal
+            function closePopup() {
+                $("#popupModal").addClass("hidden");
+            }
+
+            // Close modal when clicking cancel
+            $(".bg-gray-300").click(closePopup);
+        });
+
+        // $("#recipientformsubmit").submit(function(e) {
+        //     e.preventDefault(); // Prevent default form submission
+
+        //     let recipientId = $("#recipientId").val(); // Get the ID
+        //     let formData = $(this).serialize(); // Serialize form data
+
+        //     $.ajax({
+        //         url: "{{ route('recipients.update', '') }}/" + recipientId, // Update API URL
+        //         type: "PUT",
+        //         data: formData,
+        //         success: function(response) {
+        //             if (response.success) {
+        //                 alert("Recipient updated successfully!");
+
+        //                 $("#popupModal").addClass("hidden"); // Close modal
+        //                 location.reload(); // Refresh page (optional)
+        //             } else {
+        //                 alert("Update failed. Please try again.");
+        //             }
+        //         },
+        //         error: function(xhr) {
+        //             alert("Something went wrong. Error: " + xhr.responseText);
+        //         }
+        //     });
+        // });
+
 
         function showLoader() {
             document.getElementById('loader').classList.remove('hidden');
@@ -373,333 +472,6 @@
             fetchAttorny();
             showToast("Deleted successfully");
             hideLoader();
-        }
-
-        let currentListId = "";
-        let editingIndex = null;
-        fetchRecipients();
-        fetchAttornyRecipients();
-
-        function openattPopup(listId, index = null, id = null) {
-            currentListId = listId;
-            editingIndex = id;
-            const POApopupModal = document.getElementById("popattoronyModal");
-            const form = document.getElementById("popupAttornyForm");
-
-            if (index !== null) {
-                const list = document.getElementById(listId);
-                const item = list.children[index];
-                const name = item.querySelector(".recipient-name").innerText;
-                const mobile = item.querySelector(".recipient-mobile").innerText;
-                const email = item.querySelector(".recipient-email").innerText;
-
-                form.attRecipientFirstName.value = name.split(" ")[0];
-                form.attRecipientLastName.value = name.split(" ")[1] || "";
-                form.attRecipientMobile.value = mobile;
-                form.attRecipientEmail.value = email;
-            } else {
-                form.reset();
-            }
-            POApopupModal.classList.remove("hidden");
-        }
-
-        function closePopupPOA() {
-            document.getElementById("popattoronyModal").classList.add("hidden");
-            currentListId = "";
-            editingIndex = null;
-        }
-
-        document.getElementById("popupAttornyForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-
-            const firstName = this.attRecipientFirstName.value;
-            const lastName = this.attRecipientLastName.value;
-            const mobile = this.attRecipientMobile.value;
-            const email = this.attRecipientEmail.value;
-            const state = this.attRecipientState.value;
-            const zip = this.attRecipientZip.value;
-            const city = this.attRecipientCity.value;
-
-            const recipientData = {
-                first_name: firstName,
-                last_name: lastName,
-                mobile: mobile,
-                email: email,
-                state: state,
-                zip: zip,
-                city: city,
-                type: 'attorny'
-            };
-
-            // Check if we're editing an existing item
-            const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
-            const method = editingIndex !== null ? 'PUT' : 'POST';
-
-            showLoader();
-
-            fetch(url, {
-                    method: method,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                            'content')
-                    },
-                    body: JSON.stringify(recipientData)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success === true) {
-                        closePopupPOA();
-                        window.location.reload();
-                    } else {
-                        showToast(data.message);
-                    }
-                    hideLoader();
-                })
-                .catch(error => {
-                    showToast('An error occurred while saving recipient data!');
-                    hideLoader();
-                });
-        });
-
-        function fetchAttornyRecipients() {
-            const list = document.getElementById('poaRecipients');
-            if (!list) {
-                showToast('List element with id poaRecipients not found.');
-                return;
-            }
-
-            showLoader();
-
-            fetch('/recipients/att/list', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success && data.recipients.length > 0) {
-                        list.innerHTML = ""; // Clear existing list items
-                        data.recipients.forEach((recipient, index) => {
-                            const li = document.createElement("li");
-                            li.className =
-                                "flex items-center justify-between space-x-2 bg-gray-100 p-2 rounded";
-                            li.innerHTML = `
-                                <div>
-                                    <p class="recipient-name font-semibold">${recipient.first_name} ${recipient.last_name}</p>
-                                    <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
-                                    <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
-                                </div>
-                                <div class="space-x-2">
-                                    <button class="text-blue-500" onclick="openattPopup('poaRecipients', ${index}, ${recipient.id})">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="text-red-500" onclick="deleteattRecipient(${recipient.id})">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </div>
-                            `;
-                            list.appendChild(li);
-                        });
-                    } else {
-                        console.log('No recipients found.');
-                    }
-                    hideLoader();
-                })
-                .catch(error => {
-                    showToast('Error fetching recipients:', error);
-                    hideLoader();
-                });
-        }
-
-        function deleteattRecipient(id) {
-            if (confirm('Are you sure you want to delete this recipient?')) {
-                showLoader();
-                fetch(`/recipients/delete/${id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            window.location.reload();
-                            showToast('Deleted successfully');
-                        } else {
-                            showToast('Failed to delete recipient.');
-                        }
-                        hideLoader();
-                    })
-                    .catch(error => {
-                        showToast('Error:', error);
-                        showToast('An error occurred while deleting the recipient!');
-                        hideLoader();
-                    });
-            }
-        }
-
-        //Will Recipient
-
-        function openPopup(listId, index = null, id = null) {
-            currentListId = listId;
-            editingIndex = id;
-            const popupModal = document.getElementById("popupModal");
-            const form = document.getElementById("popupForm");
-
-            if (index !== null) {
-                const list = document.getElementById(listId);
-                const item = list.children[index];
-                const name = item.querySelector(".recipient-name").innerText;
-                const mobile = item.querySelector(".recipient-mobile").innerText;
-                const email = item.querySelector(".recipient-email").innerText;
-
-                form.recipientFirstName.value = name.split(" ")[0];
-                form.recipientLastName.value = name.split(" ")[1] || "";
-                form.recipientMobile.value = mobile;
-                form.recipientEmail.value = email;
-            } else {
-                form.reset();
-            }
-            popupModal.classList.remove("hidden");
-        }
-
-        function closePopup() {
-            document.getElementById("popupModal").classList.add("hidden");
-            currentListId = "";
-            editingIndex = null;
-        }
-
-        document.getElementById("popupForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-
-            const recipientData = {
-                first_name: this.recipientFirstName.value,
-                last_name: this.recipientLastName.value,
-                mobile: this.recipientMobile.value,
-                email: this.recipientEmail.value,
-                state: this.recipientState.value,
-                zip: this.recipientZip.value,
-                city: this.recipientCity.value,
-                type: 'will'
-            };
-            console.log("Response", recipientData)
-
-            // Check if we're editing an existing item
-            const url = editingIndex !== null ? `/recipients/update/${editingIndex}` : '/recipients/store';
-            const method = editingIndex !== null ? 'PUT' : 'POST';
-            console.log("Response", url, method)
-
-            showLoader();
-
-            fetch(url, {
-                    method: method,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                            'content')
-                    },
-                    body: JSON.stringify(recipientData)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("-----", data)
-                    if (data.success === true) {
-                        closePopup();
-                        window.location.reload();
-                    } else {
-                        showToast(data.message);
-                    }
-                    hideLoader();
-                })
-                .catch(error => {
-                    console.log("Error", error);
-                    showToast('An error occurred while saving recipient data!');
-                    hideLoader();
-                });
-        });
-
-        function fetchRecipients() {
-            const list = document.getElementById('willRecipients');
-            if (!list) {
-                showToast('List element with id willRecipients not found.');
-                return;
-            }
-
-            showLoader();
-
-            fetch('/recipients/list', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success && data.recipients.length > 0) {
-                        list.innerHTML = ""; // Clear existing list items
-                        data.recipients.forEach((recipient, index) => {
-                            const li = document.createElement("li");
-                            li.className =
-                                "flex items-center justify-between space-x-2 bg-gray-100 p-2 rounded";
-                            li.innerHTML = `
-                                <div>
-                                    <p class="recipient-name font-semibold">${recipient.first_name} ${recipient.last_name}</p>
-                                    <p class="recipient-mobile text-sm text-gray-600">${recipient.mobile}</p>
-                                    <p class="recipient-email text-sm text-gray-600">${recipient.email}</p>
-                                </div>
-                                <div class="space-x-2">
-                                    <button class="text-blue-500" onclick="openPopup('willRecipients', ${index}, ${recipient.id})">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="text-red-500" onclick="deleteRecipient(${recipient.id})">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </div>
-                            `;
-                            list.appendChild(li);
-                        });
-                    } else {
-                        console.log('No recipients found.');
-                    }
-                    hideLoader();
-                })
-                .catch(error => {
-                    showToast('Error fetching recipients:', error);
-                    hideLoader();
-                });
-        }
-
-        function deleteRecipient(id) {
-            if (confirm('Are you sure you want to delete this recipient?')) {
-                showLoader();
-                fetch(`/recipients/delete/${id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            window.location.reload();
-                            showToast('Deleted successfully');
-                        } else {
-                            showToast('Failed to delete recipient.');
-                        }
-                        hideLoader();
-                    })
-                    .catch(error => {
-                        showToast('Error:', error);
-                        showToast('An error occurred while deleting the recipient!');
-                        hideLoader();
-                    });
-            }
         }
     </script>
 </body>

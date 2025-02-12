@@ -13,6 +13,12 @@ class UserController extends Controller
     public function userProfile(){
         return view('user-profile');
     }
+
+    public function dashboard(){
+        $recipients = Recipient::where('user_id', Auth::user()->id)->get();
+        return view('dashboard', compact('recipients'));
+    }
+
     public function getAllUsers()
     {
         try {
