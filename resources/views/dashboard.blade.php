@@ -243,7 +243,12 @@
         document.getElementById("recipientForm").addEventListener("submit", function(event) {
 
             event.preventDefault();
+            const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
 
+            if (fullWill !== 1) {
+                openPopupSub("You don't have a subscription plan.", 'error');
+                return;
+            }
             let formData = new FormData(this);
             formData.append("will-recipient", document.getElementById("will-recipient").value);
             formData.append("poa-recipient", document.getElementById("poa-recipient").value);
@@ -255,7 +260,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        showToast("Recipient added successfully!");
+                        showToast("Recipient update successfully!");
                         setTimeout(() => {
                             window.location.reload();
                         }, 500);
@@ -310,36 +315,8 @@
                 $("#popupModal").addClass("hidden");
             }
 
-            // Close modal when clicking cancel
             $(".bg-gray-300").click(closePopup);
         });
-
-        // $("#recipientformsubmit").submit(function(e) {
-        //     e.preventDefault(); // Prevent default form submission
-
-        //     let recipientId = $("#recipientId").val(); // Get the ID
-        //     let formData = $(this).serialize(); // Serialize form data
-
-        //     $.ajax({
-        //         url: "{{ route('recipients.update', '') }}/" + recipientId, // Update API URL
-        //         type: "PUT",
-        //         data: formData,
-        //         success: function(response) {
-        //             if (response.success) {
-        //                 alert("Recipient updated successfully!");
-
-        //                 $("#popupModal").addClass("hidden"); // Close modal
-        //                 location.reload(); // Refresh page (optional)
-        //             } else {
-        //                 alert("Update failed. Please try again.");
-        //             }
-        //         },
-        //         error: function(xhr) {
-        //             alert("Something went wrong. Error: " + xhr.responseText);
-        //         }
-        //     });
-        // });
-
 
         function showLoader() {
             document.getElementById('loader').classList.remove('hidden');
