@@ -13,9 +13,9 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
-    @include('header')
+    @include('components.header')
     <div class="flex h-screen">
-        @include('side-bar')
+        @include('components.side-bar')
         <div class="w-full">
             <main class="flex-1 p-6">
                 <section class="bg-white p-6 rounded-lg shadow-lg relative">
@@ -75,7 +75,7 @@
             </main>
         </div>
     </div>
-    @include('toast')
+    @include('components.toast')
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {

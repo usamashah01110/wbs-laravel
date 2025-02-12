@@ -14,27 +14,32 @@
 
 <body class="bg-gray-100 min-h-screen font-sans overflow-hidden">
     <!-- Header -->
-    @include('header')
+    @include('components.header')
 
     <div class="flex h-screen">
         <!-- Sidebar -->
-        @include('side-bar')
+        @include('components.side-bar')
 
         <!-- Main Content -->
         <div class="w-full">
             <main class="flex-1 p-6">
                 <section class="bg-white p-6 rounded-lg shadow">
-                    <div class="flex items-center justify-between mb-6">
+                    <div class="flex justify-between mb-6">
                         <div class="flex flex-col">
                             <div class="relative">
                                 <img id="profileImage"
                                     src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/usere.png') }}"
                                     alt="Profile" class="w-24 h-24 rounded-full object-cover" />
                             </div>
-                            <div class="ml-6">
+                            <div>
                                 <h2 class="text-xl font-semibold">{{ $user->firstname }}</h2>
-                                <p class="text-gray-600">{{ $user->email }}</p>
-                                <p class="text-gray-600">{{ $user->phone }}</p>
+                                <p class="text-gray-600"><strong>Email:</strong> {{ $user->email }}</p>
+                                <p class="text-gray-600"><strong>Phone:</strong>{{ $user->phone }}</p>
+                                <p class="text-gray-600"><strong>Address:</strong></p>
+                                <p class="text-gray-600">{{ $user->street }}</p>
+                                <p class="text-gray-600">{{ $user->city }}</p>
+                                <p class="text-gray-600">{{ $user->state }}</p>
+                                <p class="text-gray-600">{{ $user->zip }}</p>
                             </div>
                         </div>
 

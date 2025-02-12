@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function userProfile(){
-        return view('admin.user-profile');
+        return view('user-profile');
     }
     public function getAllUsers()
     {
