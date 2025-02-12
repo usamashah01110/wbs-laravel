@@ -394,7 +394,7 @@
             const poa = {{ Auth::user()->subscriptions[0]['poa'] ?? 0 }};
 
             if (fullWill !== 1 || poa !== 1) {
-                showToast("You need a valid subscription plan to upload this document.", 'error');
+                openPopupSub("You don't have a subscription plan.", 'error');
                 return;
             }
 
