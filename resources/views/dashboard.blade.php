@@ -246,7 +246,7 @@
             const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
             const POA = {{ Auth::user()->subscriptions[0]['poa'] ?? 0 }};
             console.log(document.getElementById("will-recipient").value)
-            if (document.getElementById("will-recipient").value === 0 || document.getElementById("will-recipient").value === "will"){
+            if ( document.getElementById("will-recipient").value === "will"){
                 if (fullWill !== 1) {
                     openPopupSub("You don't have a subssssssscription plan.", 'error');
                     return;
