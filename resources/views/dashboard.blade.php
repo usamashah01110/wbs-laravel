@@ -254,12 +254,13 @@
             } else {
                 const fullWill = {{ Auth::user()->subscriptions[0]['fullWill'] ?? 0 }};
                 console.log("will before click")
-                if (fullWill !== 1)
+                if (fullWill !== 1) {
                     openPopupSub("You don't have a subscription plan.", 'error');
-                return;
+                    return;
+                }
                 console.log("will after click")
             }
-            console.log(document.getElementById("will-recipient").value);
+            console.log("okay");
             let formData = new FormData(this);
             formData.append("will-recipient", document.getElementById("will-recipient").value);
             formData.append("poa-recipient", document.getElementById("poa-recipient").value);
