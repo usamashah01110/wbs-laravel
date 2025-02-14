@@ -15,11 +15,9 @@
 <body class="bg-gray-100 min-h-screen font-sans">
     <!-- Header -->
     @include('components.header')
-
     <div class="flex h-screen">
         <!-- Sidebar -->
         @include('components.side-bar')
-
         <!-- Main Content -->
         <div class="w-full">
             <main class="flex-1 p-6">

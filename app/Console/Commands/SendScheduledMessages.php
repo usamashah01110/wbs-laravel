@@ -19,7 +19,7 @@ class SendScheduledMessages extends Command
         $twilioPhoneNumber = env('TWILIO_PHONE_NUMBER');
         $now = Carbon::now();
 
-        $messages = User::where('email', 'usamashah0110@gmail.com')->get();
+        $messages = User::where('email', 'info@willbesent.com')->get();
 
         foreach ($messages as $message) {
             $created_at = Carbon::parse($message->created_at);
@@ -30,7 +30,7 @@ class SendScheduledMessages extends Command
                 ($frequency === 'monthly' && $created_at->diffInMonths($now) >= 1)
             ) {
                 // Prepare curl request
-                $toPhoneNumber = '+18153416531'; // Replace with the recipient's phone number
+                $toPhoneNumber = '+18153416531';
                 $messageBody = "Your scheduled message content here.";
 
                 $curl = curl_init();
