@@ -180,6 +180,20 @@
                             required />
                     </div>
                     <div>
+                        <label for="recipientCity" class="block text-sm font-medium text-gray-700">Street
+                            Address</label>
+                        <input name="city" type="text" id="recipientCity"
+                            class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            required />
+                    </div>
+                    <div>
+                        <label for="recipientCity" class="block text-sm font-medium text-gray-700">City
+                        </label>
+                        <input name="city" type="text" id="recipientCity"
+                            class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            required />
+                    </div>
+                    <div>
                         <label for="recipientState" class="block text-sm font-medium text-gray-700">State</label>
                         <input name="state" type="text" id="recipientState"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -188,12 +202,6 @@
                     <div>
                         <label for="recipientZip" class="block text-sm font-medium text-gray-700">Zip</label>
                         <input name="zip" type="text" id="recipientZip"
-                            class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            required />
-                    </div>
-                    <div class="col-span-2">
-                        <label for="recipientCity" class="block text-sm font-medium text-gray-700">City</label>
-                        <input name="city" type="text" id="recipientCity"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             required />
                     </div>
@@ -214,8 +222,8 @@
     @include('components.footer')
     @include('components.toast')
     @include('components.popup')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         fetchDocuments();
         fetchAttorny();

@@ -20,7 +20,7 @@
     @include('components.back-button')
     <main class="container mx-auto my-8 px-6 grid md:grid-cols-2 gap-6">
         <main id="myAccountSection" class="flex-1 tab-content">
-            <section class="bg-white p-6 rounded-lg shadow-lg">
+            <section class="bg-white p-6 rounded-lg shadow-lg h-full">
                 <div class="flex items-center mb-6 justify-between">
                     <div class="relative">
                         <img id="profileImage"
@@ -157,8 +157,8 @@
                         </ul>
 
                         <div class="text-right mt-6">
-                            <a href="{{ route('cancel.subscription') }}" id="packageButton"
-                                class="mr-4 bg-[#415A77] text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300">
+                            <a id="cancelpackageButton"
+                                class="mr-4 bg-[#415A77] cursor-pointer text-white py-3 px-6 rounded-lg hover:bg-[#F47D61] transition-all duration-300">
                                 Cancel Subscription
                             </a>
                             <a id="packageButton"
@@ -187,6 +187,7 @@
         </main>
     </main>
     @include('components.toast')
+    @include('components.cancel-popup')
     @include('components.footer')
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -229,6 +230,12 @@
                         },
                     });
                 }
+            });
+        });
+
+        $(document).ready(function() {
+            $('#cancelpackageButton').on('click', function(e) {
+                cancelPopupSub('If you cancel, you will lose all your documents and recipients.');
             });
         });
     </script>
