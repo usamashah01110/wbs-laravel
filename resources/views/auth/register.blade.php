@@ -138,7 +138,8 @@
     </main>
 </body>
 <!-- reCAPTCHA Script -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
+<script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 
 <!-- JavaScript to Enable Button on reCAPTCHA Check -->
 <script>
@@ -148,10 +149,10 @@
 
     function checkFormCompletion() {
         let termsChecked = document.querySelector("input[name='terms']").checked;
-        let recaptchaChecked = grecaptcha.getResponse().length > 0;
+        let recaptchaChecked = grecaptcha.enterprise.getResponse().length > 0;
 
         let submitBtn = document.getElementById("submitBtn");
-
+console.log("two+++++", termsChecked,recaptchaChecked)
         if (termsChecked && recaptchaChecked) {
             submitBtn.disabled = false;
             submitBtn.classList.remove("bg-gray-400", "cursor-not-allowed");
