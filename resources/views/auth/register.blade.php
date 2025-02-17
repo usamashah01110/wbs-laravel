@@ -113,20 +113,8 @@
                                 class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300">
                             </div>
                             <div>
-                                <p class="text-gray-600">
-                                    I agree with terms and conditions.
-                                </p>
-                            </div>
-                        </label>
-                        <label
-                            class="flex items-start gap-4 border rounded-lg p-4 hover:shadow-md transition cursor-pointer  mb-4">
-                            <input type="checkbox" class="hidden peer" name="privacy" />
-                            <div
-                                class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300">
-                            </div>
-                            <div>
-                                <p class="text-gray-600">
-                                    I agree with privacy and privacy rules.
+                                <p class="text-gray-600 text-sm ">
+                                    I agree to the Terms & Conditions and the Privacy Policy.
                                 </p>
                             </div>
                         </label>
@@ -160,12 +148,11 @@
 
     function checkFormCompletion() {
         let termsChecked = document.querySelector("input[name='terms']").checked;
-        let privacyChecked = document.querySelector("input[name='privacy']").checked;
         let recaptchaChecked = grecaptcha.getResponse().length > 0;
 
         let submitBtn = document.getElementById("submitBtn");
 
-        if (termsChecked && privacyChecked && recaptchaChecked) {
+        if (termsChecked && recaptchaChecked) {
             submitBtn.disabled = false;
             submitBtn.classList.remove("bg-gray-400", "cursor-not-allowed");
             submitBtn.classList.add("bg-[#415a77]", "hover:bg-[#f47d61]");
@@ -179,7 +166,6 @@
     // Add event listeners to checkboxes
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelector("input[name='terms']").addEventListener("change", checkFormCompletion);
-        document.querySelector("input[name='privacy']").addEventListener("change", checkFormCompletion);
     });
 </script>
 
