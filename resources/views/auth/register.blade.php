@@ -132,8 +132,8 @@
                         </label>
                     </div>
                     <!-- Submit Button -->
-                    <button type="submit" id="submitBtn" 
-                        class="w-full bg-gray-400 text-white font-medium py-3 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out">
+                    <button type="submit" id="submitBtn" disabled
+                        class="w-full bg-gray-400 cursor-not-allowed text-white font-medium py-3 rounded-lg hover:bg-[#f47d61] transition-all duration-300 ease-in-out">
                         Sign Up
                     </button>
                     <p class="text-sm text-center text-gray-900 mt-4">
@@ -154,7 +154,7 @@
 <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 
 <!-- JavaScript to Enable Button on reCAPTCHA Check -->
-<!-- <script>
+<script>
     function enableSubmit() {
         checkFormCompletion();
     }
@@ -181,7 +181,7 @@
         document.querySelector("input[name='terms']").addEventListener("change", checkFormCompletion);
         document.querySelector("input[name='twillio']").addEventListener("change", checkFormCompletion);
     });
-</script> -->
+</script>
 
 
 </html>
