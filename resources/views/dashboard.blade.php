@@ -180,9 +180,9 @@
                             required />
                     </div>
                     <div>
-                        <label for="recipientCity" class="block text-sm font-medium text-gray-700">Street
-                            Address</label>
-                        <input name="city" type="text" id="recipientCity"
+                        <label for="recipientStreet" class="block text-sm font-medium text-gray-700">Street
+                            </label>
+                        <input name="street" type="text" id="recipientStreet"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             required />
                     </div>
@@ -317,6 +317,7 @@
                             $("#recipientState").val(recipient.state);
                             $("#recipientZip").val(recipient.zip);
                             $("#recipientCity").val(recipient.city);
+                            $("#recipientStreet").val(recipient.street);
                             // Show the modal
                             document.getElementById('popupModal').classList.remove('hidden');
                         } else {

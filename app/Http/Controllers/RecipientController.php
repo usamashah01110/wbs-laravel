@@ -19,6 +19,7 @@ class RecipientController extends Controller
             'state' => 'required|string|max:255',
             'zip' => 'required|string|max:10',
             'city' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
         ]);
 
         $user = Auth::user();
@@ -77,6 +78,7 @@ class RecipientController extends Controller
                 'state' => $request->state,
                 'zip' => $request->zip,
                 'city' => $request->city,
+                'street' => $request->street,
             ]
         );
 
@@ -108,6 +110,7 @@ class RecipientController extends Controller
             'state' => $request->state,
             'zip' => $request->zip,
             'city' => $request->city,
+            'street' => $request->street,
         ]);
 
         return response()->json(['success' => true, 'recipient' => $recipient]);

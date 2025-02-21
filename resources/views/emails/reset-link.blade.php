@@ -27,7 +27,7 @@
 
             <!-- CTA Button -->
             <div class="text-center mt-6">
-                <a href="{{ route('reset-password', $token) }}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-medium shadow-md hover:bg-blue-700 transition">
+                <a href="{{ $actionUrl }}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-medium shadow-md hover:bg-blue-700 transition">
                     Reset Password
                 </a>
             </div>

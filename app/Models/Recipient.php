@@ -17,7 +17,8 @@ class Recipient extends Model
         'type',
         'state',
         'zip',
-        'city'
+        'city',
+        'street'
     ];
 
     public function user()
