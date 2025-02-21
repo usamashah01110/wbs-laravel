@@ -152,9 +152,13 @@ class PaymentController extends Controller
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         try {
+
             $stripeSubscription = Subscription::retrieve($subscription->stripe_id);
             $stripeSubscription->cancel();
             $subscription->delete();
+
+            $user->documents()->delete();
+            $user->recipients()->delete();
 
             return redirect()->route('dashboard')->with('success', 'Subscription canceled successfully.');
         } catch (\Exception $e) {
