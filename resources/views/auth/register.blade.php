@@ -114,7 +114,7 @@
                             </div>
                             <div>
                                 <p class="text-gray-600 text-sm ">
-                                    I agree to the Terms & Conditions and the Privacy Policy.
+                                    I agree to the Terms & Conditions and the Privacy Policy and consent to receiving texts and calls related to your signup and orders.
                                 </p>
                             </div>
                         </label>
