@@ -126,7 +126,7 @@
                             </div>
                             <div>
                                 <p class="text-gray-600 text-sm ">
-                                    I agree to the consent to receiving texts and calls related to your signup and orders.
+                                I consent to receive texts and calls related to your account.
                                 </p>
                             </div>
                         </label>
