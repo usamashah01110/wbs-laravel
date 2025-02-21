@@ -180,6 +180,7 @@ console.log("two+++++", termsChecked,recaptchaChecked)
     // Add event listeners to checkboxes
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelector("input[name='terms']").addEventListener("change", checkFormCompletion);
+        document.querySelector("input[name='twillio']").addEventListener("change", checkFormCompletion);
     });
 </script>
 
