@@ -210,7 +210,7 @@
         </div>
     </footer>
     @include('components.toast')
-
+    <script src="//code.tidio.co/oohi4ck9zmzjoekpsft3cp6h9cnitwej.js" async></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         const billingCycleRadios = document.querySelectorAll('input[name="billingCycle"]');

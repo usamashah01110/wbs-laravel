@@ -62,6 +62,7 @@
     </footer>
 
     <!-- Stripe JS -->
+    <script src="//code.tidio.co/oohi4ck9zmzjoekpsft3cp6h9cnitwej.js" async></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
