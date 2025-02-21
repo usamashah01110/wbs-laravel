@@ -10,9 +10,9 @@
 
     <div class="max-w-lg w-full bg-white shadow-lg rounded-xl overflow-hidden p-6">
         <!-- Header -->
-        <div class="bg-[#415a77] text-white text-center py-4 rounded-t-xl">
+        <!-- <div class="bg-[#415a77] text-white text-center py-4 rounded-t-xl">
             <h1 class="text-2xl font-semibold">Welcome to Will Be Sent</h1>
-        </div>
+        </div> -->
 
         <!-- Content -->
         <div class="p-6 text-gray-700">

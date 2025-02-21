@@ -114,7 +114,19 @@
                             </div>
                             <div>
                                 <p class="text-gray-600 text-sm ">
-                                    I agree to the Terms & Conditions and the Privacy Policy and consent to receiving texts and calls related to your signup and orders.
+                                    I agree to the Terms & Conditions and the Privacy Policy.
+                                </p>
+                            </div>
+                        </label>
+                        <label
+                            class="flex items-start gap-4 border rounded-lg p-4 hover:shadow-md transition cursor-pointer mb-2">
+                            <input type="checkbox" class="hidden peer" name="terms" />
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded-lg peer-checked:bg-[#415a77] peer-checked:border-[#415a77] transition-all duration-300">
+                            </div>
+                            <div>
+                                <p class="text-gray-600 text-sm ">
+                                    I agree to the consent to receiving texts and calls related to your signup and orders.
                                 </p>
                             </div>
                         </label>

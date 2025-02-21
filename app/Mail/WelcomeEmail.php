@@ -20,7 +20,7 @@ class WelcomeEmail extends Mailable
 
     public function build()
     {
-        return $this->subject('Welcome to Our Platform')
+        return $this->subject('Welcome to Will Be Sent')
             ->view('emails.register');
     }
 }
