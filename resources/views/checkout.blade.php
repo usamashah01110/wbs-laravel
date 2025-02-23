@@ -198,17 +198,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#415a77] text-white py-4">
-        <div class="container mx-auto text-center">
-            <p>
-                ©
-                <script>
-                    document.write(new Date().getFullYear());
-                </script>
-                Will Be Sent. All Rights Reserved.
-            </p>
-        </div>
-    </footer>
+    
+    @include('components.footer')
     @include('components.toast')
     <script src="//code.tidio.co/oohi4ck9zmzjoekpsft3cp6h9cnitwej.js" async></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

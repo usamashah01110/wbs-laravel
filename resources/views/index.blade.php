@@ -59,9 +59,9 @@
                             <a href="#testimonial"
                                 class="text-gray-700 hover:text-[#415a77] font-medium transition">Reviews</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#blog" class="text-gray-700 hover:text-[#415a77] font-medium transition">Blog</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="#contact" class="text-gray-700 hover:text-primary font-medium transition"
                                 onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })">Contact</a>
@@ -830,7 +830,7 @@
     <!-- Contact End -->
 
     <!-- Footer Start -->
-    <footer class="bg-[#415a77]">
+    <!-- <footer class="bg-[#415a77]">
         <div class="container">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 py-4">
                 <div class="col-span-full lg:col-span-2">
@@ -887,10 +887,6 @@
                         </p>
                         <p>
                             <a class="inline-flex gap-x-2 text-base text-gray-300 hover:text-gray-400 transition-all duration-300"
-                                href="#">Blog</a>
-                        </p>
-                        <p>
-                            <a class="inline-flex gap-x-2 text-base text-gray-300 hover:text-gray-400 transition-all duration-300"
                                 href="#">Contact</a>
                         </p>
                     </div>
@@ -907,17 +903,12 @@
                             <a class="inline-flex gap-x-2 text-base text-gray-300 hover:text-gray-400 transition-all duration-300"
                                 href="#">Terms & Conditions</a>
                         </p>
-                        <p>
-                            <a class="inline-flex gap-x-2 text-base text-gray-300 hover:text-gray-400 transition-all duration-300"
-                                href="#">Arvo Equities</a>
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="bg-[#f47d61]">
-            <!-- 1B283F -->
             <div class="container">
                 <div class="flex justify-between items-center">
                     <p class="text-base text-white">
@@ -956,7 +947,8 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
+    @include('components.footer')
     <!-- Footer End -->
     <script src="//code.tidio.co/oohi4ck9zmzjoekpsft3cp6h9cnitwej.js" async></script>
     <script>

@@ -30,8 +30,9 @@
     <div class="bg-[#f47d61]">
         <div class="flex justify-between items-center w-11/12 mx-auto py-4">
             <p class="text-base text-white">
-                <script>document.write(new Date().getFullYear());</script>
-                © Will Be Sent. <a href="https://willbesent.com">All Rights Reserved.</a>
+                <!-- <script>document.write(new Date().getFullYear());</script>
+                © Will Be Sent. <a href="https://willbesent.com">All Rights Reserved.</a> -->
+                Copyright &copy; <script>document.write(new Date().getFullYear())</script> Will Be Sent. All Rights Reserved. 
             </p>
 
             <div class="flex gap-2">

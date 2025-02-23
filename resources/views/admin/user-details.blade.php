@@ -128,7 +128,7 @@
                         <div class="bg-white p-6 rounded shadow space-y-4">
                             <h2 class="text-lg font-semibold">Will Recipients</h2>
                             @forelse ($user->recipients->where('type', 'will') as $recipient)
-                                <div class=" bg-gray-100 p-2 rounded">
+                                <div class=" bg-gray-100 p-2 rounded shadow">
                                     <p class="recipient-name font-semibold">{{ $recipient->name ?? 'N/A' }}</p>
                                     <p class="recipient-mobile text-sm text-gray-600">{{ $recipient->mobile ?? 'N/A' }}
                                     </p>
@@ -170,22 +170,16 @@
                         <div class="bg-white p-6 rounded shadow space-y-4">
                             <h2 class="text-lg font-semibold">Power of Attorney Recipient</h2>
                             @forelse ($user->recipients->where('type', 'attorny') as $recipient)
-                                <div>
+                                <div class="bg-gray-100 rounded shadow p-2"> 
                                     <p class="recipient-name font-semibold">{{ $recipient->name ?? 'N/A' }}</p>
                                     <p class="recipient-mobile text-sm text-gray-600">{{ $recipient->mobile ?? 'N/A' }}
                                     </p>
                                     <p class="recipient-email text-sm text-gray-600">{{ $recipient->email ?? 'N/A' }}
                                     </p>
-                                </div>
-                                <div class="space-x-2">
-                                    <button class="text-blue-500"
-                                        onclick="openattPopup('willRecipients', {{ $recipient->id }})">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="text-red-500"
-                                        onclick="deleteattRecipient('willRecipients', {{ $recipient->id }})">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
+                                    <p class="recipient-address text-sm text-gray-600">
+                                        {{ $recipient->city ?? 'N/A' }},
+                                        {{ $recipient->state ?? 'N/A' }}, {{ $recipient->zip ?? 'N/A' }}
+                                    </p>
                                 </div>
                             @empty
                                 <p class="text-gray-500">N/A</p>
