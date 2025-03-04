@@ -19,18 +19,44 @@ class SendScheduledMessages extends Command
         $twilioPhoneNumber = env('TWILIO_PHONE_NUMBER');
         $now = Carbon::now();
 
-        $messages = User::where('email', 'info@willbesent.com')->get();
+        // Fetch users who are eligible to receive messages
+        $users = User::all();
 
-        foreach ($messages as $message) {
-            $created_at = Carbon::parse($message->created_at);
-            $frequency = strtolower($message->frequency);
+        foreach ($users as $user) {
+            $frequency = strtolower($user->frequency);
+            $messageTime = Carbon::parse($user->message_time); // User's preferred message time
+            $lastMessageSentAt = $user->last_message_sent_at ? Carbon::parse($user->last_message_sent_at) : null;
 
-            if (($frequency === 'daily' && $created_at->diffInDays($now) >= 1) ||
-                ($frequency === 'weekly' && $created_at->diffInWeeks($now) >= 1) ||
-                ($frequency === 'monthly' && $created_at->diffInMonths($now) >= 1)
-            ) {
+            // Check if the current time matches the user's preferred time and frequency
+            $shouldSendMessage = false;
+
+            switch ($frequency) {
+                case 'daily':
+                    // Check if the current time matches the user's preferred time
+                    if ($now->format('H:i') === $messageTime->format('H:i')) {
+                        $shouldSendMessage = true;
+                    }
+                    break;
+
+                case 'weekly':
+                    // Check if today is the same day of the week and the time matches
+                    if ($now->isSameDay($messageTime) && $now->format('H:i') === $messageTime->format('H:i')) {
+                        $shouldSendMessage = true;
+                    }
+                    break;
+
+                case 'monthly':
+                    // Check if today is the same day of the month and the time matches
+                    if ($now->day === $messageTime->day && $now->format('H:i') === $messageTime->format('H:i')) {
+                        $shouldSendMessage = true;
+                    }
+                    break;
+            }
+
+            // Ensure the message wasn't already sent today
+            if ($shouldSendMessage && (!$lastMessageSentAt || !$lastMessageSentAt->isToday())) {
                 // Prepare curl request
-                $toPhoneNumber = '+18153416531';
+                $toPhoneNumber = $user->phone_number; // Fetch phone number from user record
                 $messageBody = "Your scheduled message content here.";
 
                 $curl = curl_init();
@@ -57,8 +83,8 @@ class SendScheduledMessages extends Command
                 } else {
                     $this->info("Message sent successfully: {$response}");
 
-                    // Update created_at to prevent duplicate messages
-                    $message->update(['created_at' => $now]);
+                    // Update last_message_sent_at to prevent duplicate messages
+                    $user->update(['last_message_sent_at' => $now]);
                 }
             }
         }
