@@ -10,4 +10,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
-// Schedule::command('send:scheduled-messages')->everyMinute();
+Schedule::command('send:scheduled-messages')->everyMinute();
