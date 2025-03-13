@@ -35,10 +35,7 @@
 
             <div class="flex gap-2">
                 <a  target="blank" class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300" href="https://www.facebook.com/profile.php?id=61571193345238">
-                    <!-- <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
-                    </svg> -->
-        <img src="{{ asset('images/facebook.png') }}" alt="facebook icon" class="h-8" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/></svg>
                 </a>
 
                 <a  target="blank" class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] cursor-pointer transition-all duration-300" href="https://www.instagram.com/willbesent_/?fbclid=IwZXh0bgNhZW0CMTEAAR2y1wetXP85EVmW4o8rXolE1E-WjeOr2iP2pK_KvYXXQQh9Io8kYOutz_g_aem_7RG-SDtXkzhWr3ga46I3fw">
