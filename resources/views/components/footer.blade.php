@@ -38,7 +38,7 @@
                
                <img src="{{ asset('images/instagram.png') }}" alt="facebook icon" class="h-6" />
                        </a>
-                <a  target="blank" class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] transition-all duration-300" href="https://www.facebook.com/profile.php?id=61571193345238">
+                <a  target="blank" class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] cursor-pointer  transition-all duration-300" href="https://www.facebook.com/profile.php?id=61571193345238">
                    
         <img src="{{ asset('images/facebook.png') }}" alt="facebook icon" class="h-6" />
                 </a>
