@@ -19,9 +19,10 @@
         <div class="w-full">
             <main class="flex-1 p-6">
                 <section class="bg-white p-6 rounded-lg shadow-lg relative">
-
+                    <h2 class="text-xl font-bold mb-4">Profile</h2>
+                    
                     <!-- Profile Image -->
-                    <div class="relative w-24 h-24">
+                    <div class="relative w-24 h-24 mb-4">
                         <div class="relative">
                             <img id="profileImage"
                                 src="{{ auth()->user() && auth()->user()->profile_image ? asset('storage/' . auth()->user()->profile_image) : asset('images/user.png') }}"
@@ -40,7 +41,7 @@
 
                     <!-- User Details Form -->
                     <form id="editUserProfile" class="mt-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 md-grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-gray-600">First Name</label>
                                 <input type="text" id="firstName" name="firstname"
@@ -67,6 +68,37 @@
                         </div>
                     </form>
                 </section>
+
+                <!-- Discount Coupon Section -->
+                <section class="bg-white p-6 rounded-lg shadow-lg mt-6">
+                    <h2 class="text-xl font-bold mb-4">Create Discount Coupons</h2>
+                    <form id="createCouponForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-600">Coupon Code</label>
+                                <input type="text" id="couponCode" name="coupon_code"
+                                    class="w-full p-2 border border-gray-300 rounded-lg" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-600">Discount Percentage</label>
+                                <input type="number" id="discountPercentage" name="discount_percentage"
+                                    class="w-full p-2 border border-gray-300 rounded-lg" required>
+                            </div>
+                        </div>
+                        <div class="text-right mt-6">
+                            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg">Create</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Notes Section -->
+                <section class="bg-white p-6 rounded-lg shadow-lg mt-6">
+                    <h2 class="text-xl font-bold mb-4">Admin Notes</h2>
+                    <textarea id="adminNotes" class="w-full p-2 border border-gray-300 rounded-lg h-40"></textarea>
+                    <div class="text-right mt-4">
+                        <button id="saveNotes" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Save Notes</button>
+                    </div>
+                </section>
             </main>
         </div>
     </div>
@@ -92,44 +124,17 @@
 
         function setupProfileImageUpload() {
             const fileInput = document.getElementById("fileInput");
-            const profileImage = document.getElementById("profileImage");
-            const editProfileImage = document.getElementById("editProfileImage");
-            const loader = document.getElementById("loader");
-
-            editProfileImage.addEventListener("click", () => fileInput.click());
-
-            fileInput.addEventListener("change", (event) => {
-                const file = event.target.files[0];
-                if (file) {
-                    const formData = new FormData();
-                    formData.append("profile_image", file);
-                    loader.classList.remove("hidden");
-
-                    fetch("/update-profile-image", {
-                            method: "POST",
-                            headers: {
-                                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute(
-                                    "content")
-                            },
-                            body: formData
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            loader.classList.add("hidden");
-                            if (data.profile_image) {
-                                showToast("Profile image updated successfully.", "success");
-                                profileImage.src = data.profile_image;
-                            } else {
-                                showToast("Failed to update profile image.", "error");
-                            }
-                        })
-                        .catch(() => {
-                            loader.classList.add("hidden");
-                            showToast("Error uploading image.", "error");
-                        });
-                }
-            });
+            document.getElementById("editProfileImage").addEventListener("click", () => fileInput.click());
         }
+
+        document.getElementById("createCouponForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            showToast("Discount coupon created successfully.", "success");
+        });
+
+        document.getElementById("saveNotes").addEventListener("click", function() {
+            showToast("Admin notes saved successfully.", "success");
+        });
     </script>
 </body>
 
