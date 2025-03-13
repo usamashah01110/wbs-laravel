@@ -41,7 +41,7 @@
 
                     <!-- User Details Form -->
                     <form id="editUserProfile" class="mt-6">
-                        <div class="grid grid-cols-1 md-grid-cols-2 gap-4">
+                        <div class="grid grid-cols-4 md-grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-gray-600">First Name</label>
                                 <input type="text" id="firstName" name="firstname"
