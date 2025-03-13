@@ -637,8 +637,8 @@
 
                             <div class="flex items-center justify-between gap-3 mt-4">
                                 <div class="flex items-center">
-                                    <img src="{{ asset('images/user.png') }}" class="h-10 w-10 me-4 rounded-full"
-                                        alt="" />
+                                    <!-- <img src="{{ asset('images/user.png') }}" class="h-10 w-10 me-4 rounded-full"
+                                        alt="" /> -->
                                     <a href="#"
                                         class="text-black text-sm font-semibold pb-1 hover:underline hover:text-primary transition-all duration-300">
                                         Lila Grayson</a>
@@ -667,8 +667,8 @@
 
                             <div class="flex items-center justify-between gap-3 mt-4">
                                 <div class="flex items-center">
-                                    <img src="{{ asset('images/user.png') }}" class="h-10 w-10 me-4 rounded-full"
-                                        alt="" />
+                                    <!-- <img src="{{ asset('images/user.png') }}" class="h-10 w-10 me-4 rounded-full"
+                                        alt="" /> -->
                                     <a href="#"
                                         class="text-black text-sm font-semibold pb-1 hover:underline hover:text-primary transition-all duration-300">
                                         Lila Grayson</a>
@@ -697,8 +697,8 @@
 
                             <div class="flex items-center justify-between gap-3 mt-4">
                                 <div class="flex items-center">
-                                    <img src="{{ asset('images/user.png') }}" class="h-10 w-10 me-4 rounded-full"
-                                        alt="" />
+                                    <!-- <img src="{{ asset('images/user.png') }}" class="h-10 w-10 me-4 rounded-full"
+                                        alt="" /> -->
                                     <a href="#"
                                         class="text-black text-sm font-semibold pb-1 hover:underline hover:text-primary transition-all duration-300">
                                         Lila Grayson</a>
@@ -729,9 +729,9 @@
                     </h2>
 
                     <div class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-start mt-10">
-                        <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                        <!-- <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                             <i data-lucide="map-pin" class="text-2xl text-primary"></i>
-                        </div>
+                        </div> -->
                         <div>
                             <h5 class="text-base text-muted font-medium mb-1">
                                 255 South Orange Avenue, Suite 104 - 1715, Orlando, FL 32801
@@ -742,9 +742,9 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-start mt-10">
-                        <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                        <!-- <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                             <i data-lucide="mail" class="text-2xl text-primary"></i>
-                        </div>
+                        </div> -->
                         <div>
                             <h5 class="text-base text-muted font-medium mb-1">
                                 Help@WillBeSent.com
@@ -755,9 +755,9 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-start mt-10">
-                        <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                        <!-- <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                             <i data-lucide="smartphone" class="text-2xl text-primary"></i>
-                        </div>
+                        </div> -->
                         <div>
                             <h5 class="text-base text-muted font-medium mb-1">
                                 +1 (833) 462-2786
