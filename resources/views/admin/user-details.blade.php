@@ -26,7 +26,7 @@
                         <div class="flex flex-col">
                             <div class="relative">
                                 <img id="profileImage"
-                                    src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/usere.png') }}"
+                                    src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/user.png') }}"
                                     alt="Profile" class="w-24 h-24 rounded-full object-cover" />
                             </div>
                             <div>

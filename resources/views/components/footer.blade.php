@@ -26,8 +26,6 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="bg-[#f47d61]">
         <div class="flex justify-between items-center w-11/12 mx-auto py-4">
             <p class="text-base text-white">
                 <!-- <script>document.write(new Date().getFullYear());</script>
