@@ -478,10 +478,282 @@
             });
         });
 
-        // Document functions
-        function viewDocument(path) {
-            window.open(`/storage/${path}`, "_blank");
+        // Document Upload Function
+function uploadDocumentAjax(inputElement, documentType) {
+    if (!inputElement.files || !inputElement.files[0]) return;
+    
+    const file = inputElement.files[0];
+    const formData = new FormData();
+    formData.append('document', file);
+    formData.append('documnet_type', documentType);
+    formData.append('user_id', '{{ $user->id }}');
+    
+    showLoader();
+    
+    fetch('/admin/documents', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        hideLoader();
+        if (data.success) {
+            showToast('Document uploaded successfully');
+            // Reload the page to show the new document
+            location.reload();
+        } else {
+            showToast(data.message || 'Failed to upload document', 'error');
         }
+    })
+    .catch(error => {
+        hideLoader();
+        showToast('An error occurred while uploading the document', 'error');
+    });
+}
+
+// Delete Document Function
+function deleteDocument(documentId) {
+    if (!confirm('Are you sure you want to delete this document?')) return;
+    
+    showLoader();
+    
+    fetch(`/admin/documents/${documentId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        hideLoader();
+        if (data.success) {
+            showToast('Document deleted successfully');
+            // Remove the document element from the DOM
+            const docElement = document.querySelector(`[data-document-id="${documentId}"]`);
+            if (docElement) docElement.remove();
+            else location.reload(); // Fallback if the element can't be found
+        } else {
+            showToast(data.message || 'Failed to delete document', 'error');
+        }
+    })
+    .catch(error => {
+        hideLoader();
+        showToast('An error occurred while deleting the document', 'error');
+    });
+}
+
+// Recipient Management Functions
+function openPopup(popupId, type) {
+    document.getElementById('popupModal').classList.remove('hidden');
+    document.getElementById('modalTitle').textContent = 'Add Recipient';
+    document.getElementById('recipientForm').reset();
+    document.getElementById('recipientId').value = '';
+    document.getElementById('recipientType').value = type;
+}
+
+function closePopup() {
+    document.getElementById('popupModal').classList.add('hidden');
+}
+
+// Edit Recipient
+document.querySelectorAll('.editRecipient').forEach(button => {
+    button.addEventListener('click', function() {
+        const recipientId = this.getAttribute('data-id');
+        showLoader();
+        
+        fetch(`/admin/recipients/${recipientId}`, {
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            hideLoader();
+            if (data) {
+                document.getElementById('popupModal').classList.remove('hidden');
+                document.getElementById('modalTitle').textContent = 'Edit Recipient';
+                document.getElementById('recipientId').value = data.id;
+                document.getElementById('recipientType').value = data.type;
+                
+                // Split the name into first and last name
+                const nameParts = data.name ? data.name.split(' ') : ['', ''];
+                document.getElementById('recipientFirstName').value = nameParts[0] || '';
+                document.getElementById('recipientLastName').value = nameParts.slice(1).join(' ') || '';
+                
+                document.getElementById('recipientEmail').value = data.email || '';
+                document.getElementById('recipientMobile').value = data.mobile || '';
+                document.getElementById('recipientStreet').value = data.street || '';
+                document.getElementById('recipientCity').value = data.city || '';
+                document.getElementById('recipientState').value = data.state || '';
+                document.getElementById('recipientZip').value = data.zip || '';
+            } else {
+                showToast('Failed to load recipient data', 'error');
+            }
+        })
+        .catch(error => {
+            hideLoader();
+            showToast('An error occurred while loading recipient data', 'error');
+        });
+    });
+});
+
+// Save Recipient
+document.getElementById('recipientForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const recipientId = document.getElementById('recipientId').value;
+    const formData = new FormData(this);
+    const recipientData = {
+        type: formData.get('type'),
+        name: `${formData.get('first_name')} ${formData.get('last_name')}`.trim(),
+        email: formData.get('email'),
+        mobile: formData.get('mobile'),
+        street: formData.get('street'),
+        city: formData.get('city'),
+        state: formData.get('state'),
+        zip: formData.get('zip'),
+        user_id: '{{ $user->id }}'
+    };
+    
+    const url = recipientId ? `/admin/recipients/${recipientId}` : '/admin/recipients';
+    const method = recipientId ? 'PUT' : 'POST';
+    
+    showLoader();
+    
+    fetch(url, {
+        method: method,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(recipientData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        hideLoader();
+        if (data.success) {
+            showToast(`Recipient ${recipientId ? 'updated' : 'added'} successfully`);
+            closePopup();
+            location.reload(); // Reload to show the updated recipient list
+        } else {
+            showToast(data.message || `Failed to ${recipientId ? 'update' : 'add'} recipient`, 'error');
+        }
+    })
+    .catch(error => {
+        hideLoader();
+        showToast(`An error occurred while ${recipientId ? 'updating' : 'adding'} the recipient`, 'error');
+    });
+});
+
+// Delete Recipient
+function deleteRecipient(recipientId) {
+    if (!confirm('Are you sure you want to delete this recipient?')) return;
+    
+    showLoader();
+    
+    fetch(`/admin/recipients/${recipientId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        hideLoader();
+        if (data.success) {
+            showToast('Recipient deleted successfully');
+            location.reload(); // Reload to update the recipient list
+        } else {
+            showToast(data.message || 'Failed to delete recipient', 'error');
+        }
+    })
+    .catch(error => {
+        hideLoader();
+        showToast('An error occurred while deleting the recipient', 'error');
+    });
+}
+
+// User Deletion Functions
+document.getElementById('deleteUserBtn').addEventListener('click', function() {
+    document.getElementById('deleteUserModal').classList.remove('hidden');
+});
+
+function closeDeleteModal() {
+    document.getElementById('deleteUserModal').classList.add('hidden');
+}
+
+function confirmDeleteUser() {
+    showLoader();
+    
+    fetch(`/admin/users/{{ $user->id }}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        hideLoader();
+        if (data.success) {
+            showToast('User deleted successfully');
+            // Redirect to users list after successful deletion
+            window.location.href = '/admin/users';
+        } else {
+            showToast(data.message || 'Failed to delete user', 'error');
+            closeDeleteModal();
+        }
+    })
+    .catch(error => {
+        hideLoader();
+        showToast('An error occurred while deleting the user', 'error');
+        closeDeleteModal();
+    });
+}
+
+// Utility Functions
+function showLoader() {
+    document.getElementById('loader').classList.remove('hidden');
+}
+
+function hideLoader() {
+    document.getElementById('loader').classList.add('hidden');
+}
+
+function showToast(message, type = 'success') {
+    const toastContainer = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    
+    toast.className = `px-4 py-3 rounded shadow-lg transition-all duration-300 transform translate-x-full ${
+        type === 'success' ? 'bg-green-500' : 'bg-red-500'
+    } text-white flex items-center`;
+    
+    toast.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} mr-2"></i>
+        <span>${message}</span>
+    `;
+    
+    toastContainer.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.classList.remove('translate-x-full');
+    }, 10);
+    
+    // Animate out and remove
+    setTimeout(() => {
+        toast.classList.add('translate-x-full');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 5000);
+}
 
     </script>
 </body>
