@@ -33,7 +33,7 @@
                 Copyright &copy; <script>document.write(new Date().getFullYear())</script> Will Be Sent. All Rights Reserved. 
             </p>
 
-            <div class="flex gap-2 mr-8">
+            <div class="flex gap-2 mr-16">
             <a  target="blank" class="p-2 text-sm font-semibold rounded-md text-white hover:bg-[#415a77] cursor-pointer transition-all duration-300" href="https://www.instagram.com/willbesent_/?fbclid=IwZXh0bgNhZW0CMTEAAR2y1wetXP85EVmW4o8rXolE1E-WjeOr2iP2pK_KvYXXQQh9Io8kYOutz_g_aem_7RG-SDtXkzhWr3ga46I3fw">
                
                <img src="{{ asset('images/instagram.png') }}" alt="facebook icon" class="h-6" />
